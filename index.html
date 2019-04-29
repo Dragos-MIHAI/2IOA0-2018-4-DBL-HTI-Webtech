@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html>
+
+ <head>
+ <link rel="stylesheet" href="style.css" type="text/css" />
+ <link rel="stylesheet" href="styles.css">
+  <script>
+   
+   function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user=getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+       user = prompt("Please enter your name:","");
+       if (user != "" && user != null) {
+           setCookie("username", user, 30);
+       }
+    }
+}
+
+</script>
+ <style>
+
+  .ui-page .ui-footer-fixed.ui-fixed-hidden {
+    display: block;
+}
+  
+#logo {
+    max-width: 100%;
+    height: auto;
+    
+}
+ 
+  span.highlight {
+    background-color: red;
+}
+    
+  span.subliniat {
+    background-color: white;
+}
+  
+h2 {
+    color: white;
+}
+  
+h3 {
+ color: white;
+  }
+
+p {
+ font-size: 150%;
+ text-align: center;
+  color: red
+   }
+
+.right_column {
+    float:right;
+    width:180px;
+}
+
+.left_column {
+    margin-right:170px;
+    width: 160px;
+    height: 600px;
+}
+  
+  .center {
+    padding: 70px 0;
+    border: 3px solid green;
+    text-align: center;
+
+}
+  
+body {
+    background-image: url("http://gdurl.com/S_qu");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+</style>
+
+
+</head>
+ <head/>
+ <body onload="checkCookie()">
+ 
+  <img id="logo" src="http://static.techspot.com/articles-info/1075/images/Header_01.jpg" alt= "The battle between Amd and Nvidia"  />
+  
+ <ul id="nav_container"> 
+<li><a href="https://dragos-mihai.github.io/Buy-a-gaming-laptop/">Home</a></li>
+<li><a href="Products.html">Products</a></li>
+<li><a href="Services.html">Services</a></li>
+<li><a href="Contact.html">Contact</a></li>
+</ul>
+ <div>
+<img src="dg8.gif" name="hr1"><img 
+src="dg8.gif" name="hr2"><img 
+src="dgc.gif"><img 
+src="dg8.gif" name="mn1"><img 
+src="dg8.gif" name="mn2"><img 
+src="dgc.gif"><img 
+src="dg8.gif" name="se1"><img 
+src="dg8.gif" name="se2"><img 
+src="dgam.gif" name="ampm"></div>
+
+<script type="text/javascript">
+
+dg = new Array();
+dg[0]=new Image();dg[0].src="dg0.gif";
+dg[1]=new Image();dg[1].src="dg1.gif";
+dg[2]=new Image();dg[2].src="dg2.gif";
+dg[3]=new Image();dg[3].src="dg3.gif";
+dg[4]=new Image();dg[4].src="dg4.gif";
+dg[5]=new Image();dg[5].src="dg5.gif";
+dg[6]=new Image();dg[6].src="dg6.gif";
+dg[7]=new Image();dg[7].src="dg7.gif";
+dg[8]=new Image();dg[8].src="dg8.gif";
+dg[9]=new Image();dg[9].src="dg9.gif";
+dgam=new Image();dgam.src="dgam.gif";
+dgpm=new Image();dgpm.src="dgpm.gif";
+
+function dotime(){ 
+	var d=new Date();
+	var hr=d.getHours(),mn=d.getMinutes(),se=d.getSeconds();
+
+	// set AM or PM
+	document.ampm.src=((hr<12)?dgam.src:dgpm.src);
+
+	// adjust from 24hr clock
+	if(hr==0){hr=12;}
+	else if(hr>12){hr-=12;}
+
+	document.hr1.src = getSrc(hr,10);
+	document.hr2.src = getSrc(hr,1);
+	document.mn1.src = getSrc(mn,10);
+	document.mn2.src = getSrc(mn,1);
+	document.se1.src = getSrc(se,10);
+	document.se2.src = getSrc(se,1);
+}
+
+function getSrc(digit,index){
+	return dg[(Math.floor(digit/index)%10)].src;
+}
+
+window.onload=function(){
+	dotime();
+	setInterval(dotime,1000);
+}
+
+</script>
+
+
+
+<div id="main_content">
+<div class="right_column">
+ <p> <span class="subliniat"> <strong> <em> Don't hesitate! Buy a gaming laptop. </em> </strong> </span></p> 
+<img src= "http://www.3d-hdwallpaper.com/wp-content/uploads/2016/09/desktop-red-apples-pics-dowload-630x430.jpg" alt= "Don't choose MAC! Think gamer!" height= 150 width= 150>
+
+</div>
+
+<div class="left_column">
+<img src = "http://i1150.photobucket.com/albums/o605/slaundy/160x600ad.gif">
+
+</div>
+
+<div class="center">
+ 
+  <h2><span class="highlight"> Welcome to Eagle Project. In this website you will have some advice in your choice to buy a gaming laptop. If you you don't like gaming laptop don't hesitate do go to our non-gaming page: <a href="https://www.centralpoint.be/fr/notebooks/?reset=1&facet_17130=Mobile+workstation">Office Laptops</a> </span> </h2>
+
+  <h2>History</h2>
+  <h3><span class="highlight">A gaming computer is a personal computer designed for playing computationally demanding video games as an alternative to a video game console. Gaming computers are very similar to conventional PCs, with the main difference being the addition of gaming-oriented components such as one or more high-end video cards. Gaming computers are often associated with enthusiast computing due to an overlap in interests. However, while a gaming PC is built to achieve performance for actual gameplay, enthusiast PCs are built to maximize performance, using games as a benchmark. The difference between the two carries a large discrepancy in the cost of the system. Whereas enthusiast PCs are high-end by definition, gaming PCs can be subdivided into low-end, mid-range, and high-end segments. Contrary to the popular misconception that PC gaming is inextricably tied to high-priced enthusiast computing, video card manufacturers earn the bulk of their revenue from their low-end and mid-range offerings.[1]
+Because of the large variety of parts that can go into a computer built to play video games, gaming computers are typically custom-made, rather than pre-assembled, either by gaming and hardware enthusiasts or by companies that specialize in producing custom gaming machines. In order to generate interest, gaming computer manufacturers that sell complete systems often produce boutique models, allowing them to compete on aesthetic design in addition to the hardware inside. </span></h3>
+  <h3><span class="highlight">A laptop, often called a notebook or "notebook computer", is a small, portable personal computer with a "clamshell" form factor, an alphanumeric keyboard on the lower part of the "clamshell" and a thin LCD or LED computer screen on the upper portion, which is opened up to use the computer. Laptops are folded shut for transportation, and thus are suitable for mobile use.[1] Although originally there was a distinction between laptops and notebooks, the former being bigger and heavier than the latter, as of 2014, there is often no longer any difference.[2] Laptops are commonly used in a variety of settings, such as at work, in education, Internet surfing using sites such as YouTube and for personal multimedia and home computer use.
+
+A laptop combines the components, inputs, outputs, and capabilities of a desktop computer, including the display screen, small speakers, a keyboard, pointing devices (such as a touchpad or trackpad), a processor, and memory into a single unit. Most 2016-era laptops also have integrated webcams and built-in microphones. Some 2016-era laptops have touchscreens. Laptops can be powered either from an internal battery or by an external power supply from an AC adapter. Hardware specifications, such as the processor speed and memory capacity, significantly vary between different types, makes, models and price points. Design elements, form factor, and construction can also vary significantly between models depending on intended use. Examples of specialized models of laptops include rugged notebooks for use in construction or military applications, as well as low production cost laptops such as those from the One Laptop per Child organization, which incorporate features like solar charging and semi-flexible components not found on most laptop computers. Portable computers, which later developed into modern laptops, were originally considered to be a small niche market, mostly for specialized field applications, such as in the military, for accountants, or for traveling sales representatives. As portable computers evolved into the modern laptop, they became widely used for a variety of purposes.[3] 
+   </span></h3>
+ </div> 
+ 
+<div data-role="footer" data-position="fixed">
+    <h1> <span class="subliniat" > This website has been created by Dragos Mihai. My email is dragos200019@yahoo.com </span> </h1>
+	<h1> <span class="subliniat" > This website was created using Google Images, Wikipedia, Amazon , CentralPoint, MediaMarkt, Ebay. All the images and all the text belong to these websites. All the links are on the inspect page of the browser. For Google Chrome use CTRL+SHIFT+I. For other browser use right click and then inspect. Have a nice day !  </span> </h1>
+ 
+<body/>
+ 
+ <html/>

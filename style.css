@@ -1,0 +1,25 @@
+#nav_container {
+    list-style-type: none;
+    background-color:red;
+    margin-bottom: 15px;
+}
+
+#nav_container li {
+    display:inline-block;
+}
+
+#nav_container li a {
+    display:inline-block;
+    text-decoration: none;
+    padding: 10px;
+    color: rgb(39,39,39);
+    }
+
+#nav_container li a:hover {
+    background-color: green;
+   }
+	
+ .h3 {
+            background-color: blue;
+            font-family: fantasy;
+            font-size: 13px;
