@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html>
+
+ <head>
+ <link rel="stylesheet" href="style.css" type="text/css" />
+ <link rel="stylesheet" href="styles.css">
+   
+ <style>
+	 
+ #map {
+        height: 400px;
+        width: 100%;
+	 background-color: grey;
+       } 
+#logo {
+    max-width: 100%;
+    height: auto;
+    
+}
+	 
+ span.highlight {
+    background-color: green;
+}
+	 
+ span.subliniat {
+    background-color: red;
+}
+  
+h2 {
+    color: white;
+}
+  
+.right_column {
+    float:right;
+    width:160px;
+}
+.left_column {
+    margin-right:170px;
+    width: 160px;
+    height: 600px;
+}
+  
+  .center {
+    padding: 70px 0;
+    border: 3px solid green;
+    text-align: center;
+}
+body {
+    background-image: url("http://gdurl.com/5ZyJ");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+</style>
+
+
+</head>
+ <head/>
+ <body >
+  
+   <img id="logo" src="http://static.techspot.com/articles-info/1075/images/Header_01.jpg" alt= "The battle between Amd and Nvidia"  />
+  
+ <ul id="nav_container"> 
+<li><a href="https://dragos-mihai.github.io/Buy-a-gaming-laptop/">Home</a></li>
+<li><a href="Products.html">Products</a></li>
+<li><a href="Services.html">Services</a></li>
+<li><a href="Contact.html">Contact</a></li>
+</ul>
+	 
+<div>
+<img src="dg8.gif" name="hr1"><img 
+src="dg8.gif" name="hr2"><img 
+src="dgc.gif"><img 
+src="dg8.gif" name="mn1"><img 
+src="dg8.gif" name="mn2"><img 
+src="dgc.gif"><img 
+src="dg8.gif" name="se1"><img 
+src="dg8.gif" name="se2"><img 
+src="dgam.gif" name="ampm"></div>
+
+<script type="text/javascript">
+dg = new Array();
+dg[0]=new Image();dg[0].src="dg0.gif";
+dg[1]=new Image();dg[1].src="dg1.gif";
+dg[2]=new Image();dg[2].src="dg2.gif";
+dg[3]=new Image();dg[3].src="dg3.gif";
+dg[4]=new Image();dg[4].src="dg4.gif";
+dg[5]=new Image();dg[5].src="dg5.gif";
+dg[6]=new Image();dg[6].src="dg6.gif";
+dg[7]=new Image();dg[7].src="dg7.gif";
+dg[8]=new Image();dg[8].src="dg8.gif";
+dg[9]=new Image();dg[9].src="dg9.gif";
+dgam=new Image();dgam.src="dgam.gif";
+dgpm=new Image();dgpm.src="dgpm.gif";
+function dotime(){ 
+	var d=new Date();
+	var hr=d.getHours(),mn=d.getMinutes(),se=d.getSeconds();
+	// set AM or PM
+	document.ampm.src=((hr<12)?dgam.src:dgpm.src);
+	// adjust from 24hr clock
+	if(hr==0){hr=12;}
+	else if(hr>12){hr-=12;}
+	document.hr1.src = getSrc(hr,10);
+	document.hr2.src = getSrc(hr,1);
+	document.mn1.src = getSrc(mn,10);
+	document.mn2.src = getSrc(mn,1);
+	document.se1.src = getSrc(se,10);
+	document.se2.src = getSrc(se,1);
+}
+function getSrc(digit,index){
+	return dg[(Math.floor(digit/index)%10)].src;
+}
+window.onload=function(){
+	dotime();
+	setInterval(dotime,1000);
+}
+</script>
+	 
+ <div id="main_content"> 
+ <h3>Home Sweet Home!</h3>
+    <div id="map"></div> 
+<div class="center">
+<h1>  <span class="highlight">If you have some questions or improvements that I can do to my website don't hesitate to contact me.</span> <h1>
+	<h2> How ?</h2>
+	<h2> I let you discover this .... :) x) </h2> 
+</div>
+		
+<div class="center">
+<a href="http://www.123contactform.com/form-2566536/Contact-Lead-Form" target="_blank"><image src= "https://media.giphy.com/media/dXICCcws9oxxK/giphy.gif"/> </a>
+	<h6><span class="highlight">Just click the animated picture !!! </span> <h6>
+		<h1> <span class="highlight"> Personal Details </span> </h1>
+	<h2> Name : Eagle Project </h2>
+	<h2> Purpose : Sell gaming laptops !!!! </h2>
+	<h2> Address : 715 Lexington Ave, New York, NY 10022, USA <em>(shown on map)</em> </h2>
+	<h2> Open time : </h2>
+	<h2>Monday -> 9AM–9PM</h2>
+	<h2>Tuesday -> 9AM–9PM</h2>
+	<h2>Wednesday -> 9AM–9PM</h2>
+	<h2>Thursday -> 9AM–9PM</h2>
+	<h2>Friday -> 9AM–9PM</h2>
+	<h2>Saturday -> 9AM–7PM</h2>
+	<h2>Sunday -> 11AM–7PM </h2> 
+
+
+
+	
+ </div>
+<script>
+      function initMap() {
+        var uluru = {lat: 40.7612154, lng: -73.9687014};  
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWQ4oJoj1fml9MjA1psKA07eDIXO5Ejkk&callback=initMap">
+    </script>	
+
+  
+
+<h2>
+ <span class="subliniat">This site uses cookies to help serve the ads it displays on the websites of its partners, such as websites displaying AdSense ads or participating in Google </span> </h2>
+	<h2><span class="subliniat">certified ad networks. When users visit a partner's website, a cookie may be dropped on that end user's browser.</span> </h2>
+	<h2><span class="subliniat">Need help visit : <a href="http://ec.europa.eu/ipg/basics/legal/cookies/index_en.htm">Cookies Policy</a> </span>  </h2>
+ 
+ <body/>
+ 
+ <html/>
