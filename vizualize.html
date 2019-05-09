@@ -10,7 +10,7 @@
     <canvas data-processing-sources="Matrix-third-prototype.pde"></canvas>
     <script>
         background(255, 255, 255);
-        var matrix = [
+        let matrix = [
             ['a', 'b', 'c', 'd', 'e'],
             [0, 1, 1, 1, 1],
             [1, 0, 1, 1, 1],
@@ -19,10 +19,10 @@
             [1, 1, 1, 1, 0]
         ];
 
-        var canvasWidth = 300;
-        var canvasHeight = 300;
-        var nrCols = matrix[0].length;
-        var nrRows = matrix.length - 1;
+        let canvasWidth = 300;
+        let canvasHeight = 300;
+        const nrCols = matrix[0].length;
+        const nrRows = matrix.length - 1;
 
         var rectWidth = canvasWidth / nrCols;
         var rectHeight = canvasHeight / nrRows;
