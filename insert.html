@@ -91,11 +91,18 @@
 
 
       <!-- Encoding type, exprimat de atributul enctype, TREBUIE specificat ca mai jos -->
-  <form enctype="multipart/form-data" action="u.php" method="POST">
-  Incarca un fisier: <input name="fisier" type="file" />
-  <input type="submit" value="Trimite fisier" />
-  </form>
+      <form action="load.php" method="post" enctype="multipart/form-data">
+        <p>Fisiere:
+        <input type="file" name="pictures[]" />
+        <input type="file" name="pictures[]" />
+        <input type="file" name="pictures[]" />
+        <input type="submit" value="Incarca" />
+        </p>
+        </form>
   
+
+        
+
   <!-- Footer -->
   <footer class="w3-container w3-padding-32 w3-theme-d1 w3-center">
       <h4>Follow Us</h4>
