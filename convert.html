@@ -14,45 +14,46 @@ body {
  
 <body>
  <script>
-let input = FileReader.readAsText(GephiMatrix_co-authorship.csv, opt_encoding);
-input = input.slice(1,input.length);
-let items = input.split(';');
-console.log(input);
+ let input = FileReader.readAsText(GephiMatrix_co-authorship.csv, opt_encoding);
+ input = input.slice(1,input.length);
+ let items = input.split(';');
+ console.log(input);
 
 // I will organize this more
 
-let nodes = [];
-let verticesNames = [];
-let verticesIndex = []; // We will use this later to not have to search for each index separately. This will make the running time shorter
-let dictionaryWord = 0;
-dictionaryWord = {"id": items[0]}
-nodes.push(dictionaryWord);
-verticesNames.push(items[0]);
-verticesIndex[items[0]] = 0;
-let index = 1;
-while (items[index] != items[0]) {
-    dictionaryWord = {"id": items[index]};
-    nodes.push(dictionaryWord);
-    verticesNames.push(items[index]);
-    verticesIndex[items[index]] = index;
-    index++;
-}
-document.write(JSON.stringify(nodes));
-
-
-let vertex = items[index];
-let links = [];
-index++;
-while (index < items.length) {
-    for (let i = 0; i < vertices.length; i++) {
-        dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]};
-        links.push(dictionaryWord);
-        index++;
-    }
-    vertex = items[index];
-    index++;
-  
- //making object
+ let nodes = [];
+ let verticesNames = [];
+ let verticesIndex = []; // We will use this later to not have to search for each index separately. This will make the running time shorter
+ let dictionaryWord = 0;
+ dictionaryWord = {"id": items[0]}
+ nodes.push(dictionaryWord);
+ verticesNames.push(items[0]);
+ verticesIndex[items[0]] = 0;
+ let index = 1;
+ while (items[index] != items[0]) {
+     dictionaryWord = {"id": items[index]};
+     nodes.push(dictionaryWord);
+     verticesNames.push(items[index]);
+     verticesIndex[items[index]] = index;
+     index++;
+ }
+ document.write(JSON.stringify(nodes));
+ 
+ 
+ let vertex = items[index];
+ let links = [];
+ index++;
+ while (index < items.length) {
+     for (let i = 0; i < vertices.length; i++) {
+         dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]};
+         links.push(dictionaryWord);
+         index++;
+     }
+     vertex = items[index];
+     index++;
+ }
+   
+  //making object
 var graph = d3.select("body")
               .append("svg");
 
