@@ -14,7 +14,7 @@ body {
  
 <body>
  <script>
- let input = FileReader.readAsText('GephiMatrix_co-authorship.csv', opt_encoding);
+ let input = FileReader.readAsText('GephiMatrix_co-authorship.csv');
  input = input.slice(1,input.length);
  let items = input.split(';');
  console.log(input);
