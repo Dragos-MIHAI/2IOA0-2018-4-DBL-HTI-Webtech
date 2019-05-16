@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <title>I really hope this works</title>
-    <script src="https://raw.githubusercontent.com/processing-js/processing-js/v1.4.8/processing.js"></script>
+    
 </head>
 <body>
     <canvas data-processing-sources="Matrix-third-prototype.pde"></canvas>
@@ -12,34 +12,15 @@
 
     <script>
         
-        let matrix = [
-            ['a', 'b', 'c', 'd', 'e'],
-            [0, 1, 1, 1, 1],
-            [1, 0, 1, 1, 1],
-            [1, 1, 0, 1, 1],
-            [1, 1, 1, 0, 1],
-            [1, 1, 1, 1, 0]
-        ];
-
-        
-        let canvasWidth = 300;
-        let canvasHeight = 300;
-        const nrCols = matrix[0].length;
-        const nrRows = matrix.length - 1;
-
-        var rectWidth = canvasWidth / nrCols;
-        var rectHeight = canvasHeight / nrRows;
-
-        for (var i = 1; i < nrRows; i++) {
-            for (var j = 0; j < nrCols; j++) {
-                if (matrix[i][j] === 0) {
-                    fill(255, 255, 255);                    
-                } else {
-                    fill(0, 0, 0);
-                }
-                rect(j*rectWidth, i*rectHeight, rectWidth, rectHeight);
+        const input = document.querySelector('input[type="file"]')
+        input.addEventListener('change', function (e)) {
+            console.log(input.files)
+            const reader = new FileReader ()
+            reader.onload = function() {
+                console.log(reader.result)
             }
-        }
+            reader.readAsText(input.files[0])
+        }, false)
     </script>
 </body>
 
