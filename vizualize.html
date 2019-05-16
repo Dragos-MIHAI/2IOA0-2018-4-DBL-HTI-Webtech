@@ -13,7 +13,7 @@
     <script>
         
         const input = document.querySelector('input[type="file"]')
-        input.addEventListener('change', function (e)) {
+        input.addEventListener('change', function (e) {
             console.log(input.files)
             const reader = new FileReader ()
             reader.onload = function() {
