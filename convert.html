@@ -14,7 +14,14 @@ body {
  
 <body>
  <script>
- let input = document.getElementById('GephiMatrix_co-authorship.csv');
+ fetch("https://github.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/GephiMatrix_co_authorship.csv").catch(
+  error => console.log("error", error)
+).then(response => {
+  response.text().then(data => {
+    let input = data;
+    //parse CSV data here...
+  });
+});('GephiMatrix_co-authorship.csv');
  input = input.slice(1,input.length);
  let items = input.split(';');
  console.log(input);
