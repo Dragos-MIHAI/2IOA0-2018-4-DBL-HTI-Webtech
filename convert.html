@@ -14,7 +14,7 @@ body {
  
 <body>
  <script>
-  fetch("https://github.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/tree/6cf12ede84e727486e4fd3779f9b57bdb426a3fa/GephiMatrix_co_authorship.csv", {mode: 'cors'}).catch(
+  fetch("GephiMatrix_co_authorship.csv", {mode: 'cors'}).catch(
   error => console.log("error", error)
 ).then(response => {
   response.text().then(data => {
