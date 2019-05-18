@@ -19,14 +19,13 @@ body {
 ).then(response => {
   response.text().then(data => {
     let input = data;
-    //parse CSV data here...
   });
 });
 //  var fs = require('fs')
 //  let input = fs.open(GephiMatrix_co_authorship.csv)
  input = input.slice(1,input.length);
  let items = input.split(';');
- console.log(input);
+ console.log(items[1]);
 
  let nodes = [];
  let verticesNames = [];
