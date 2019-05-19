@@ -1,0 +1,22 @@
+{
+  "name": "2ioa0-2018-4-dbl-hti-webtech",
+  "version": "1.0.0",
+  "description": "Folder of data for website",
+  "main": "Converter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech.git"
+  },
+  "author": "Group 09",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/issues"
+  },
+  "homepage": "https://github.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
+}
