@@ -29,7 +29,7 @@ body {
   .then(function(result) {
     input = result.data;
     input = input.slice(1,input.length);
-    items = input.split(';');
+    items = input.split(/[\s;]+/);
     console.log(items[0])
     manipulate()
   });
