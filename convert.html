@@ -23,24 +23,12 @@ body {
 //    input = data;
 //  });
 //});
-//  var fs = require('fs')
-//  let input = fs.open(GephiMatrix_co_authorship.csv)
+  var fs = require('fs')
+  let input = fs.open(GephiMatrix_co_authorship.csv)
   
   var reader = new FileReader();
   var fileToRead = document.querySelector("https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv");
 
-// attach event, that will be fired, when read is end
-  reader.addEventListener("loadend", function() {
-   // reader.result contains the contents of blob as a typed array
-   // we insert content of file in DOM here
-   document.getElementById('file').innerText = reader.result;
-});
-
-// start reading a loaded file
-input = reader.readAsText(fileToRead);
-  
-  input = reader.readAsText("https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv");
-  
  input = input.slice(1,input.length);
  let items = input.split(';');
  console.log(input);
