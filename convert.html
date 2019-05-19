@@ -16,6 +16,7 @@ body {
 <body>
  <script>
   let input = ''
+  let items = ''
   
 //  fetch("https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv", {mode: 'cors'}).catch(
 //  error => console.log("error", error)
@@ -33,7 +34,7 @@ body {
   .then(function(result) {
     input = result.data;
     input = input.slice(1,input.length);
-    let items = input.split(';');
+    items = input.split(';');
    console.log(input)
   });
   
