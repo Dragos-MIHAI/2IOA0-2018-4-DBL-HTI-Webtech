@@ -32,12 +32,11 @@ body {
   )
   .then(function(result) {
     input = result.data;
+    input = input.slice(1,input.length);
+    let items = input.split(';');
+   console.log(items[items.length - 1])
   });
   
-  console.log(input.slice(0, 100));
-  console.log(input[1]);
- input = input.slice(1,input.length);
- let items = input.split(';');
   /*
   for (let i = 0; i < 20; i++) {
    console.log(items[i])
