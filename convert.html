@@ -22,15 +22,6 @@ body {
   let verticesIndex = []; // We will use this later to not have to search for each index separately. This will make the running time shorter
   let links = [];
   
-//  fetch("https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv", {mode: 'cors'}).catch(
-//  error => console.log("error", error)
-//).then(response => {
-//  response.text().then(data => {
-//    input = data;
-//  });
-//});
-//  input = fs.open("https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv")
-  
   axios
   .get(
     "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv"
