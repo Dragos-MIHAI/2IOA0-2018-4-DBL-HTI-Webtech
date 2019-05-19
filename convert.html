@@ -40,7 +40,7 @@ body {
     input = input.slice(1,input.length);
     items = input.split(';');
     console.log(items[0])
-    // manipulate()
+    manipulate()
   });
   
   function manipulate() {
@@ -56,6 +56,9 @@ body {
        verticesNames.push(items[index]);
        verticesIndex[items[index]] = index;
        index++;
+       if (items[index] === 'Jim_Thomas') {
+        break;
+       }
    }
    console.log(JSON.stringify(nodes));
    
