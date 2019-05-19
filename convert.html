@@ -15,15 +15,30 @@ body {
 <body>
  <script>
   let input = ''
-  fetch("https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv", {mode: 'cors'}).catch(
-  error => console.log("error", error)
-).then(response => {
-  response.text().then(data => {
-    input = data;
-  });
-});
+  
+//  fetch("https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv", {mode: 'cors'}).catch(
+//  error => console.log("error", error)
+//).then(response => {
+//  response.text().then(data => {
+//    input = data;
+//  });
+//});
 //  var fs = require('fs')
 //  let input = fs.open(GephiMatrix_co_authorship.csv)
+  
+  var reader = new FileReader();
+  
+  reader.onload = function(evt) {
+        if(evt.target.readyState != 2) return;
+        if(evt.target.error) {
+            alert('Error while reading file');
+            return;
+        }
+
+        filecontent = evt.target.result;
+
+        document.forms['myform'].elements['text'].value = evt.target.result;
+    };
   
   input = reader.readAsText("https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv");
   
