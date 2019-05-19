@@ -57,7 +57,7 @@ body {
    let vertex = items[index];
    index++;
    while (index < items.length) {
-       for (let i = 0; i < vertices.length; i++) {
+       for (let i = 0; i < nodes.length; i++) {
            dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]};
            links.push(dictionaryWord);
            index++;
