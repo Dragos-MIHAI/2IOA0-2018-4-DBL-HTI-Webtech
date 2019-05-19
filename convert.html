@@ -32,15 +32,13 @@ body {
   )
   .then(function(result) {
     input = result.data;
-    console.log(input);
   });
   
   var reader = new FileReader();
-  var fileToRead = document.querySelector("https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv");
 
  input = input.slice(1,input.length);
  let items = input.split(';');
- console.log(items[1]);
+ console.log(items[items.length - 1]);
 
   /*
  let nodes = [];
