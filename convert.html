@@ -54,7 +54,7 @@ body {
    console.log(JSON.stringify(nodes));
    
    let vertex = items[index];
-   index = 0;
+   index++;
    while (index < items.length) {
        for (let i = 0; i < nodes.length; i++) {
            dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]};
