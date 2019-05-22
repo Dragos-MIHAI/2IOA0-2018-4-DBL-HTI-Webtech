@@ -47,7 +47,8 @@ body {
        verticesNames.push(items[index]);
        verticesIndex[items[index]] = index;
        index++;
-       
+       if (items[index] === 'Jim_Thomas') {
+         break;
        }
    }
    console.log(JSON.stringify(nodes));
@@ -62,8 +63,7 @@ body {
        }
        vertex = items[index];
        index++;
-       if (items[index] === 'Jim_Thomas') {
-          break;
+
    }
    
   } 
