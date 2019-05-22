@@ -51,24 +51,23 @@ body {
          break;
        }
    }
-   console.log(JSON.stringify(nodes));
 
    let vertex = items[index];
    index++;
    while (index < items.length) {
        for (let i = 0; i < nodes.length; i++) {
-           dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]};
-           links.push(dictionaryWord);
+           if (items[index] != 0) {
+               dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]};
+               links.push(dictionaryWord);
+           }
            index++;
        }
        vertex = items[index];
        index++;
 
    }
-   
+   console.log(JSON.stringify(links))
   } 
-  
-  
    
    
   //making object
