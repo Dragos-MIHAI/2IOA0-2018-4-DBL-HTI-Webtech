@@ -25,7 +25,12 @@
     let svg = d3.select("body").append('svg')
       .attr("width", width)
       .attr("height", height)
-    
+
+    let  nodes = [{"id":"Marco"},{"id":"Lucas"},{"id":"Dragos"}];
+                
+    let links = [{"source":"Marco","target":"Marco","value":"1"},{"source":"Marco","target":"Lucas","value":"0.6947"},{"source":"Marco","target":"Dragos","value":"0.3967"},{"source":"Lucas","target":"Marco","value":"0.6947"},{"source":"Lucas","target":"Lucas","value":"1"},{"source":"Lucas","target":"Dragos","value":"0.2850"},{"source":"Dragos","target":"Marco","value":"0.3967"},{"source":"Dragos","target":"Lucas","value":"0.2850"},{"source":"Dragos","target":"Dragos","value":"1"}];
+            
+
     let color = d3.scaleOrdinal(d3.schemeCategory20);
     
     let simulation = d3.forceSimulation()
