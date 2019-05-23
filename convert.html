@@ -22,7 +22,7 @@ body {
   let verticesNames = [];
   let verticesIndex = []; // We will use this later to not have to search for each index separately. This will make the running time shorter
   let links = [];
-  
+
   axios
   .get(
     "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv"
@@ -33,6 +33,7 @@ body {
     items = input.split(/[\s;]+/);
     console.log(items[0])
     manipulate()
+    dThree()
   });
   
   function manipulate() {
@@ -48,9 +49,6 @@ body {
        verticesNames.push(items[index]);
        verticesIndex[items[index]] = index;
        index++;
-       if (items[index] === 'Jim_Thomas') {
-         break;
-       }
     console.log(JSON.stringify(nodes))
    }
 
@@ -72,24 +70,25 @@ body {
   } 
    
    
-  //making object
-var graph = d3.select("body")
-              .append("svg");
-
-//properties of the object            
-var w = 640,
-    h = 480;
-
-//giving the graph the properties
-graph.attr("width", w)
-     .attr("height", h);
-     
-
- //var nodes = [{"id":"Marco"},{"id":"Lucas"},{"id":"Dragos"}];
+function dThree() {
+  var graph = d3.select("body")
+                .append("svg");
+  
+  //properties of the object            
+  var w = 1500,
+      h = 1000;
+  
+  //giving the graph the properties
+  graph.attr("width", w)
+       .attr("height", h);
+       
+  
+   //var nodes = [{"id":"Marco"},{"id":"Lucas"},{"id":"Dragos"}];
                 
- //var links = [{"source":"Marco","target":"Marco","value":"1"},{"source":"Marco","target":"Lucas","value":"0.6947"},{"source":"Marco","target":"Dragos","value":"0.3967"},{"source":"Lucas","target":"Marco","value":"0.6947"},{"source":"Lucas","target":"Lucas","value":"1"},{"source":"Lucas","target":"Dragos","value":"0.2850"},{"source":"Dragos","target":"Marco","value":"0.3967"},{"source":"Dragos","target":"Lucas","value":"0.2850"},{"source":"Dragos","target":"Dragos","value":"1"}];
+   //var links = [{"source":"Marco","target":"Marco","value":"1"},{"source":"Marco","target":"Lucas","value":"0.6947"},{"source":"Marco","target":"Dragos","value":"0.3967"},{"source":"Lucas","target":"Marco","value":"0.6947"},{"source":"Lucas","target":"Lucas","value":"1"},{"source":"Lucas","target":"Dragos","value":"0.2850"},{"source":"Dragos","target":"Marco","value":"0.3967"},{"source":"Dragos","target":"Lucas","value":"0.2850"},{"source":"Dragos","target":"Dragos","value":"1"}];
             
 
+<<<<<<< HEAD
 //simulation for force directed       
 var simulation = d3.forceSimulation(nodes)
       //adding link between 2 ID's
@@ -129,50 +128,92 @@ var node = graph.append("g")
           .on("start", dragstarted)
           .on("drag", dragged)
           .on("end", dragended));
+=======
+  //simulation for force directed       
+  var simulation = d3.forceSimulation(nodes)
+        //adding link between 2 ID's
+        .force("link", d3.forceLink(links).id(d => d.id))
+        .force("charge", d3.forceManyBody())
+        //making a center for the graph
+        .force("center", d3.forceCenter(w / 2, h / 2));
+         
+
+  //adding links to the graph     
+  var link = graph.append("g")
+        //adds stroke with #colour
+        .attr("stroke", "#999")
+        .attr("stroke-opacity", 2)
+        .selectAll("line")
+        .data(links)
+        .enter()
+        .append("line")
+        //width of a line based on its value in the data
+        .attr("stroke-width", d => ((d.value)));
+               
+                 
+
+  //adding the nodes to the graph 
+  var node = graph.append("g")
+        .attr("stroke", "#fff")
+        //width of the circle surrounding the node
+        .attr("stroke-width", 2.0)
+        .selectAll("circle")
+        .data(nodes)
+        .enter()
+        .append("circle")
+        .attr("r", 6)
+        .attr("fill", "red")
+        //drag function
+        .call(d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended));
+>>>>>>> 23e18166b091359f61ca1d80c18fe7d3cac23742
  
- //selecting data + drawing                 
-simulation
-      .nodes(nodes)
-      .on("tick", tick);
+   //selecting data + drawing                 
+  simulation
+        .nodes(nodes)
+        .on("tick", tick);
 
 
-simulation.force("link")
-      .links(links);     
+  simulation.force("link")
+        .links(links);     
 
-//assigning name to each node      
-node.append("title")
-      .text(d => d.id);
+  //assigning name to each node      
+  node.append("title")
+        .text(d => d.id);
 
-//drawin the graph on the right place
-function tick() {
-    link
-        .attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-        
-    node
-      .attr("cx", function(d) { return d.x;})
-      .attr("cy", function(d) { return d.y;})
-}
+  //drawin the graph on the right place
+  function tick() {
+      link
+          .attr("x1", function(d) { return d.source.x; })
+          .attr("y1", function(d) { return d.source.y; })
+          .attr("x2", function(d) { return d.target.x; })
+          .attr("y2", function(d) { return d.target.y; });
+          
+      node
+        .attr("cx", function(d) { return d.x;})
+        .attr("cy", function(d) { return d.y;})
+  }
 
 
-//movement
-function dragstarted(d) {
-  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-  d.fx = d.x;
-  d.fy = d.y;
-}
+  //movement
+  function dragstarted(d) {
+    if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+      d.fx = d.x;
+      d.fy = d.y;
+    }
 
-function dragged(d) {
-  d.fx = d3.event.x;
-  d.fy = d3.event.y;
-}
+  function dragged(d) {
+    d.fx = d3.event.x;
+    d.fy = d3.event.y;
+  }
 
-function dragended(d) {
-  if (!d3.event.active) simulation.alphaTarget(0);
-  d.fx = null;
-  d.fy = null;
+  function dragended(d) {
+    if (!d3.event.active) simulation.alphaTarget(0);
+    d.fx = null;
+    d.fy = null;
+  }
 }
 
  </script>
