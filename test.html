@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html>
-
-        <main>
-                <section class="d3">
-                </section>
-              </main>
-<head>
-<title>Page Title</title>
- 
-
- 
-</head>
+        <head>
+                <title>Page Title</title>
+                 
+                <style>
+                body {
+                        background-image: url(" ");
+                } 
+                 
+                </style>
+                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                 <script src="https://d3js.org/d3.v4.min.js"></script>
+                 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+               
+<script src="https://d3js.org/d3.v4.min.js"></script>
+                </head>
+                 
 <body>
 
-<script src="https://d3js.org/d3.v4.min.js">
-
-
+<script>
+  let input = ''
+  let items = ''
+  let nodes = [];
+  let verticesNames = [];
+  let verticesIndex = []; // We will use this later to not have to search for each index separately. This will make the running time shorter
+  let links = [];
+  
  
     const api = 'https://raw.githubusercontent.com/DealPete/forceDirected/master/countries.json'
 
