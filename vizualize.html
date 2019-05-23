@@ -3,14 +3,110 @@
 <html>
 <head>
     <meta charset='utf-8'>
-    <title>I really hope this works</title>
+    <title>Visualize: Matrix</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
     
 </head>
-<body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body id="myPage">
+
+    
+<!-- Navigation bar -->
+<div class="w3-top">
+        <div class="w3-bar w3-theme-d2 w3-left-align">
+         <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+         <a href="index.html" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>VizYou</a>
+         <a href="home.html" class="w3-bar-item w3-button w3-hide-small w3-hover-blue">Home</a>
+         
+         
+           <div class="w3-dropdown-hover w3-hide-small">
+           <button class="w3-button" title="Notifications">Vizualization <i class="fa fa-caret-down"></i></button>     
+           <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+              <a href="#" class="w3-bar-item w3-button">Covert data</a> 
+            <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
+             <a href="convert.html" class="w3-bar-item w3-button">Vizualize</a>
+             
+           </div>
+         </div>
+         <a href="team.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Team</a>
+         <a href="pricing.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Price</a>
+         <a href="Contact.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
+         
+         <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search"><i class="fa fa-search"></i></a>
+        </div>
+    
+        <!-- Navbar on small screens -->
+      <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
+          <a href="#team" class="w3-bar-item w3-button">Team</a>
+          <a href="#work" class="w3-bar-item w3-button">Work</a>
+          <a href="#pricing" class="w3-bar-item w3-button">Price</a>
+          <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+          <a href="#" class="w3-bar-item w3-button">Search</a>
+        </div>
+      </div>
+    
+    
+        <!-- Home Image Header -->
+        <div class="w3-display-container w3-animate-opacity">
+            <img src="111111.jpg" alt="home image" style="width:100%;min-height:350px;max-height:600px;">
+            <div class="w3-container w3-display-bottomleft w3-margin-bottom">  
+            <img src="twitter_header_photo_1.png" alt="logo" style="width:150px;height:70px;">
+        </div>
+      </div>
+    
     <canvas data-processing-sources="Matrix-third-prototype.pde"></canvas>
     <img src="firstviz.png" alt="First Visualization">
+      
+<!-- Footer -->
+<footer class="w3-container w3-padding-32 w3-theme-d1 w3-center">
+        <h4>Follow Us</h4>
+        <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Facebook"><i class="fa fa-facebook"></i></a>
+        <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Twitter"><i class="fa fa-twitter"></i></a>
+        <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Google +"><i class="fa fa-google-plus"></i></a>
+        <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Google +"><i class="fa fa-instagram"></i></a>
+        <a class="w3-button w3-large w3-teal w3-hide-small" href="javascript:void(0)" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+        <p>Powered by <a href="https://dragos-mihai.github.io/2IOA0-2018-4-DBL-HTI-Webtech/team.html" target="_blank">Group 09</a></p>
+      
+        <div style="position:relative;bottom:100px;z-index:1;" class="w3-tooltip w3-right">
+          <span class="w3-text w3-padding w3-teal w3-hide-small">Go To Top</span>   
+          <a class="w3-button w3-theme" href="#myPage"><span class="w3-xlarge">
+          <i class="fa fa-chevron-circle-up"></i></span></a>
+        </div>
+      </footer>
+      
+    
 
+    
     <script src='https://raw.githubusercontent.com/processing-js/processing-js/v1.4.8/processing.js'>
+         // Script for side navigation
+         function w3_open() {
+          var x = document.getElementById("mySidebar");
+          x.style.width = "300px";
+          x.style.paddingTop = "10%";
+          x.style.display = "block";
+        }
+        
+        // Close side navigation
+        function w3_close() {
+          document.getElementById("mySidebar").style.display = "none";
+        }
+        
+        // Used to toggle the menu on smaller screens when clicking on the menu button
+        function openNav() {
+          var x = document.getElementById("navDemo");
+          if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+          } else { 
+            x.className = x.className.replace(" w3-show", "");
+          }
+        }
+        
+        
         background(255, 255, 255);
         let matrix = [
             ['a', 'b', 'c', 'd', 'e'],
