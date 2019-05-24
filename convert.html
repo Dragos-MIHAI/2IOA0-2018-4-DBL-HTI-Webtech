@@ -264,7 +264,7 @@ function dThree() {
 
   //movement
   function dragstarted(d) {
-    if (!d3.event.active) simulation.alphaTarget(0.8).restart();
+    if (!d3.event.active) simulation.alphaTarget(0.2).restart();
       d.fx = d.x;
       d.fy = d.y;
     }
