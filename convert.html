@@ -125,6 +125,7 @@ body {
   let verticesNames = [];
   let verticesIndex = []; // We will use this later to not have to search for each index separately. This will make the running time shorter
   let links = [];
+  let edges = 0;
 
   axios
   .get(
@@ -136,6 +137,7 @@ body {
     items = input.split(/[\s;]+/);
     console.log(items[0])
     manipulate()
+    console.log(edges)
     dThree()
   });
   
@@ -152,8 +154,8 @@ body {
        verticesNames.push(items[index]);
        verticesIndex[items[index]] = index;
        index++;
-    console.log(JSON.stringify(nodes))
    }
+   console.log(JSON.stringify(nodes))
 
    let vertex = items[index];
    index++;
@@ -162,6 +164,7 @@ body {
            if (items[index] != 0) {
                dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]};
                links.push(dictionaryWord);
+               edges++;
            }
            index++;
        }
