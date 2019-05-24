@@ -181,8 +181,8 @@ function dThree() {
                 .append("svg");
   
   //properties of the object            
-  var w = 1400,
-      h = 700;
+  var w = 2200,
+      h = 1200;
   
   //giving the graph the properties
   graph.attr("width", w)
@@ -228,7 +228,7 @@ function dThree() {
         .enter()
         .append("circle")
         .attr("r", 5)
-        .attr("fill", "#DAA520")
+        .attr("fill", "#FF7F50")
         //drag function
         .call(d3.drag()
             .on("start", dragstarted)
