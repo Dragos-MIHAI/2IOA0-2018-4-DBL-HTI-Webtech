@@ -182,7 +182,7 @@ function dThree() {
   
   //properties of the object            
   var w = 1920,
-      h = 1200;
+      h = 1080;
   
   //giving the graph the properties
   graph.attr("width", w)
@@ -200,7 +200,7 @@ function dThree() {
         .force("link", d3.forceLink(links).id(d => d.id))
         .force("charge", d3.forceManyBody())
         //making a center for the graph
-        .force("center", d3.forceCenter(((w / 2)-700), (h / 2)))
+        .force("center", d3.forceCenter(((w / 2)-300), (h / 2)))
         .force("x", d3.forceX())
         .force("y", d3.forceY());
 
