@@ -220,9 +220,9 @@ function dThree() {
 
   //adding the nodes to the graph 
   var node = graph.append("g")
-        .attr("stroke", "#fff#FF6347")
+        .attr("stroke", "#fff")
         //width of the circle surrounding the node
-        .attr("stroke-width", 2.0)
+        .attr("stroke-width", 1.5)
         .selectAll("circle")
         .data(nodes)
         .enter()
@@ -264,7 +264,7 @@ function dThree() {
 
   //movement
   function dragstarted(d) {
-    if (!d3.event.active) simulation.alphaTarget(0.2).restart();
+    if (!d3.event.active) simulation.alphaTarget(0.4).restart();
       d.fx = d.x;
       d.fy = d.y;
     }
