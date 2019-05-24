@@ -205,7 +205,7 @@ function dThree() {
   var link = graph.append("g")
         //adds stroke with #colour
         .attr("stroke", "#999")
-        .attr("stroke-opacity", 0.8)
+        .attr("stroke-opacity", 0.7)
         .selectAll("line")
         .data(links)
         .enter()
@@ -224,7 +224,7 @@ function dThree() {
         .data(nodes)
         .enter()
         .append("circle")
-        .attr("r", 6)
+        .attr("r", 5)
         .attr("fill", "Tomato")
         //drag function
         .call(d3.drag()
@@ -261,7 +261,7 @@ function dThree() {
 
   //movement
   function dragstarted(d) {
-    if (!d3.event.active) simulation.alphaTarget(0.2).restart();
+    if (!d3.event.active) simulation.alphaTarget(0.8).restart();
       d.fx = d.x;
       d.fy = d.y;
     }
