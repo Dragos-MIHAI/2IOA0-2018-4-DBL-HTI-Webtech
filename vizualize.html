@@ -80,63 +80,13 @@
       </footer>
       
     
-
+      <script type="text/javascript" src="Matrix.js"></script>
     
-    <script src='https://raw.githubusercontent.com/processing-js/processing-js/v1.4.8/processing.js'>
-         // Script for side navigation
-         function w3_open() {
-          var x = document.getElementById("mySidebar");
-          x.style.width = "300px";
-          x.style.paddingTop = "10%";
-          x.style.display = "block";
-        }
-        
-        // Close side navigation
-        function w3_close() {
-          document.getElementById("mySidebar").style.display = "none";
-        }
-        
-        // Used to toggle the menu on smaller screens when clicking on the menu button
-        function openNav() {
-          var x = document.getElementById("navDemo");
-          if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-          } else { 
-            x.className = x.className.replace(" w3-show", "");
-          }
-        }
-        
-        
-        background(255, 255, 255);
-        let matrix = [
-            ['a', 'b', 'c', 'd', 'e'],
-            [0, 1, 1, 1, 1],
-            [1, 0, 1, 1, 1],
-            [1, 1, 0, 1, 1],
-            [1, 1, 1, 0, 1],
-            [1, 1, 1, 1, 0]
-        ];
 
-        
-        let canvasWidth = 300;
-        let canvasHeight = 300;
-        const nrCols = matrix[0].length;
-        const nrRows = matrix.length - 1;
 
-        var rectWidth = canvasWidth / nrCols;
-        var rectHeight = canvasHeight / nrRows;
 
-        for (var i = 1; i < nrRows; i++) {
-            for (var j = 0; j < nrCols; j++) {
-                if (matrix[i][j] === 0) {
-                    fill(255, 255, 255);                    
-                } else {
-                    fill(0, 0, 0);
-                }
-                rect(j*rectWidth, i*rectHeight, rectWidth, rectHeight);
-            }
-        }
-    </script>
+      
+  
 </body>
 
 </html>
