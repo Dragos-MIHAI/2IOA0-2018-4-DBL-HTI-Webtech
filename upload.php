@@ -19,7 +19,7 @@ if (isset($_POST['submit])){
             if ($fileError ===0) {
                 if($fileSize < 1000000) {
                         $fileNameNew = uniqid('',true).".".$fileActualExt;
-                        $fileDestination = 'https://github.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/tree/a861e0e8b1b546cb6eccc64926e27b7cee98b72e/'.$fileNameNew;
+                        $fileDestination = 'https://github.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/upload/master'.$fileNameNew;
                         move_uploaded_file($fileTmpName, $fileDestination);
                         header("Location: index.php?uploadsucess");
                 }else {
