@@ -156,12 +156,11 @@ svg {
   });
   
   function manipulate() {
-   let dictionaryWord = 0;
-   dictionaryWord = {"id": items[0]}
-   nodes.push(dictionaryWord);
-   verticesNames.push(items[0]);
+   let dictionaryWord = {"id": items[0]}
+   nodes.push(dictionaryWord); // Add the first vertex as an object {"id": items[0]} to the nodes
+   verticesNames.push(items[0]); // Push the first vertex onto the list of vertices
    verticesIndex[items[0]] = 0;
-   let index = 1;
+   let index = 1; // We can only start the loop now, since the first vertex will be equal to the first vertex meaning the following loop would otherwise never loop
    while (items[index] != items[0]) {
        dictionaryWord = {"id": items[index]};
        nodes.push(dictionaryWord);
@@ -173,9 +172,9 @@ svg {
 
    let vertex = items[index];
    index++;
-   while (index < items.length) {
-       for (let i = 0; i < nodes.length; i++) {
-           if (items[index] != 0) {
+   while (index < items.length) { // Loop through the whole items array for all the links
+       for (let i = 0; i < nodes.length; i++) { // For every source vertex, we loop through all its potential adjacent vertices
+           if (items[index] != 0) { // We only create an edge if the weight is not 0
                dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]};
                links.push(dictionaryWord);
                edges++;
