@@ -12,7 +12,8 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <body id="myPage">
 
     
@@ -59,8 +60,10 @@
         </div>
       </div>
     
-    <canvas data-processing-sources="Matrix-third-prototype.pde"></canvas>
-    <img src="firstviz.png" alt="First Visualization" class="center">
+      <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV -->
+        
+        <script src=https://cdn.jsdelivr.net/gh/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech@master/Matrix.js></script>
+      </div>
       
 <!-- Footer -->
 <footer class="w3-container w3-padding-32 w3-theme-d1 w3-center">
@@ -80,6 +83,7 @@
       </footer>
       
     
+      
 
     
     <script src='https://raw.githubusercontent.com/processing-js/processing-js/v1.4.8/processing.js'>
@@ -208,6 +212,9 @@ layout.annotations.push(result);
 
 Plotly.newPlot('myDiv', data, layout);
     </script>
+
+      
+  
 </body>
 
 </html>

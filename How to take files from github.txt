@@ -1,0 +1,21 @@
+https://forum.webflow.com/t/how-to-embed-files-hosted-on-github/29281
+
+First save the raw file from : 
+
+https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/Matrix.js
+
+to 
+
+https://cdn.rawgit.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/Matrix.js
+
+changing the raw.githubusercontent to cdn.rawgit.com
+
+Then enter on this website :
+
+https://www.jsdelivr.com/rawgit
+
+paste and get new link 
+
+paste it into source 
+
+and done !
