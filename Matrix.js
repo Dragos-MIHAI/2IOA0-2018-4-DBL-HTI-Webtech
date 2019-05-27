@@ -3,7 +3,7 @@ function getVertices() {
 }
 
 var xValues = getVertices();
-var yValues = getVertices().reverse();
+var yValues = getVertices();
 
 var zValues = [[0, 1, 2], [1, 0, 2], [1, 2, 0]];
 
@@ -25,7 +25,7 @@ var layout = {
     annotations: [],
     xaxis: {
         ticks: '',
-        side: 'top'
+        side: 'bottom'
     },
     yaxis: {
         ticks: '',
