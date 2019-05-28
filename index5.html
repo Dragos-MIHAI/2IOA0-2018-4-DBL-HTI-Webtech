@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cooccurrence Matrix</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+</head>
+<body>
+    <div style="display:inline-block;" id="legend"></div>
+    <div style="display:inline-block; float:left" id="block"></div>
+	<script src="main.js"></script>
+
+	<script>
+//hardcoded matrix - needs to be data from csv file
+    var matrix = [
+        [0.5, 0.3, 0, 0.8, 0, 1, 1, 0.5, 0, 0.75, 0.2, 1, 0.6, 0.4, 0.6, 0.5, 0.2, 1],
+        [0.3, 0.5, 0.5, 0.2, 1, 0.3, 0.8, 0.1, 0.1, 0, 0.8, 0, 0, 1, 0.2, 0.6, 0.4, 0],
+        [0, 0.5, 1, 0.4, 0.4, 0.9, 0, 0.2, 0.1, 0.3, 0.5, 1, 0.5, 0.2, 1, 0.3, 0.8, 0.1],
+        [1, 0.4, 0.4, 0.1, 0.3, 0.4, 0.1, 1, 0.2, 0, 0.3, 0.8, 0, 1, 0, 0, 0.5, 0.5],
+        [0, 0.4, 0, 0.3, 0.8, 0.1, 0.4, 0, 0.6, 0, 0.2, 0.1, 0.1, 0.6, 0.4, 0.6, 0.5, 0.2],
+        [0.2, 0.3, 0.9, 0.4, 0.1, 0.7, 0.3, 0.1, 0.4, 0.1, 0.4, 0, 0.5, 0.2, 1, 0.3, 0.8, 0.],
+        [1, 0.8, 0, 0.1, 0.6, 0, 1, 0.5, 0, 1, 0, 0, 0.5, 0.5, 0.2, 1, 0.3, 0.],
+        [0.5, 0.7, 0.2, 1, 0.9, 0, 0.5, 0, 0, 0.4, 0.6, 0.4, 1, 0.5, 0, 0.75, 0.2, 1],
+        [0, 0, 1, 0.2, 0.6, 0.4, 0, 0, 1, 0.6, 0.3, 0.8, 0, 0.5, 0, 0, 0.4, 0.],
+        [0.4, 0, 0.3, 0.1, 0.5, 0.1, 0.6, 0.4, 0.6, 0.5, 0.2, 1, 0, 0.1, 0.6, 0, 1, 0.],
+				[0, 0.5, 1, 0.4, 0.4, 0.9, 0, 0.2, 0.1, 0.3, 0.5, 1, 0.5, 0.2, 1, 0.3, 0.8, 0.1],
+				[1, 0.8, 0, 0.1, 0.6, 0, 1, 0.5, 0, 1, 0, 0, 0.5, 0.5, 0.2, 1, 0.3, 0.],
+        [0.5, 0.7, 0.2, 1, 0.9, 0, 0.5, 0, 0, 0.4, 0.6, 0.4, 1, 0.5, 0, 0.75, 0.2, 1],
+				[0.5, 0.3, 0, 0.8, 0, 1, 1, 0.5, 0, 0.75, 0.2, 1, 0.6, 0.4, 0.6, 0.5, 0.2, 1],
+        [0.3, 0.5, 0.5, 0.2, 1, 0.3, 0.8, 0.1, 0.1, 0, 0.8, 0, 0, 1, 0.2, 0.6, 0.4, 0],
+				[0.2, 0.3, 0.9, 0.4, 0.1, 0.7, 0.3, 0.1, 0.4, 0.1, 0.4, 0, 0.5, 0.2, 1, 0.3, 0.8, 0.],
+				[1, 0.8, 0, 0.1, 0.6, 0, 1, 0.5, 0, 1, 0, 0, 0.5, 0.5, 0.2, 1, 0.3, 0.],
+        [0.5, 0.7, 0.2, 1, 0.9, 0, 0.5, 0, 0, 0.4, 0.6, 0.4, 1, 0.5, 0, 0.75, 0.2, 1]
+    ];
+    var names = ['Author 1', 'Author 2', 'Author 3', 'Author 4', 'Author 5', 'Author 6', 'Author 7', 'Author 8', 'Author 9', 'Author 10', 'Author 11',
+		 'Author 12', 'Author 13', 'Author 14', 'Author 15', 'Author 16', 'Author 17', 'Author 18'];
+    Information({
+        block : '#block',
+        data     : matrix,
+        names    : names,
+        colour_1 : '#FFFFFF', //colour_1 to colour_2 is the colour range
+        colour_2 : '#A60000',
+				highlight_cell_on_hover: true,
+        highlight_cell_color: '#2ecc71'
+    });
+
+
+
+
+
+</script>
+</body>
