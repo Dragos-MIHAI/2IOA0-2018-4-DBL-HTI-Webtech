@@ -1,5 +1,5 @@
 let vertices = []; // The JSON object as {"id": 'vertexName'}
-let verticesNames = []; // We want to be able to get the vertexName by means of its index
+let names = []; // We want to be able to get the vertexName by means of its index
 let verticesIndex = {}; // We will use this later to not have to search for each index separately. This will make the running time shorter
 let vertex = "";
 let links = [];
@@ -17,20 +17,20 @@ axios
   input = input.slice(1,input.length);
   items = input.split(/[\s;]+/);
   createData();
-  
+
 });
 
 function createData() { // In this function, we get the vertices, their names and their indexes. We then create a JSON file in which the links are per vertex ordered by name
     let dictionaryWord = {}; // This object keeps getting added to vertices as {"id": 'vertexName'}, as a JSON file
     dictionaryWord = {"id": items[0]} // This will be the object we keep adding first to vertices, then with a slight change to links
     vertices.push(dictionaryWord);
-    verticesNames.push(items[0]);
+    names.push(items[0]);
     verticesIndex[items[0]] = 0;
     let index = 1; // This was necessary because our loop invariant wouldn't hold, since the first item, items[0], obviously equals items[0]
     while (items[index] != items[0]) {
         dictionaryWord = {"id": items[index]};
         vertices.push(dictionaryWord);
-        verticesNames.push(items[index]);
+        names.push(items[index]);
         verticesIndex[items[index]] = index;
         index++;
     }
@@ -43,7 +43,7 @@ function createData() { // In this function, we get the vertices, their names an
         row = []
         for (let i = 0; i < vertices.length; i++) {
             if (items[index] != 0) { // Checks if the weight is not 0 so that there is actually an edge
-                dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]}; // JSON file for links, containing source, target (from, to) and value (weight)
+                dictionaryWord = {"source": vertex, "target": names[i], "value": items[index]}; // JSON file for links, containing source, target (from, to) and value (weight)
                 links.push(dictionaryWord);
             }
             row.push(items[index]);
