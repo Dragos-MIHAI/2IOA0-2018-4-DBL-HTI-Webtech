@@ -51,11 +51,20 @@
 		  "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv"
 		)
 		.then(function(result) {
-		  input = result.data;
-		  input = input.slice(1,input.length);
-		  items = input.split(/[\s;]+/);
-		  createData();
-			Information(options);
+		  	input = result.data;
+		  	input = input.slice(1,input.length);
+		  	items = input.split(/[\s;]+/);
+		  	createData();
+			Information({
+		        block : '#block',
+        		data     : matrix,
+		        names    : names,
+    		    colour_1 : '#FFFFFF', //colour_1 to colour_2 is the colour range
+        		colour_2 : '#A60000',
+				highlight_cell_on_hover: true,
+        		highlight_cell_color: '#2ecc71'
+   			});
+			Information();
 		});
 
 		function createData() { // In this function, we get the vertices, their names and their indexes. We then create a JSON file in which the links are per vertex ordered by name
@@ -106,17 +115,7 @@
     });
 	*/
 
-		function Information(options) {
-			Information({
-		        block : '#block',
-        		data     : matrix,
-		        names    : names,
-    		    colour_1 : '#FFFFFF', //colour_1 to colour_2 is the colour range
-        		colour_2 : '#A60000',
-				highlight_cell_on_hover: true,
-        		highlight_cell_color: '#2ecc71'
-    });
-
+		function Information() {
 			var margin = {top: 50, right: 50, bottom: 100, left: 100},
 			    width = 500,
 			    height = 500,
