@@ -176,8 +176,8 @@ svg {
 
 function stratify() {
     var root = d3.stratify()
-    .id(function(d) { return d.name; })
-    .parentId(function(d) { return d.parent; })
+    .id(function(d) { return d.source; })
+    .parentId(function(d) { return d.target; })
     (links);
     console.log(root)
 }
