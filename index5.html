@@ -64,7 +64,7 @@
 				highlight_cell_on_hover: true,
         		highlight_cell_color: '#2ecc71'
    			});
-			Information();
+			Information(options);
 		});
 
 		function createData() { // In this function, we get the vertices, their names and their indexes. We then create a JSON file in which the links are per vertex ordered by name
@@ -115,7 +115,7 @@
     });
 	*/
 
-		function Information() {
+		function Information(options) {
 			var margin = {top: 50, right: 50, bottom: 100, left: 100},
 			    width = 500,
 			    height = 500,
