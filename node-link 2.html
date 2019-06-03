@@ -137,7 +137,7 @@ svg {
     console.log(items[0])
     manipulate()
     console.log(edges)
-    //dThree()
+    stratify()
   });
   
   function manipulate() {
@@ -174,7 +174,13 @@ svg {
   } 
 
 
-
+function stratify() {
+    var root = d3.stratify()
+    .id(function(d) { return d.name; })
+    .parentId(function(d) { return d.parent; })
+    (links);
+    console.log(root)
+}
 
 
 // Script for side navigation
