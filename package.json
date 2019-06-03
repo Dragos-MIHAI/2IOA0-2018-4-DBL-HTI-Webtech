@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech#readme",
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.1"
   }
 }
