@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="LOGO/favicon.png" />
+<title>Visualize: Force Directed Graph</title>
+ 
+<style>
+body {
+        background-image: url("In website images/black.jpg ");
+} 
+svg {
+  /*border:1px solid rgb(255, 251, 251);*/
+  width: 1920;
+  border-radius: 100px;
+  /*background:;*/
+  /*padding: 10px;*/
+  height: 1080px;
+  position: absolute;
+  margin-top: -420px;
+  margin-left: -720px;
+  top: 50%;
+  left: 50%;
+}
+
+</style>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body id="myPage">
+
+
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <script src="https://d3js.org/d3.v5.min.js"></script>
+ <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+ 
+
+
+
+  <!-- Navigation bar -->
+  <div class="w3-top">
+          <div class="w3-bar w3-theme-d2 w3-left-align">
+           <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+           <a href="index.html" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>VizYou</a>
+           <a href="home.html" class="w3-bar-item w3-button w3-hide-small w3-hover-blue">Home</a>
+           
+           
+             <div class="w3-dropdown-hover w3-hide-small">
+             <button class="w3-button" title="Notifications">Visualization <i class="fa fa-caret-down"></i></button>     
+             <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+                <a href="convert.html" class="w3-bar-item w3-button">Covert data</a> 
+              <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
+               <a href="vizualize.html" class="w3-bar-item w3-button">Visualize</a>
+               
+             </div>
+           </div>
+           <a href="team.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Team</a>
+           <a href="pricing.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Price</a>
+           <a href="Contact.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
+           
+           <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search"><i class="fa fa-search"></i></a>
+          </div>
+  
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
+      <a href="#team" class="w3-bar-item w3-button">Team</a>
+      <a href="#work" class="w3-bar-item w3-button">Work</a>
+      <a href="#pricing" class="w3-bar-item w3-button">Price</a>
+      <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+      <a href="#" class="w3-bar-item w3-button">Search</a>
+    </div>
+  </div>
+  
+    
+            
+  
+  <!-- Modal -->
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-top">
+      <header class="w3-container w3-teal w3-display-container"> 
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-teal w3-display-topright"><i class="fa fa-remove"></i></span>
+        <h4>Oh snap! We just showed you a modal..</h4>
+        <h5>Because we can <i class="fa fa-smile-o"></i></h5>
+      </header>
+      <div class="w3-container">
+        <p>Cool huh? Ok, enough teasing around..</p>
+        <p>Go to our <a class="w3-text-teal" href="/w3css/default.asp">W3.CSS Tutorial</a> to learn more!</p>
+      </div>
+      <footer class="w3-container w3-teal">
+        <p>Modal footer</p>
+      </footer>
+    </div>
+  </div>
+  
+<!-- Container -->
+<div class="w3-container" style="position:relative">
+  <a onclick="w3_open()" class="w3-button w3-xlarge w3-circle w3-teal"
+  style="position:absolute;top:-28px;right:24px">+</a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <script>
+
+
+ 
+
+
+
+
+
+
+// Script for side navigation
+function w3_open() {
+  var x = document.getElementById("mySidebar");
+  x.style.width = "300px";
+  x.style.paddingTop = "10%";
+  x.style.display = "block";
+}
+
+// Close side navigation
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+ </script>
+
+
+
+
+
+  
+
+
+
+</body>
+</html>
