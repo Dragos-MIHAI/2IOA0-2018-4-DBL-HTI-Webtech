@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cooccurrence Matrix</title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div style="display:inline-block;" id="legend"></div>
@@ -73,7 +74,7 @@
 		        verticesIndex[items[index]] = index;
 		        index++;
 		    }
-		    console.log(JSON.stringify(vertices)); // Uncomment for debugging
+		    //console.log(JSON.stringify(vertices)); // Uncomment for debugging
 
 		    vertex = items[index]; // Will contain the name of the source vertex of the links untill we went past all its adjacent vertices
 		    index++;
