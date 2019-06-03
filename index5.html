@@ -94,20 +94,29 @@
 		    console.log(JSON.stringify(matrix)); // Uncomment for debugging
 		}
 
-
-
+	/*
     Information({
         block : '#block',
         data     : matrix,
         names    : names,
         colour_1 : '#FFFFFF', //colour_1 to colour_2 is the colour range
         colour_2 : '#A60000',
-				highlight_cell_on_hover: true,
+		highlight_cell_on_hover: true,
         highlight_cell_color: '#2ecc71'
     });
-
+	*/
 
 		function Information(options) {
+			Information({
+		        block : '#block',
+        		data     : matrix,
+		        names    : names,
+    		    colour_1 : '#FFFFFF', //colour_1 to colour_2 is the colour range
+        		colour_2 : '#A60000',
+				highlight_cell_on_hover: true,
+        		highlight_cell_color: '#2ecc71'
+    });
+
 			var margin = {top: 50, right: 50, bottom: 100, left: 100},
 			    width = 500,
 			    height = 500,
