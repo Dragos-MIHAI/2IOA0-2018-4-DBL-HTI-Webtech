@@ -118,20 +118,60 @@ svg {
 
 
  <script>
-var table = '';
+  let input = ''
+  let items = ''
+  let nodes = [];
+  let verticesNames = [];
+  let verticesIndex = []; // We will use this later to not have to search for each index separately. This will make the running time shorter
+  let links = [];
+  let edges = 0;
 
-axios
+  axios
   .get(
     "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv"
   )
- .then(function(result) {
-    table = d3.csvParse(result);
-    var root = d3.stratify()
-                .id(function(d) { return d.name; })
-                .parentId(function(d) { return d.parent; })
-         
-    console.log(root);
- });
+  .then(function(result) {
+    input = result.data;
+    input = input.slice(1,input.length);
+    items = input.split(/[\s;]+/);
+    console.log(items[0])
+    manipulate()
+    console.log(edges)
+    dThree()
+  });
+  
+  function manipulate() {
+   let dictionaryWord = {"id": items[0]}
+   nodes.push(dictionaryWord); // Add the first vertex as an object {"id": items[0]} to the nodes
+   verticesNames.push(items[0]); // Push the first vertex onto the list of vertices
+   verticesIndex[items[0]] = 0;
+   let index = 1; // We can only start the loop now, since the first vertex will be equal to the first vertex meaning the following loop would otherwise never loop
+   while (items[index] != items[0]) {
+       dictionaryWord = {"id": items[index]};
+       nodes.push(dictionaryWord);
+       verticesNames.push(items[index]);
+       verticesIndex[items[index]] = index;
+       index++;
+   }
+   console.log(JSON.stringify(nodes))
+
+   let vertex = items[index];
+   index++;
+   while (index < items.length) { // Loop through the whole items array for all the links
+       for (let i = 0; i < nodes.length; i++) { // For every source vertex, we loop through all its potential adjacent vertices
+           if (items[index] != 0) { // We only create an edge if the weight is not 0
+               dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]};
+               links.push(dictionaryWord);
+               edges++;
+           }
+           index++;
+       }
+       vertex = items[index];
+       index++;
+
+   }
+   console.log(JSON.stringify(links))
+  } 
 
 
 
