@@ -126,7 +126,11 @@ axios
   )
  .then(function(result) {
     table = d3.csvParse(result);
-    console.log(table);
+    var root = d3.stratify()
+                .id(function(d) { return d.name; })
+                .parentId(function(d) { return d.parent; })
+         
+    console.log(root);
  });
 
 
