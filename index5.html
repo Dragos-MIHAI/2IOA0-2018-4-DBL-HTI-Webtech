@@ -55,7 +55,7 @@
 		  input = input.slice(1,input.length);
 		  items = input.split(/[\s;]+/);
 		  createData();
-			Information(options);
+			Information();
 		});
 
 		function createData() { // In this function, we get the vertices, their names and their indexes. We then create a JSON file in which the links are per vertex ordered by name
@@ -106,7 +106,7 @@
     });
 	*/
 
-		function Information(options) {
+		function Information() {
 			Information({
 		        block : '#block',
         		data     : matrix,
