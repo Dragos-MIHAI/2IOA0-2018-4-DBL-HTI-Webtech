@@ -118,10 +118,16 @@ svg {
 
 
  <script>
+var table = '';
 
-
- 
-
+axios
+  .get(
+    "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv"
+  )
+ .then(function(result) {
+    table = d3.csvParse(result);
+    console.log(table);
+ });
 
 
 
