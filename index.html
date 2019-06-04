@@ -5,7 +5,34 @@
     <head>
         <link rel="shortcut icon" type="image/x-icon" href="LOGO/favicon.png" />
       
-        
+        <script>
+            var audio, mutebtn, seek_bar;
+            function initAudioPlayer(){
+              audio = new Audio();
+              audio.src = "Audio/transformers.mp3";
+              audio.loop = true;
+              audio.load= true; 
+              audio.autoplay = true;
+              
+              
+              // Set object references
+              mutebtn = document.getElementById("mutebtn");
+              // Add Event Handling
+              mutebtn.addEventListener("click", mute);
+              // Functions
+              
+              function mute(){
+                if(audio.muted){
+                    audio.muted = false;
+                    mutebtn.style.background = "url(images_sound/speaker.png) no-repeat";
+                  } else {
+                    audio.muted = true;
+                    mutebtn.style.background = "url(images_sound/speaker_muted.png) no-repeat";
+                  }
+              }
+            }
+            window.addEventListener("load", initAudioPlayer);
+            </script>
       </head>
 
 <title>VizYou</title>
@@ -35,36 +62,7 @@ body, html {height: 100%}
 }
 </style>
 
-<div class="w3-display-topleft w3-padding-large w3-xlarge">
-    <script>
-        var audio, mutebtn, seek_bar;
-        function initAudioPlayer(){
-          audio = new Audio();
-          audio.src = "Audio/transformers.mp3";
-          audio.loop = true;
-          audio.load= true; 
-          audio.autoplay = true;
-          
-          
-          // Set object references
-          mutebtn = document.getElementById("mutebtn");
-          // Add Event Handling
-          mutebtn.addEventListener("click", mute);
-          // Functions
-          
-          function mute(){
-            if(audio.muted){
-                audio.muted = false;
-                mutebtn.style.background = "url(images_sound/speaker.png) no-repeat";
-              } else {
-                audio.muted = true;
-                mutebtn.style.background = "url(images_sound/speaker_muted.png) no-repeat";
-              }
-          }
-        }
-        window.addEventListener("load", initAudioPlayer);
-        </script>
-  </div>
+
 
 
 <!-----<audio src="Audio/transformers.mp3" autoplay loop ></audio> -->
@@ -101,7 +99,13 @@ body, html {height: 100%}
 <body>
 
     <iframe src="Audio/silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
-    <button id="mutebtn"></button>
+    
+    
+    <div class="w3-display-topright w3-padding-large w3-xlarge">
+        <button id="mutebtn"></button>
+      </div>
+    
+   
 
 
 </body>
