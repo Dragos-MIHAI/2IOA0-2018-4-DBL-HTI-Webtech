@@ -123,6 +123,7 @@
 				vertexIndex++;
 		        index++;
 			}
+			console.log(nodes);
 			let matrixColumns = [];
 			matrixColumns = matrix.map(row => [...row]);
 			for (let i = nodes.length - 1; i > -1; i--) {
@@ -134,6 +135,7 @@
 			let names = nodes.filter(function (el) {
   				return el != null;
 			});
+			console.log(names);
 			for (let i = 0; i < names.length; i++) {
 				verticesIndex[names[i]] = i;
 			}
