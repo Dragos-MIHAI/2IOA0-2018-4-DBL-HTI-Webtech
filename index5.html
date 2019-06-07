@@ -128,7 +128,7 @@
 			matrixColumns = matrix.map(row => [...row]);
 			for (let i = nodes.length - 1; i > -1; i--) {
 				if (nodes[i] === undefined) {
-					matrixColumns.splice[i];
+					matrixColumns.splice(i, 1);
 				}
 			}
 			matrix = matrixColumns.map(row => [...row]);
