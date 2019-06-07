@@ -99,21 +99,38 @@
 
 		    vertex = items[index]; // Will contain the name of the source vertex of the links untill we went past all its adjacent vertices
 		    index++;
-		    let row = []
+			let row = []
+			let connected = false;
+			let vertexIndex = 0;
 		    while (index < items.length) {
-		        row = []
+				row = []
+				connected = false;
 		        for (let i = 0; i < vertices.length; i++) {
 		            if (items[index] != 0) { // Checks if the weight is not 0 so that there is actually an edge
 		                dictionaryWord = {"source": vertex, "target": names[i], "value": items[index]}; // JSON file for links, containing source, target (from, to) and value (weight)
-		                links.push(dictionaryWord);
+						links.push(dictionaryWord);
+						connected = true
 		            }
 		            row.push(items[index]);
 		            index++;
 		        }
 		        vertex = items[index]; // After vertices.length steps, we checked all possible adjacent vertices and thus we can take the next vertex, which is now at items[index]
-		        matrix.push(row)
+				if (connected) {
+					matrix.push(row);
+				} else {
+					delete names[vertexIndex];
+				}
+				vertexIndex++;
 		        index++;
-		    }
+			}
+			let matrixColumns = [];
+			matrixColumns = matrix.map(row => [...row]);
+			for (let i = names.length - 1; i > -1; i--) {
+				if (names[i] === undefined) {
+					matrixColumns.splice[i];
+				}
+			}
+			matrix = matrixColumns.map(row => [...row]);
 		    console.log(JSON.stringify(matrix)); // Uncomment for debugging
 		}
 
