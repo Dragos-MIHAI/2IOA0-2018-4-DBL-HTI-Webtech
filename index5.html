@@ -82,17 +82,17 @@
 		});
 
 		function createData() { // In this function, we get the vertices, their names and their indexes. We then create a JSON file in which the links are per vertex ordered by name
-		    let dictionaryWord = {}; // This object keeps getting added to vertices as {"id": 'vertexName'}, as a JSON file
+			let nodes = [];
+			let dictionaryWord = {}; // This object keeps getting added to vertices as {"id": 'vertexName'}, as a JSON file
 		    dictionaryWord = {"id": items[0]} // This will be the object we keep adding first to vertices, then with a slight change to links
 		    vertices.push(dictionaryWord);
-		    names.push(items[0]);
+		    nodes.push(items[0]);
 		    verticesIndex[items[0]] = 0;
 		    let index = 1; // This was necessary because our loop invariant wouldn't hold, since the first item, items[0], obviously equals items[0]
 		    while (items[index] != items[0]) {
 		        dictionaryWord = {"id": items[index]};
 		        vertices.push(dictionaryWord);
-		        names.push(items[index]);
-		        verticesIndex[items[index]] = index;
+		        nodes.push(items[index]);
 		        index++;
 		    }
 		    //console.log(JSON.stringify(vertices)); // Uncomment for debugging
@@ -107,7 +107,7 @@
 				connected = false;
 		        for (let i = 0; i < vertices.length; i++) {
 		            if (items[index] != 0) { // Checks if the weight is not 0 so that there is actually an edge
-		                dictionaryWord = {"source": vertex, "target": names[i], "value": items[index]}; // JSON file for links, containing source, target (from, to) and value (weight)
+		                dictionaryWord = {"source": vertex, "target": nodes[i], "value": items[index]}; // JSON file for links, containing source, target (from, to) and value (weight)
 						links.push(dictionaryWord);
 						connected = true
 		            }
@@ -118,19 +118,25 @@
 				if (connected) {
 					matrix.push(row);
 				} else {
-					delete names[vertexIndex];
+					delete nodes[vertexIndex];
 				}
 				vertexIndex++;
 		        index++;
 			}
 			let matrixColumns = [];
 			matrixColumns = matrix.map(row => [...row]);
-			for (let i = names.length - 1; i > -1; i--) {
-				if (names[i] === undefined) {
+			for (let i = nodes.length - 1; i > -1; i--) {
+				if (nodes[i] === undefined) {
 					matrixColumns.splice[i];
 				}
 			}
 			matrix = matrixColumns.map(row => [...row]);
+			let names = nodes.filter(function (el) {
+  				return el != null;
+			});
+			for (let i = 0; i < names.length; i++) {
+				verticesIndex[names[i]] = i;
+			}
 		    console.log(JSON.stringify(matrix)); // Uncomment for debugging
 		}
 
