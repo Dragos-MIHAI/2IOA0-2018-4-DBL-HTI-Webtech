@@ -81,6 +81,12 @@
 			Information(options);
 		});
 
+		function transpose(a) {
+    		return Object.keys(a[0]).map(function(c) {
+        		return a.map(function(r) { return r[c]; });
+    		});
+		}
+
 		function createData() { // In this function, we get the vertices, their names and their indexes. We then create a JSON file in which the links are per vertex ordered by name
 			let nodes = [];
 			let dictionaryWord = {}; // This object keeps getting added to vertices as {"id": 'vertexName'}, as a JSON file
@@ -125,13 +131,13 @@
 			}
 			console.log(nodes);
 			let matrixColumns = [];
-			matrixColumns = matrix.map(row => [...row]);
+			matrixColumns = transpose(matrix);
 			for (let i = nodes.length - 1; i > -1; i--) {
 				if (nodes[i] === undefined) {
 					matrixColumns.splice(i, 1);
 				}
 			}
-			matrix = matrixColumns.map(row => [...row]);
+			matrix = transpose(matrixColumns);
 			let names = nodes.filter(function (el) {
   				return el != null;
 			});
