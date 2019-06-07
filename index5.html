@@ -81,11 +81,10 @@
 			Information(options);
 		});
 
-		function transpose(a) {
-    		return Object.keys(a[0]).map(function(c) {
-        		return a.map(function(r) { return r[c]; });
-    		});
+		function transpose(m) {
+  			return m[0].map((_, i) => m.map(row => row[i]));
 		}
+
 
 		function createData() { // In this function, we get the vertices, their names and their indexes. We then create a JSON file in which the links are per vertex ordered by name
 			let nodes = [];
