@@ -11,6 +11,20 @@
 <body>
     <div style="display:inline-block;" id="legend"></div>
     <div style="display:inline-block; float:left" id="block"></div>
+	<script src="https://d3js.org/d3-color.v1.min.js"></script>
+	<script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
+	<script src="https://d3js.org/d3-ease.v1.min.js"></script>
+	<script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+	<script src="https://d3js.org/d3-selection.v1.min.js"></script>
+	<script src="https://d3js.org/d3-timer.v1.min.js"></script>
+	<script src="https://d3js.org/d3-transition.v1.min.js"></script>
+	<script src="https://d3js.org/d3-drag.v1.min.js"></script>
+	<script src="https://d3js.org/d3-zoom.v1.min.js"></script>
+	<script>
+
+		var zoom = d3.zoom();
+
+	</script>
 	<script>
 //hardcoded matrix - needs to be data from csv file
     // var matrix = [
@@ -141,10 +155,11 @@
 			    .attr("width", width + margin.left + margin.right)
 			    .attr("height", height + margin.top + margin.bottom)
 				.append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 				.call(d3.zoom().on("zoom", function () {
     				svg.attr("transform", d3.event.transform)
  				}));
-			    //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			    
 
 		//matrix outline
 			var background = svg.append("rect")
@@ -171,7 +186,6 @@
 			  	.enter().append("g")
 			    .attr("class", "row")
 			    .attr("transform", function(d, i) { return "translate(0," + y(i) + ")"; });
-
 
 			var cell = row.selectAll(".cell")
 			    .data(function(d) { return d; })
