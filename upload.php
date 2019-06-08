@@ -36,11 +36,14 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $target_file)) {
+        
         echo "The file ". basename( $_FILES["fileUpload"]["name"]). " has been uploaded. ";
+        echo '<script>window.location="convert.html"</script>';
     } else {
         echo "Sorry, there was an error uploading your file. ";
     }
 }
+
 
 ////
 // if (isset($_POST['submit'])){
