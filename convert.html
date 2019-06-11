@@ -186,6 +186,7 @@ svg {
   let verticesIndex = []; // We will use this later to not have to search for each index separately. This will make the running time shorter
   let links = [];
   let edges = 0;
+  let frequencyMatrix = [];
 
   axios
   .get(
@@ -232,7 +233,81 @@ svg {
 
    }
    console.log(JSON.stringify(links))
-  } 
+  }
+
+  function getFrequency() { // This function counts the amount of adjacent vertices per vertex and creates a matrix
+    let row = []; // Is added to the matrix as a new row when finished 
+    let index = verticesNames.length + 1; // Iterator over the whole vertices array
+    for (let i = 1; i < vertices.length; i++) { // We count the links for every vertex, so we iterate over the verticesNames array
+        dict[verticesNames[i - 1]] = 0; // Gotta start at 0
+        while (items[index] != items[i]) {
+            if (items[index] != 0) {
+                dict[verticesNames[i - 1]]++; // If there is a weight, frequency is increased by 1 for that vertex
+            }
+            index++;
+        }
+        index++;
+    }
+    row = []; // The code below here is added because we keep checking the vertex in advance, but there is no next vertex for the last vertex. Therefore, this is taken out of the loop, since the loop invariant wouldn't hold
+    dict[verticesNames[verticesNames.length - 1]] = 0;
+    while (index < items.length) {
+        if (items[index] != 0) {
+            dict[verticesNames[verticesNames.length - 1]]++;
+        }
+        index++;
+    }
+
+    frequencies = sortVertices(verticesNames); // Here we order the vertices by frequency by using mergesort in the form index: 'vertexName'
+    frequencyMatrixRows = matrix.slice(0, matrix.length); // We first have to order the rows. Columns remain in the old order
+
+    for (let i = 0; i < frequencies.length; i++) {
+        frequencyMatrixRows[i] = matrix[verticesIndex[frequencies[i]]];
+    }
+    frequencyMatrixColumns = transpose(frequencyMatrixRows) // Now we order the columns accordingly
+    for (let i = 0; i < frequencies.length; i++) {
+        for (let j = 0; j < frequencyMatrixRows.length; j++) {
+            frequencyMatrixColumns[j][i] = frequencyMatrixRows[j][verticesIndex[frequencies[i]]] // Add the nth frequency to the frequencyMatrix by accessing the old index of that vertex
+        }
+        verticesIndex[frequencies[i]] = i // Then update this vertex to its new vertex, i
+    }
+    frequencyMatrix = transpose(frequencyMatrixColumns);
+}
+
+function transpose(m) { // Used to transpose matrices
+  return m[0].map((_, i) => m.map(row => row[i]));
+}
+
+function sortVertices(names) {
+    if (names.length === 1) {
+        return names;
+    } else {
+        const middle = Math.floor(names.length/2);
+        const left = names.slice(0, middle);
+        const right = names.slice(middle);
+
+        return(merge(
+            sortVertices(left), // recurseLeft()
+            sortVertices(right) // recurseRight()
+        ))
+    }
+}
+
+// The mergesort algorithm, called upon by sortVertices. This is specialised for frequency. 
+function merge(left, right) {
+    let result = [];
+    let indexLeft = 0
+    let indexRight = 0
+    while (indexLeft < left.length && indexRight < right.length) { // We iterate over both arrays and keep comparing the 2 elements untill all elements have been checked of one array. 
+        if (dict[left[indexLeft]] > dict[right[indexRight]]) { // If the element in the left is bigger, we push that and take the left array's next element
+            result.push(left[indexLeft])
+            indexLeft++
+        } else { // Else we push the element of the right array and take its next element
+            result.push(right[indexRight])
+            indexRight++
+        }
+    }
+    return(result.concat(left.slice(indexLeft)).concat(right.slice(indexRight))); // We have to connect the leftovers
+}
    
  
   var w = 1200,
