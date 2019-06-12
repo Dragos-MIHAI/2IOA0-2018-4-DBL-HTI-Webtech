@@ -17,10 +17,21 @@
 
 #nav_container li a:hover {
     background-color: green;
-    
+
    }
-	
+
  .h3 {
             background-color: blue;
             font-family: fantasy;
             font-size: 13px;
+ }
+
+ .notelink{
+  visibility: visible;
+  float: left;
+}
+
+.matrix{
+ visibility: visible;
+ float: left;
+}

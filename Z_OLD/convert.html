@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="LOGO/favicon.png" />
+<title>Visualize: Force Directed Graph</title>
+ 
+<style>
+
+/*Button audio*/
+button{ border:none; cursor:pointer; outline:none; }
+
+button#mutebtn{
+	background:url(images_sound/speaker_2.png) no-repeat;
+  background-position: top; 
+	width:34px;
+	height:34px;
+}
+
+body {
+        background-image: url("In website images/black.jpg ");
+} 
+svg {
+  /*border:1px solid rgb(255, 251, 251);*/
+  width: 1920;
+  border-radius: 100px;
+  /*background:;*/
+  /*padding: 10px;*/
+  height: 1080px;
+  position: absolute;
+  margin-top: -420px;
+  margin-left: -720px;
+  top: 50%;
+  left: 50%;
+}
+
+</style>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body id="myPage">
+
+
+
+
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <script src="https://d3js.org/d3.v5.min.js"></script>
+ <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+ 
+
+
+
+<!-- Sidebar on click -->
+<nav class="w3-sidebar w3-bar-block w3-white w3-card w3-animate-left w3-xxlarge" style="display:none;z-index:2" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-display-topright w3-text-teal">Close
+      <i class="fa fa-remove"></i>
+    </a>
+    <a href="https://www.tue.nl/en/" class="w3-bar-item w3-button">TU/e</a>
+    <a href="DBL2019_NetworkVis_ProjectGuide.pdf" class="w3-bar-item w3-button">Guide</a>
+    <a href="VisProjectDescription.pdf" class="w3-bar-item w3-button">Description</a>
+    <a href="a.html" class="w3-bar-item w3-button">Final Report</a>
+    <a href="https://canvas.tue.nl/courses/6672" class="w3-bar-item w3-button">Canvas</a>
+    <a href="https://tuenl-my.sharepoint.com/:f:/g/personal/m_ungureanu1_student_tue_nl/EqKcrdCbdM5ItrNu4o3knGsBcui3yEj5oy-HUycQkuIIxA?e=JMqxPd" class="w3-bar-item w3-button">Our files</a>
+  </nav>
+  
+  <!-- Navigation bar -->
+  <div class="w3-top">
+          <div class="w3-bar w3-theme-d2 w3-left-align">
+           <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+           <a href="index.html" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>VizYou</a>
+           <a href="home.html" class="w3-bar-item w3-button w3-hide-small w3-hover-blue">Home</a>
+           
+           
+             <div class="w3-dropdown-hover w3-hide-small">
+             <button class="w3-button" title="Notifications">Visualization <i class="fa fa-caret-down"></i></button>     
+             <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+                <a href="convert.html" class="w3-bar-item w3-button">Covert data</a> 
+              <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
+               <a href="vizualize.html" class="w3-bar-item w3-button">Visualize</a>
+               
+             </div>
+           </div>
+           <a href="team.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Team</a>
+           <a href="pricing.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Price</a>
+           <a href="Contact.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
+           
+          <button id="mutebtn"></button>
+           
+          <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search"><i class="fa fa-search"></i></a>
+          </div>
+  
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
+      <a href="#team" class="w3-bar-item w3-button">Team</a>
+      <a href="#work" class="w3-bar-item w3-button">Work</a>
+      <a href="#pricing" class="w3-bar-item w3-button">Price</a>
+      <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+      <a href="#" class="w3-bar-item w3-button">Search</a>
+    </div>
+  </div>
+  
+    
+            
+  
+  <!-- Modal -->
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-top">
+      <header class="w3-container w3-teal w3-display-container"> 
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-teal w3-display-topright"><i class="fa fa-remove"></i></span>
+        <h4>Oh snap! We just showed you a modal..</h4>
+        <h5>Because we can <i class="fa fa-smile-o"></i></h5>
+      </header>
+      <div class="w3-container">
+        <p>Cool huh? Ok, enough teasing around..</p>
+        <p>Go to our <a class="w3-text-teal" href="/w3css/default.asp">W3.CSS Tutorial</a> to learn more!</p>
+      </div>
+      <footer class="w3-container w3-teal">
+        <p>Modal footer</p>
+      </footer>
+    </div>
+  </div>
+  
+<!-- Container -->
+<div class="w3-container" style="position:relative">
+  <a onclick="w3_open()" class="w3-button w3-xlarge w3-circle w3-teal"
+  style="position:absolute;top:-28px;right:24px">+</a>
+</div>
+
+
+
+
+
+<iframe src="Audio/silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
+    
+
+
+
+
+
+
+
+
+
+
+ <script>
+
+
+  let input = ''
+  let items = ''
+  let nodes = [];
+  let verticesNames = [];
+  let verticesIndex = []; // We will use this later to not have to search for each index separately. This will make the running time shorter
+  let links = [];
+  let edges = 0;
+
+  axios
+  .get(
+    "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv"
+  )
+  .then(function(result) {
+    input = result.data;
+    input = input.slice(1,input.length);
+    items = input.split(/[\s;]+/);
+    console.log(items[0])
+    manipulate()
+    console.log(edges)
+    dThree()
+  });
+  
+  function manipulate() {
+   let dictionaryWord = {"id": items[0]}
+   nodes.push(dictionaryWord); // Add the first vertex as an object {"id": items[0]} to the nodes
+   verticesNames.push(items[0]); // Push the first vertex onto the list of vertices
+   verticesIndex[items[0]] = 0;
+   let index = 1; // We can only start the loop now, since the first vertex will be equal to the first vertex meaning the following loop would otherwise never loop
+   while (items[index] != items[0]) {
+       dictionaryWord = {"id": items[index]};
+       nodes.push(dictionaryWord);
+       verticesNames.push(items[index]);
+       verticesIndex[items[index]] = index;
+       index++;
+   }
+   console.log(JSON.stringify(nodes))
+
+   let vertex = items[index];
+   index++;
+   while (index < items.length) { // Loop through the whole items array for all the links
+       for (let i = 0; i < nodes.length; i++) { // For every source vertex, we loop through all its potential adjacent vertices
+           if (items[index] != 0) { // We only create an edge if the weight is not 0
+               dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]};
+               links.push(dictionaryWord);
+               edges++;
+           }
+           index++;
+       }
+       vertex = items[index];
+       index++;
+
+   }
+   console.log(JSON.stringify(links))
+  } 
+   
+ 
+
+
+function dThree() {
+  var graph = d3.select("body")
+                .append("svg");
+  
+  //properties of the object            
+  var w = 1920,
+      h = 1080;
+  
+  //giving the graph the properties
+  graph.attr("width", w)
+       .attr("height", h);
+       
+  
+   //var nodes = [{"id":"Marco"},{"id":"Lucas"},{"id":"Dragos"}];
+                
+   //var links = [{"source":"Marco","target":"Marco","value":"1"},{"source":"Marco","target":"Lucas","value":"0.6947"},{"source":"Marco","target":"Dragos","value":"0.3967"},{"source":"Lucas","target":"Marco","value":"0.6947"},{"source":"Lucas","target":"Lucas","value":"1"},{"source":"Lucas","target":"Dragos","value":"0.2850"},{"source":"Dragos","target":"Marco","value":"0.3967"},{"source":"Dragos","target":"Lucas","value":"0.2850"},{"source":"Dragos","target":"Dragos","value":"1"}];
+            
+
+  //simulation for force directed       
+  var simulation = d3.forceSimulation(nodes)
+        //adding link between 2 ID's
+        .force("link", d3.forceLink(links).id(d => d.id))
+        .force("charge", d3.forceManyBody())
+        //making a center for the graph
+        .force("center", d3.forceCenter(((w / 2)-250), (h / 2)))
+        .force("x", d3.forceX())
+        .force("y", d3.forceY());
+
+  //adding links to the graph     
+  var link = graph.append("g")
+        //adds stroke with #colour
+        .attr("stroke", "#999")
+        .attr("stroke-opacity", 0.7)
+        .selectAll("line")
+        .data(links)
+        .enter()
+        .append("line")
+        //width of a line based on its value in the data
+        .attr("stroke-width", d => ((d.value)));
+               
+                 
+
+  //adding the nodes to the graph 
+  var node = graph.append("g")
+        .attr("stroke", "#fff")
+        //width of the circle surrounding the node
+        .attr("stroke-width", 1.0)
+        .selectAll("circle")
+        .data(nodes)
+        .enter()
+        .append("circle")
+        .attr("r", 5)
+        .attr("fill", "#FF7F50")
+        //drag function
+        .call(d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended));
+ 
+   //selecting data + drawing                 
+  simulation
+        .nodes(nodes)
+        .on("tick", tick);
+
+
+  simulation.force("link")
+        .links(links);     
+
+  //assigning name to each node      
+  node.append("title")
+        .text(d => d.id);
+
+  //drawin the graph on the right place
+  function tick() {
+      link
+          .attr("x1", function(d) { return d.source.x; })
+          .attr("y1", function(d) { return d.source.y; })
+          .attr("x2", function(d) { return d.target.x; })
+          .attr("y2", function(d) { return d.target.y; });
+          
+      node
+        .attr("cx", function(d) { return d.x;})
+        .attr("cy", function(d) { return d.y;})
+  }
+
+
+  //movement
+  function dragstarted(d) {
+    if (!d3.event.active) simulation.alphaTarget(0.4).restart();
+      d.fx = d.x;
+      d.fy = d.y;
+    }
+
+  function dragged(d) {
+    d.fx = d3.event.x;
+    d.fy = d3.event.y;
+  }
+
+  function dragended(d) {
+    if (!d3.event.active) simulation.alphaTarget(0);
+    d.fx = null;
+    d.fy = null;
+  }
+}
+
+
+
+
+
+
+// Script for side navigation
+function w3_open() {
+  var x = document.getElementById("mySidebar");
+  x.style.width = "300px";
+  x.style.paddingTop = "10%";
+  x.style.display = "block";
+}
+
+// Close side navigation
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+
+//Script for audio
+
+var audio, mutebtn, seek_bar;
+            function initAudioPlayer(){
+              audio = new Audio();
+              audio.src = "Audio/yiruma.mp3";
+              audio.loop = true;
+              audio.load= true; 
+              audio.autoplay = true;
+              
+              
+              // Set object references
+              mutebtn = document.getElementById("mutebtn");
+              // Add Event Handling
+              mutebtn.addEventListener("click", mute);
+              // Functions
+              
+              function mute(){
+                if(audio.muted){
+                    audio.muted = false;
+                    mutebtn.style.background = "url(images_sound/speaker_2.png) no-repeat";
+                  } else {
+                    audio.muted = true;
+                    mutebtn.style.background = "url(images_sound/speaker_muted_2.png) no-repeat";
+                  }
+              }
+            }
+            window.addEventListener("load", initAudioPlayer);
+
+
+
+
+ </script>
+
+
+
+
+
+  
+
+
+
+</body>
+</html>

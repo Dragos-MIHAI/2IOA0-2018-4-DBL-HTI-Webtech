@@ -18,8 +18,14 @@
  
 
 
+ 
 
 <head>
+<style>
+
+.und { text-decoration: underline; }
+
+</style>
 <title>Page Title</title>
  
 <!-- Navigation bar -->
@@ -33,10 +39,11 @@
        <div class="w3-dropdown-hover w3-hide-small">
        <button class="w3-button" title="Notifications">Visualization <i class="fa fa-caret-down"></i></button>     
        <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-          <a href="convert.html" class="w3-bar-item w3-button">Covert data</a> 
-        <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
-         <a href="vizualize.html" class="w3-bar-item w3-button">Visualize</a>
-         
+        <a href="convert.html" class="w3-bar-item w3-button">Visualize I</a> 
+        <a href="convertprove.html" class="w3-bar-item w3-button">Visualize II</a>
+      <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
+       <a href="vizualize.html" class="w3-bar-item w3-button">Visualize III</a>
+       
        </div>
      </div>
      <a href="team.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Team</a>
@@ -70,25 +77,29 @@
   <h3 class="w3-center">THE TEAM</h3>
   <p class="w3-center w3-large">The bosses who run this company</p>
   <div class="w3-row-padding " style="margin-top:64px">
+
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
         <img src="Avatar/Sanne.jpeg" alt="Sanne de Wit" style="width:100%">
         <div class="w3-container">
           <h3>Sanne de Wit</h3>
-          <p class="w3-opacity">To be completed</p>
+          <p class="w3-opacity">Adjacency Matrix Creator</p>
           <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p><button button onclick="SanneFunction()" class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p id="demo8"></p>
         </div>
       </div>
     </div>
+
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
         <img src="Avatar/Lucas.png" alt="Lucas Vereggen" style="width:100%">
         <div class="w3-container">
           <h3>Lucas Vereggen</h3>
-          <p class="w3-opacity">To be completed</p>
+          <p class="w3-opacity">Node-Link Diagram Creator</p>
           <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p><button button onclick="LucasFunction()" class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p id="demo7"></p>
         </div>
       </div>
     </div>
@@ -98,9 +109,10 @@
         <img src="Avatar/Marco.jpeg" alt="Marco Pleket" style="width:100%">
         <div class="w3-container">
           <h3>Marco Pleket</h3>
-          <p class="w3-opacity">To be completed</p>
+          <p class="w3-opacity">Convertor (CSV to JSON) Builder</p>
           <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p><button button onclick="MarcoFunction()" class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p id="demo6"></p>
         </div>
       </div>
     </div>
@@ -110,12 +122,78 @@
         <img src="Avatar/Mihai.png" alt="Mihai-Dragoş Ungureanu" style="width:100%">
         <div class="w3-container">
           <h3>Mihai-Dragoş Ungureanu</h3>
-          <p class="w3-opacity">Web designer</p>
+          <p class="w3-opacity">Web Designer</p>
           <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p><button button onclick="MihaiFunction()" class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p id="demo5"></p>
         </div>
       </div>
     </div>
+
+  </div>
+
+    <div class="w3-row-padding " style="margin-top:0px">
+
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <img src="Avatar/Yifei.jpeg" alt="Yifei Mao" style="width:100%">
+        <div class="w3-container">
+          <h3>Yifei Mao</h3>
+          <p class="w3-opacity">Adjacency Matrix Creator</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <p><button button onclick="YifeiFunction()" class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p id="demo4"></p>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-card">
+          <img src="Avatar/David.png" alt="David Klaassen Barba" style="width:100%">
+          <div class="w3-container">
+            <h3>David Klaassen Barba</h3>
+            <p class="w3-opacity">Web Designer</p>
+            <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+            <p><button button onclick="DavidFunction()" class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+            <p id="demo3"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-card">
+          <img src="Avatar/Khalid.jpeg" alt="Khalid Berrouayel" style="width:100%">
+          <div class="w3-container">
+            <h3>Khalid Berrouayel</h3>
+            <p class="w3-opacity">Node-Link Diagram Creator</p>
+            <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+            <p><button button onclick="KhalidFunction()" class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+            <p id="demo2"></p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-card">
+          <img src="Avatar/Tim.png" alt="Tim Hoevenaar" style="width:100%">
+          <div class="w3-container">
+            <h3>Tim Hoevenaar</h3>
+            <p class="w3-opacity">Graphic Designer</p>
+            <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+            <p><button onclick="TIMFunction()" class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i>Contact</button></p>
+            <p id="demo1"></p>
+          </div>
+        </div>
+      </div>
+
+     
+
+
+
+
   </div>
 </div>
 
@@ -128,17 +206,58 @@
     <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Google +"><i class="fa fa-google-plus"></i></a>
     <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Google +"><i class="fa fa-instagram"></i></a>
     <a class="w3-button w3-large w3-teal w3-hide-small" href="javascript:void(0)" title="Linkedin"><i class="fa fa-linkedin"></i></a>
-    <p>Powered by <a href="https://dragos-mihai.github.io/2IOA0-2018-4-DBL-HTI-Webtech/team.html" target="_blank">Group 09</a></p>
-  
+    <p>Powered by <a href="https://dragos-mihai.github.io/2IOA0-2018-4-DBL-HTI-Webtech/team.html" target="_blank">Group 95</a></p>
+
     <div style="position:relative;bottom:100px;z-index:1;" class="w3-tooltip w3-right">
       <span class="w3-text w3-padding w3-teal w3-hide-small">Go To Top</span>   
       <a class="w3-button w3-theme" href="#myPage"><span class="w3-xlarge">
       <i class="fa fa-chevron-circle-up"></i></span></a>
     </div>
+
+    <div style="position:relative;bottom:0px;z-index:1;" class="w3-tooltip w3-left">
+      <audio src="Audio/courage.mp3" autoplay loop controls></audio>
+    
+    </div>
   </footer>
   
 
 <script>
+
+    //Script button
+    function TIMFunction() {
+      document.getElementById("demo1").innerHTML = "<span class= 'und' style=\"color:blue\">" + "t.j.hoevenaar@student.tue.nl" + "</span>";
+      }
+
+      function KhalidFunction() {
+      document.getElementById("demo2").innerHTML = "<span class= 'und' style=\"color:blue\">" + "k.berrouayel.eljbary@student.tue.nl" + "</span>";
+      }
+
+      function DavidFunction() {
+      document.getElementById("demo3").innerHTML = "<span class= 'und' style=\"color:blue\">" + "d.klaassen.barba@student.tue.nl" + "</span>";
+      }
+
+      function YifeiFunction() {
+      document.getElementById("demo4").innerHTML = "<span class= 'und' style=\"color:blue\" >" + "y.mao@student.tue.nl" + "</span>";
+      }
+
+      function MihaiFunction() {
+      document.getElementById("demo5").innerHTML = "<span class= 'und' style=\"color:blue\">" + "m.ungureanu1@student.tue.nl" + "</span>";
+      }
+
+      function MarcoFunction() {
+      document.getElementById("demo6").innerHTML = "<span class= 'und' style=\"color:blue\">" + "m.f.a.pleket@student.tue.nl" + "</span>";
+      }
+
+      function LucasFunction() {
+      document.getElementById("demo7").innerHTML = "<span class= 'und' style=\"color:blue\">" + "l.vereggen@student.tue.nl" + "</span>";
+      }
+
+      function SanneFunction() {
+      document.getElementById("demo8").innerHTML = "<span class= 'und' style=\"color:blue\">" + "s.d.wit2@student.tue.nl" + "</span>";
+      }
+
+
+
     // Script for side navigation
     function w3_open() {
       var x = document.getElementById("mySidebar");

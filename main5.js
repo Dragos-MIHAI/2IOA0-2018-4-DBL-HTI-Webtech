@@ -1,3 +1,4 @@
+/*
 let vertices = []; // The JSON object as {"id": 'vertexName'}
 let names = []; // We want to be able to get the vertexName by means of its index
 let verticesIndex = {}; // We will use this later to not have to search for each index separately. This will make the running time shorter
@@ -55,6 +56,7 @@ function createData() { // In this function, we get the vertices, their names an
     }
     console.log(JSON.stringify(matrix)); // Uncomment for debugging
 }
+*/
 
 function Information(options) {
 	var margin = {top: 50, right: 50, bottom: 100, left: 100},
