@@ -72,6 +72,7 @@
   <h3 class="w3-center">THE TEAM</h3>
   <p class="w3-center w3-large">The bosses who run this company</p>
   <div class="w3-row-padding " style="margin-top:64px">
+
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
         <img src="Avatar/Sanne.jpeg" alt="Sanne de Wit" style="width:100%">
@@ -79,10 +80,12 @@
           <h3>Sanne de Wit</h3>
           <p class="w3-opacity">Adjacency Matrix Creator</p>
           <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p><button button onclick="SanneFunction()" class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p id="demo8"></p>
         </div>
       </div>
     </div>
+
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
         <img src="Avatar/Lucas.png" alt="Lucas Vereggen" style="width:100%">
@@ -90,7 +93,8 @@
           <h3>Lucas Vereggen</h3>
           <p class="w3-opacity">Node-Link Diagram Creator</p>
           <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p><button button onclick="LucasFunction()" class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p id="demo7"></p>
         </div>
       </div>
     </div>
@@ -102,7 +106,8 @@
           <h3>Marco Pleket</h3>
           <p class="w3-opacity">Convertor (CSV to JSON) Builder</p>
           <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p><button button onclick="MarcoFunction()" class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p id="demo6"></p>
         </div>
       </div>
     </div>
@@ -114,10 +119,15 @@
           <h3>Mihai-Dragoş Ungureanu</h3>
           <p class="w3-opacity">Web Designer</p>
           <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p><button button onclick="MihaiFunction()" class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p id="demo5"></p>
         </div>
       </div>
     </div>
+
+  </div>
+
+    <div class="w3-row-padding " style="margin-top:0px">
 
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
@@ -126,7 +136,8 @@
           <h3>Yifei Mao</h3>
           <p class="w3-opacity">Adjacency Matrix Creator</p>
           <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p><button button onclick="YifeiFunction()" class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p id="demo4"></p>
         </div>
       </div>
     </div>
@@ -140,7 +151,8 @@
             <h3>David Klaassen Barba</h3>
             <p class="w3-opacity">Web Designer</p>
             <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-            <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+            <p><button button onclick="DavidFunction()" class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+            <p id="demo3"></p>
           </div>
         </div>
       </div>
@@ -152,7 +164,8 @@
             <h3>Khalid Berrouayel</h3>
             <p class="w3-opacity">Node-Link Diagram Creator</p>
             <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-            <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+            <p><button button onclick="KhalidFunction()" class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+            <p id="demo2"></p>
           </div>
         </div>
       </div>
@@ -165,7 +178,8 @@
             <h3>Tim Hoevenaar</h3>
             <p class="w3-opacity">Graphic Designer</p>
             <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-            <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+            <p><button onclick="TIMFunction()" class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i>Contact</button></p>
+            <p id="demo1"></p>
           </div>
         </div>
       </div>
@@ -203,6 +217,42 @@
   
 
 <script>
+
+    //Script button
+    function TIMFunction() {
+      document.getElementById("demo1").innerHTML = "t.j.hoevenaar@student.tue.nl";
+      }
+
+      function KhalidFunction() {
+      document.getElementById("demo2").innerHTML = "k.berrouayel.eljbary@student.tue.nl";
+      }
+
+      function DavidFunction() {
+      document.getElementById("demo3").innerHTML = "d.klaassen.barba@student.tue.nl";
+      }
+
+      function YifeiFunction() {
+      document.getElementById("demo4").innerHTML = "y.mao@student.tue.nl";
+      }
+
+      function MihaiFunction() {
+      document.getElementById("demo5").innerHTML = "m.ungureanu1@student.tue.nl";
+      }
+
+      function MarcoFunction() {
+      document.getElementById("demo6").innerHTML = "m.f.a.pleket@student.tue.nl";
+      }
+
+      function LucasFunction() {
+      document.getElementById("demo7").innerHTML = "l.vereggen@student.tue.nl";
+      }
+
+      function SanneFunction() {
+      document.getElementById("demo8").innerHTML = "s.d.wit2@student.tue.nl";
+      }
+
+
+
     // Script for side navigation
     function w3_open() {
       var x = document.getElementById("mySidebar");
