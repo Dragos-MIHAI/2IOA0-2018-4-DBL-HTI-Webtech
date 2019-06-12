@@ -22,6 +22,22 @@ svg {
   left: 50%;
 }
 
+line.node-link, path.node-link {
+    fill: none;
+    stroke: black
+  }
+  circle.node {
+    fill: white;
+    stroke: black
+  }
+  circle.node+text {
+    text-anchor: middle;
+  }
+  text {
+    font-family: sans-serif;
+    pointer-events: none;
+  }
+
 </style>
 
 
@@ -34,7 +50,7 @@ svg {
 
 
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
- <script src="https://d3js.org/d3.v5.min.js"></script>
+ <script src="https://d3js.org/d3.v3.min.js"></script>
  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
  
@@ -121,23 +137,157 @@ svg {
 
 
 
+let input = ''
+  let items = ''
+  let nodes = [];
+  let verticesNames = [];
+  let verticesIndex = []; // We will use this later to not have to search for each index separately. This will make the running time shorter
+  let links = [];
+  let links2 = [];
+  let edges = 0;
+  let frequencyMatrix = [];
+
+  axios
+  .get(
+    "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv"
+  )
+  .then(function(result) {
+    input = result.data;
+    input = input.slice(1,input.length);
+    items = input.split(/[\s;]+/);
+    console.log(items[0])
+    manipulate()
+    console.log(edges)
+    dThree2()
+  });
+
+  function manipulate() {
+   let dictionaryWord = {"id": items[0]};
+   let dictionaryWord2 = {};
+   nodes.push(dictionaryWord); // Add the first vertex as an object {"id": items[0]} to the nodes
+   verticesNames.push(items[0]); // Push the first vertex onto the list of vertices
+   verticesIndex[items[0]] = 0;
+   let index = 1; // We can only start the loop now, since the first vertex will be equal to the first vertex meaning the following loop would otherwise never loop
+   while (items[index] != items[0]) {
+       dictionaryWord = {"id": items[index]};
+       nodes.push(dictionaryWord);
+       verticesNames.push(items[index]);
+       verticesIndex[items[index]] = index;
+       index++;
+   }
+   console.log(JSON.stringify(nodes))
+
+   let vertex = items[index];
+   index++;
+   while (index < items.length) { // Loop through the whole items array for all the links
+       for (let i = 0; i < nodes.length; i++) { // For every source vertex, we loop through all its potential adjacent vertices
+           if (items[index] != 0) { // We only create an edge if the weight is not 0
+               dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]};
+               dictionaryWord2 = {"sourceName": vertex, "targetName": verticesNames[i], get source() {return verticesIndex[this.sourceName]}, get target() {return verticesIndex[this.targetName]}}
+               links.push(dictionaryWord);
+               links2.push(dictionaryWord2)
+               edges++;
+           }
+           index++;
+       }
+       vertex = items[index];
+       index++;
+
+   }
+   console.log(JSON.stringify(links2))
+  }
+
+  function getFrequency() { // This function counts the amount of adjacent vertices per vertex and creates a matrix
+    let row = []; // Is added to the matrix as a new row when finished 
+    let index = verticesNames.length + 1; // Iterator over the whole vertices array
+    for (let i = 1; i < vertices.length; i++) { // We count the links for every vertex, so we iterate over the verticesNames array
+        dict[verticesNames[i - 1]] = 0; // Gotta start at 0
+        while (items[index] != items[i]) {
+            if (items[index] != 0) {
+                dict[verticesNames[i - 1]]++; // If there is a weight, frequency is increased by 1 for that vertex
+            }
+            index++;
+        }
+        index++;
+    }
+    row = []; // The code below here is added because we keep checking the vertex in advance, but there is no next vertex for the last vertex. Therefore, this is taken out of the loop, since the loop invariant wouldn't hold
+    dict[verticesNames[verticesNames.length - 1]] = 0;
+    while (index < items.length) {
+        if (items[index] != 0) {
+            dict[verticesNames[verticesNames.length - 1]]++;
+        }
+        index++;
+    }
+
+    frequencies = sortVertices(verticesNames); // Here we order the vertices by frequency by using mergesort in the form index: 'vertexName'
+    frequencyMatrixRows = matrix.slice(0, matrix.length); // We first have to order the rows. Columns remain in the old order
+
+    for (let i = 0; i < frequencies.length; i++) {
+        frequencyMatrixRows[i] = matrix[verticesIndex[frequencies[i]]];
+    }
+    frequencyMatrixColumns = transpose(frequencyMatrixRows) // Now we order the columns accordingly
+    for (let i = 0; i < frequencies.length; i++) {
+        for (let j = 0; j < frequencyMatrixRows.length; j++) {
+            frequencyMatrixColumns[j][i] = frequencyMatrixRows[j][verticesIndex[frequencies[i]]] // Add the nth frequency to the frequencyMatrix by accessing the old index of that vertex
+        }
+        verticesIndex[frequencies[i]] = i // Then update this vertex to its new vertex, i
+    }
+    frequencyMatrix = transpose(frequencyMatrixColumns);
+}
+
+function transpose(m) { // Used to transpose matrices
+  return m[0].map((_, i) => m.map(row => row[i]));
+}
+
+function sortVertices(names) {
+    if (names.length === 1) {
+        return names;
+    } else {
+        const middle = Math.floor(names.length/2);
+        const left = names.slice(0, middle);
+        const right = names.slice(middle);
+
+        return(merge(
+            sortVertices(left), // recurseLeft()
+            sortVertices(right) // recurseRight()
+        ))
+    }
+}
+
+// The mergesort algorithm, called upon by sortVertices. This is specialised for frequency. 
+function merge(left, right) {
+    let result = [];
+    let indexLeft = 0
+    let indexRight = 0
+    while (indexLeft < left.length && indexRight < right.length) { // We iterate over both arrays and keep comparing the 2 elements untill all elements have been checked of one array. 
+        if (dict[left[indexLeft]] > dict[right[indexRight]]) { // If the element in the left is bigger, we push that and take the left array's next element
+            result.push(left[indexLeft])
+            indexLeft++
+        } else { // Else we push the element of the right array and take its next element
+            result.push(right[indexRight])
+            indexRight++
+        }
+    }
+    return(result.concat(left.slice(indexLeft)).concat(right.slice(indexRight))); // We have to connect the leftovers
+}
 
 
 
+function dThree2() {
 
-var num = 2000;
+//var num = 2000;
 // returns random int between 0 and num
-function getRandomInt() {return Math.floor(Math.random() * (num));}
+//function getRandomInt() {return Math.floor(Math.random() * (num));}
 // nodes returns a [list] of {id: 1, fixed:true}
-var nodes = //[ { "id": "bas" }, { "id": 1 }, { "id": 2 }, { "id": 3 }, { "id": 4 }, { "id": 5 }, { "id": 6 }, { "id": 7 }, { "id": 8 }, { "id": 9 }, { "id": 10 }, { "id": 11 }, { "id": 12 }, { "id": 13 }, { "id": 14 }, { "id": 15 }, { "id": 16 }, { "id": 17 }, { "id": 18 }, { "id": 19 } ]
-d3.range(num).map(function(d) { return {id: d}; });
+//var nodes = //[ { "id": "bas" }, { "id": 1 }, { "id": 2 }, { "id": 3 }, { "id": 4 }, { "id": 5 }, { "id": 6 }, { "id": 7 }, { "id": 8 }, { "id": 9 }, { "id": 10 }, { "id": 11 }, { "id": 12 }, { "id": 13 }, { "id": 14 }, { "id": 15 }, { "id": 16 }, { "id": 17 }, { "id": 18 }, { "id": 19 } ]
+//d3.range(num).map(function(d) { return {id: d}; });
 // links returns a [list] of {source: 0, target: 1} (values refer to indicies of nodes)
-var links = d3.range(num).map(function(d) { return {source: getRandomInt(), target: getRandomInt()}; });
+//var links = d3.range(num).map(function(d) { return {source: getRandomInt(), target: getRandomInt()}; });
 var width = 500,
     height = 500;
 var force = d3.layout.force()
     .nodes(nodes)
-    .links(links)
+    .links(links2)
     .size([width, height]);
 // evenly spaces nodes along arc
 var circleCoord = function(node, index, num_nodes){
@@ -148,7 +298,7 @@ var circleCoord = function(node, index, num_nodes){
     return pointAtLength(circumference-position)
 }
 console.log(nodes)
-console.log(links)
+console.log(links2)
 // fades out lines that aren't connected to node d
 var is_connected = function(d, opacity) {
     lines.transition().style("stroke-opacity", function(o) {
@@ -181,7 +331,7 @@ nodes.forEach(function(n, i) {
 //   .attr("y2", function(d) { return d.target.y; });
 // ...or use this one for curved line links
 var lines = svg.selectAll("path.node-link")
-    .data(links).enter().append("path")
+    .data(links2).enter().append("path")
     .attr("class", "node-link")
     .attr("d", function(d) {
         var dx = d.target.x - d.source.x,
@@ -221,7 +371,7 @@ var labels = gnodes.append("text")
       node.append("title")
         .text(d => d.id); 
 
-
+  }
 
 
 // Script for side navigation

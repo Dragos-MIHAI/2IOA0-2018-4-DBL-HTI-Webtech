@@ -60,6 +60,15 @@ svg {
 <div style="display:inline-block;" id="legend"></div>
     <div style="display:inline-block; float:right" id="block"></div>
 
+    <aside>
+      <p>Order: <select id="order">
+        <option class="top-level-option" value="name">by Name</option>
+        <option class="top-level-option" value="count">by Number of links</option>
+        <option class="top-level-option" value="group">by Group</option>
+        <option class="top-level-option" value="distance">by Distance to...</option>
+      </select>
+      </aside>
+
 	<script src="https://d3js.org/d3-color.v1.min.js"></script>
 	<script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
 	<script src="https://d3js.org/d3-ease.v1.min.js"></script>
