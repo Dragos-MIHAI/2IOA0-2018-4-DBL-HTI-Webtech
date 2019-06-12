@@ -24,11 +24,11 @@ svg {
 
 line.node-link, path.node-link {
     fill: none;
-    stroke: black
+    stroke: rgb(46, 177, 105)
   }
   circle.node {
     fill: white;
-    stroke: black
+    stroke: rgb(204, 34, 34)
   }
   circle.node+text {
     text-anchor: middle;
@@ -183,7 +183,7 @@ let input = ''
        for (let i = 0; i < nodes.length; i++) { // For every source vertex, we loop through all its potential adjacent vertices
            if (items[index] != 0) { // We only create an edge if the weight is not 0
                dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]};
-               dictionaryWord2 = {"sourceName": vertex, "targetName": verticesNames[i], get source() {return verticesIndex[this.sourceName]}, get target() {return verticesIndex[this.targetName]}}
+               dictionaryWord2 = {"sourceName": vertex, "targetName": verticesNames[i], "source": verticesIndex[this.sourceName], "target":verticesIndex[this.targetName]};
                links.push(dictionaryWord);
                links2.push(dictionaryWord2)
                edges++;
@@ -283,8 +283,8 @@ function dThree2() {
 //d3.range(num).map(function(d) { return {id: d}; });
 // links returns a [list] of {source: 0, target: 1} (values refer to indicies of nodes)
 //var links = d3.range(num).map(function(d) { return {source: getRandomInt(), target: getRandomInt()}; });
-var width = 500,
-    height = 500;
+var width = 1920,
+    height = 1080;
 var force = d3.layout.force()
     .nodes(nodes)
     .links(links2)
