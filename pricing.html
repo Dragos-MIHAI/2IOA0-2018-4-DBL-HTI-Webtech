@@ -91,7 +91,8 @@
                 <span class="w3-opacity">per month</span>
               </li>
               <li class="w3-light-grey w3-padding-24">
-                <button class="w3-button w3-black w3-padding-large">Sign Up</button>
+                <button onclick="TENFunction()" class="w3-button w3-black w3-padding-large">Sign Up</button>
+                <p id="demo1"></p>
               </li>
             </ul>
           </div>
@@ -107,7 +108,8 @@
                 <span class="w3-opacity">per month</span>
               </li>
               <li class="w3-light-grey w3-padding-24">
-                <button class="w3-button w3-black w3-padding-large">Sign Up</button>
+                <button onclick="T5Function()" class="w3-button w3-black w3-padding-large">Sign Up</button>
+                <p id="demo2"></p>
               </li>
             </ul>
           </div>
@@ -123,7 +125,8 @@
                 <span class="w3-opacity">per month</span>
               </li>
               <li class="w3-light-grey w3-padding-24">
-                <button class="w3-button w3-black w3-padding-large">Sign Up</button>
+                <button onclick="FTFunction()" class="w3-button w3-black w3-padding-large">Sign Up</button>
+                <p id="demo3"></p>
               </li>
             </ul>
           </div>
@@ -155,6 +158,20 @@
       
     
     <script>
+        //Script button
+    function TENFunction() {
+      document.getElementById("demo1").innerHTML = "<span style=\"color:black\">" +"Thank you for your subscription!" + "</span>";
+      }
+      
+
+      function T5Function() {
+      document.getElementById("demo2").innerHTML = "<span style=\"color:red\">" + "Thank you for choosing the Professional Package. Welcome on board !" + "</span>";
+      }
+      
+      function FTFunction() {
+      document.getElementById("demo3").innerHTML = "<span style=\"color:green\">" + "Thank you for chosing the Premium Package. VizYou offers you 10GB supplementary for your good choice ;) " + "</span>";
+      }
+      
         // Script for side navigation
         function w3_open() {
           var x = document.getElementById("mySidebar");
