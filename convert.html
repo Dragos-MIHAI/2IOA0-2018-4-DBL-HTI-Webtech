@@ -175,6 +175,7 @@ svg {
   let verticesNames = [];
   let verticesIndex = []; // We will use this later to not have to search for each index separately. This will make the running time shorter
   let links = [];
+  let links2 = [];
   let edges = 0;
   let frequencyMatrix = [];
 
@@ -193,7 +194,8 @@ svg {
   });
 
   function manipulate() {
-   let dictionaryWord = {"id": items[0]}
+   let dictionaryWord = {"id": items[0]};
+   let dictionaryWord2 = {};
    nodes.push(dictionaryWord); // Add the first vertex as an object {"id": items[0]} to the nodes
    verticesNames.push(items[0]); // Push the first vertex onto the list of vertices
    verticesIndex[items[0]] = 0;
@@ -213,6 +215,7 @@ svg {
        for (let i = 0; i < nodes.length; i++) { // For every source vertex, we loop through all its potential adjacent vertices
            if (items[index] != 0) { // We only create an edge if the weight is not 0
                dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]};
+               dictionaryWord2 = {"sourceName": vertex, "targetName": verticesNames[i], get source() {return verticesIndex[this.sourceName]}, get target() {return verticesIndex[this.targetName]}}
                links.push(dictionaryWord);
                edges++;
            }
