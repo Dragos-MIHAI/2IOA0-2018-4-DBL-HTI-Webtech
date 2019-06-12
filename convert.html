@@ -328,7 +328,7 @@ function dThree() {
                 
    //var links = [{"source":"Marco","target":"Marco","value":"1"},{"source":"Marco","target":"Lucas","value":"0.6947"},{"source":"Marco","target":"Dragos","value":"0.3967"},{"source":"Lucas","target":"Marco","value":"0.6947"},{"source":"Lucas","target":"Lucas","value":"1"},{"source":"Lucas","target":"Dragos","value":"0.2850"},{"source":"Dragos","target":"Marco","value":"0.3967"},{"source":"Dragos","target":"Lucas","value":"0.2850"},{"source":"Dragos","target":"Dragos","value":"1"}];
   let attract = d3.forceManyBody().strength(40).distanceMax(10).distanceMin(10);//Dragos
-  let repel = d3.forceManyBody().strength(40).distanceMax(10).distanceMin(10);//Dragos
+  let repel = d3.forceManyBody().strength(-30).distanceMax(10).distanceMin(10);//Dragos
 
   //simulation for force directed       
   var simulation = d3.forceSimulation(nodes)
