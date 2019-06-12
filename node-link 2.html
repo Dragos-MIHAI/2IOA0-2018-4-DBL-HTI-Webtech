@@ -283,8 +283,8 @@ function dThree2() {
 //d3.range(num).map(function(d) { return {id: d}; });
 // links returns a [list] of {source: 0, target: 1} (values refer to indicies of nodes)
 //var links = d3.range(num).map(function(d) { return {source: getRandomInt(), target: getRandomInt()}; });
-var width = 1000,
-    height = 1000;
+var width = 850,
+    height = 850;
 var force = d3.layout.force()
     .nodes(nodes)
     .links(links2)
@@ -353,15 +353,15 @@ var gnodes = svg.selectAll('g.gnode')
     })
     .classed('gnode', true);
 var node = gnodes.append("circle")
-    .attr("r", 10)
+    .attr("r", 2)
     .attr("class", "node")
     .on("mouseenter", function(d) {
         is_connected(d, 0.1)
-        node.transition().duration(100).attr("r", 25)
-        d3.select(this).transition().duration(100).attr("r", 30)
+        node.transition().duration(100).attr("r", 2)
+        d3.select(this).transition().duration(100).attr("r", 5)
     })
     .on("mouseleave", function(d) {
-        node.transition().duration(100).attr("r", 10);
+        node.transition().duration(100).attr("r", 2);
         is_connected(d, 1);
     });  
 var labels = gnodes.append("text")
