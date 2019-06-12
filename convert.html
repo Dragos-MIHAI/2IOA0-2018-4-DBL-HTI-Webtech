@@ -106,17 +106,13 @@ svg {
              <div class="w3-dropdown-hover w3-hide-small">
              <button class="w3-button" title="Notifications">Visualization <i class="fa fa-caret-down"></i></button>
              <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-<<<<<<< HEAD
-<<<<<<< HEAD
                 <a href="convert.html" class="w3-bar-item w3-button">Covert data</a>
               <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
                <a href="vizualize.html" class="w3-bar-item w3-button">Visualize</a>
 
-=======
                 <a href="convert.html" class="w3-bar-item w3-button">Visualize I</a> 
                 <a href="convertprove.html" class="w3-bar-item w3-button">Visualize II</a>
               <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
-=======
                 <a href="convert.html" class="w3-bar-item w3-button">Visualize I</a> 
                 <a href="convertprove.html" class="w3-bar-item w3-button">Visualize II</a>
               <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
@@ -249,12 +245,6 @@ svg {
    console.log(JSON.stringify(links))
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-=======
->>>>>>> 83a42e1c59126cbaf88b7f35084ff5061c3b3cbf
   function getFrequency() { // This function counts the amount of adjacent vertices per vertex and creates a matrix
     let row = []; // Is added to the matrix as a new row when finished 
     let index = verticesNames.length + 1; // Iterator over the whole vertices array
@@ -329,8 +319,7 @@ function merge(left, right) {
     return(result.concat(left.slice(indexLeft)).concat(right.slice(indexRight))); // We have to connect the leftovers
 }
    
- 
->>>>>>> 4824c38a492dd7963e49fd6e1e70ac811271bba6
+
   var w = 1200,
       h = 800;
 
@@ -341,23 +330,14 @@ function dThree() {
   //upper
   //giving the graph the properties
   graph.attr("width", w)
-<<<<<<< HEAD
        .attr("height", h);
-<<<<<<< HEAD
-
-
-=======
        .call(d3.zoom().on("zoom", function () {
     				svg.attr("transform", d3.event.transform)
-=======
        .attr("height", h)
        .call(d3.zoom().on("zoom", function () {
     				graph.attr("transform", d3.event.transform)
->>>>>>> 83a42e1c59126cbaf88b7f35084ff5061c3b3cbf
  				}));
        
-  
->>>>>>> 4824c38a492dd7963e49fd6e1e70ac811271bba6
    //var nodes = [{"id":"Marco"},{"id":"Lucas"},{"id":"Dragos"}];
 
    //var links = [{"source":"Marco","target":"Marco","value":"1"},{"source":"Marco","target":"Lucas","value":"0.6947"},{"source":"Marco","target":"Dragos","value":"0.3967"},{"source":"Lucas","target":"Marco","value":"0.6947"},{"source":"Lucas","target":"Lucas","value":"1"},{"source":"Lucas","target":"Dragos","value":"0.2850"},{"source":"Dragos","target":"Marco","value":"0.3967"},{"source":"Dragos","target":"Lucas","value":"0.2850"},{"source":"Dragos","target":"Dragos","value":"1"}];
@@ -662,14 +642,6 @@ let vertices = []; // The JSON object as {"id": 'vertexName'}
     				svg.attr("transform", d3.event.transform)
  				}));
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 83a42e1c59126cbaf88b7f35084ff5061c3b3cbf
-			    
->>>>>>> 4824c38a492dd7963e49fd6e1e70ac811271bba6
-
 		//matrix outline
 			var background = svg.append("rect")
 			    .style("stroke", "#CA5959")
@@ -778,12 +750,6 @@ let vertices = []; // The JSON object as {"id": 'vertexName'}
 
 
  </script>
-
-
-
-
-
-
 
 
 
