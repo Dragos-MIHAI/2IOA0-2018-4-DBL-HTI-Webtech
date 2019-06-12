@@ -183,7 +183,7 @@ let input = ''
        for (let i = 0; i < nodes.length; i++) { // For every source vertex, we loop through all its potential adjacent vertices
            if (items[index] != 0) { // We only create an edge if the weight is not 0
                dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]};
-               dictionaryWord2 = {"sourceName": vertex, "targetName": verticesNames[i], get source() {return verticesIndex[this.sourceName]}, get target() {return verticesIndex[this.targetName]}}
+               dictionaryWord2 = {"sourceName": vertex, "targetName": verticesNames[i], "source": verticesIndex[this.sourceName], "target":verticesIndex[this.targetName]};
                links.push(dictionaryWord);
                links2.push(dictionaryWord2)
                edges++;
