@@ -338,9 +338,9 @@ function dThree() {
         .force("attractForce", attract)
         .force("repelForce",repel)
         //making a center for the graph
-        .force("center", d3.forceCenter(((w / 2)-250), (h / 2)));
-        //.force("x", d3.forceX())
-        //.force("y", d3.forceY());
+        .force("center", d3.forceCenter(((w / 2)-250), (h / 2)))
+        .force("x", d3.forceX())
+        .force("y", d3.forceY());
 
   //adding links to the graph     
   var link = graph.append("g")
