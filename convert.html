@@ -322,6 +322,9 @@ function dThree() {
   //giving the graph the properties
   graph.attr("width", w)
        .attr("height", h);
+       .call(d3.zoom().on("zoom", function () {
+    				svg.attr("transform", d3.event.transform)
+ 				}));
        
   
    //var nodes = [{"id":"Marco"},{"id":"Lucas"},{"id":"Dragos"}];
@@ -627,6 +630,7 @@ let vertices = []; // The JSON object as {"id": 'vertexName'}
 				.call(d3.zoom().on("zoom", function () {
     				svg.attr("transform", d3.event.transform)
  				}));
+
 			    
 
 		//matrix outline
