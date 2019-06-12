@@ -3,10 +3,6 @@
 <head>
     <link rel="shortcut icon" type="image/x-icon" href="LOGO/favicon.png" />
 <title>Visualize: Force Directed Graph</title>
- 
-
-
-  
 
 <style>
 
@@ -15,19 +11,19 @@ button{ border:none; cursor:pointer; outline:none; }
 
 button#mutebtn{
 	background:url(images_sound/speaker_2.png) no-repeat;
-  background-position: top; 
+  background-position: top;
 	width:34px;
 	height:34px;
 }
 
 body {
         background-image: url("In website images/black.jpg ");
-} 
+}
 
 svg {
 
   border:1px solid rgb(255, 251, 251);
-  
+
 }
 
 
@@ -45,7 +41,7 @@ svg {
 <!---Add matrix on the right-->
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+
     <link rel="stylesheet" type="text/css" href="style.css"/>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -55,14 +51,14 @@ svg {
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
  <script src="https://d3js.org/d3.v5.min.js"></script>
  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
- 
+
 </head>
- 
+
 
 <!---Add matrix on the right-->
 
 <div style="display:inline-block;" id="legend"></div>
-    <div style="display:inline-block; float:right" id="block"></div> 
+    <div style="display:inline-block; float:right" id="block"></div>
 
 	<script src="https://d3js.org/d3-color.v1.min.js"></script>
 	<script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
@@ -94,34 +90,40 @@ svg {
     <a href="https://canvas.tue.nl/courses/6672" class="w3-bar-item w3-button">Canvas</a>
     <a href="https://tuenl-my.sharepoint.com/:f:/g/personal/m_ungureanu1_student_tue_nl/EqKcrdCbdM5ItrNu4o3knGsBcui3yEj5oy-HUycQkuIIxA?e=JMqxPd" class="w3-bar-item w3-button">Our files</a>
   </nav>
-  
+
   <!-- Navigation bar -->
   <div class="w3-top">
           <div class="w3-bar w3-theme-d2 w3-left-align">
            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
            <a href="index.html" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>VizYou</a>
            <a href="home.html" class="w3-bar-item w3-button w3-hide-small w3-hover-blue">Home</a>
-           
-           
+
+
              <div class="w3-dropdown-hover w3-hide-small">
-             <button class="w3-button" title="Notifications">Visualization <i class="fa fa-caret-down"></i></button>     
+             <button class="w3-button" title="Notifications">Visualization <i class="fa fa-caret-down"></i></button>
              <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+                <a href="convert.html" class="w3-bar-item w3-button">Covert data</a>
+              <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
+               <a href="vizualize.html" class="w3-bar-item w3-button">Visualize</a>
+
+                <a href="convert.html" class="w3-bar-item w3-button">Visualize I</a> 
+                <a href="convertprove.html" class="w3-bar-item w3-button">Visualize II</a>
+              <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
                 <a href="convert.html" class="w3-bar-item w3-button">Visualize I</a> 
                 <a href="convertprove.html" class="w3-bar-item w3-button">Visualize II</a>
               <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
                <a href="vizualize.html" class="w3-bar-item w3-button">Visualize III</a>
-               
              </div>
            </div>
            <a href="team.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Team</a>
            <a href="pricing.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Price</a>
            <a href="Contact.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
-           
+
           <button id="mutebtn"></button>
-           
+
           <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search"><i class="fa fa-search"></i></a>
           </div>
-  
+
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
       <a href="#team" class="w3-bar-item w3-button">Team</a>
@@ -131,14 +133,14 @@ svg {
       <a href="#" class="w3-bar-item w3-button">Search</a>
     </div>
   </div>
-  
-    
- 
-  
+
+
+
+
   <!-- Modal -->
   <div id="id01" class="w3-modal">
     <div class="w3-modal-content w3-card-4 w3-animate-top">
-      <header class="w3-container w3-teal w3-display-container"> 
+      <header class="w3-container w3-teal w3-display-container">
         <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-teal w3-display-topright"><i class="fa fa-remove"></i></span>
         <h4>Oh snap! We just showed you a modal..</h4>
         <h5>Because we can <i class="fa fa-smile-o"></i></h5>
@@ -152,7 +154,7 @@ svg {
       </footer>
     </div>
   </div>
-  
+
 
 
 
@@ -160,25 +162,12 @@ svg {
 
 
 <iframe src="Audio/silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
-    
+
 
 
 <!-- Canvas graph -->
 
-
-
-
-
-
-
-
-
  <script>
-
-      
-
-
-
 
   let input = ''
   let items = ''
@@ -202,7 +191,7 @@ svg {
     console.log(edges)
     dThree()
   });
-  
+
   function manipulate() {
    let dictionaryWord = {"id": items[0]}
    nodes.push(dictionaryWord); // Add the first vertex as an object {"id": items[0]} to the nodes
@@ -310,14 +299,14 @@ function merge(left, right) {
     return(result.concat(left.slice(indexLeft)).concat(right.slice(indexRight))); // We have to connect the leftovers
 }
    
- 
+
   var w = 1200,
       h = 800;
 
 function dThree() {
   var graph = d3.select("body").append("svg").style("width", "702px").style("height", "802px").style("margin-top", "50px").style("background", "one.jpg").attr("align","center");
-  
-  //properties of the object            
+
+  //properties of the object
   //upper
   //giving the graph the properties
   graph.attr("width", w)
@@ -326,14 +315,13 @@ function dThree() {
     	//			graph.attr("transform", d3.event.transform)
  				//}));
        
-  
    //var nodes = [{"id":"Marco"},{"id":"Lucas"},{"id":"Dragos"}];
-                
+
    //var links = [{"source":"Marco","target":"Marco","value":"1"},{"source":"Marco","target":"Lucas","value":"0.6947"},{"source":"Marco","target":"Dragos","value":"0.3967"},{"source":"Lucas","target":"Marco","value":"0.6947"},{"source":"Lucas","target":"Lucas","value":"1"},{"source":"Lucas","target":"Dragos","value":"0.2850"},{"source":"Dragos","target":"Marco","value":"0.3967"},{"source":"Dragos","target":"Lucas","value":"0.2850"},{"source":"Dragos","target":"Dragos","value":"1"}];
   let attract = d3.forceManyBody().strength(40).distanceMax(10).distanceMin(10);//Dragos
   let repel = d3.forceManyBody().strength(-40).distanceMax(10).distanceMin(10);//Dragos
 
-  //simulation for force directed       
+  //simulation for force directed
   var simulation = d3.forceSimulation(nodes)
         //adding link between 2 ID's
         .alphaDecay(0.03)
@@ -345,7 +333,7 @@ function dThree() {
         //.force("x", d3.forceX())//Dragos
         //.force("y", d3.forceY());//Dragos
 
-  //adding links to the graph     
+  //adding links to the graph
   var link = graph.append("g")
         //adds stroke with #colour
         .attr("stroke", "#999")
@@ -356,10 +344,10 @@ function dThree() {
         .append("line")
         //width of a line based on its value in the data
         .attr("stroke-width", d => ((d.value)));
-               
-                 
 
-  //adding the nodes to the graph 
+
+
+  //adding the nodes to the graph
   var node = graph.append("g")
         .attr("stroke", "#fff")
         //width of the circle surrounding the node
@@ -375,17 +363,17 @@ function dThree() {
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
- 
-   //selecting data + drawing                 
+
+   //selecting data + drawing
   simulation
         .nodes(nodes)
         .on("tick", tick);
 
 
   simulation.force("link")
-        .links(links);     
+        .links(links);
 
-  //assigning name to each node      
+  //assigning name to each node
   node.append("title")
         .text(d => d.id);
 
@@ -396,7 +384,7 @@ function dThree() {
           .attr("y1", function(d) { return d.source.y; })
           .attr("x2", function(d) { return d.target.x; })
           .attr("y2", function(d) { return d.target.y; });
-          
+
       node
         .attr("cx", function(d) { return d.x;})
         .attr("cy", function(d) { return d.y;})
@@ -420,16 +408,7 @@ function dThree() {
     d.fx = null;
     d.fy = null;
   }
-
-
-
-
 }
-
-
-
-
-
 
 // Script for side navigation
 function w3_open() {
@@ -449,7 +428,7 @@ function openNav() {
   var x = document.getElementById("navDemo");
   if (x.className.indexOf("w3-show") == -1) {
     x.className += " w3-show";
-  } else { 
+  } else {
     x.className = x.className.replace(" w3-show", "");
   }
 }
@@ -462,16 +441,16 @@ var audio, mutebtn, seek_bar;
               audio = new Audio();
               audio.src = "Audio/yiruma.mp3";
               audio.loop = true;
-              audio.load= true; 
+              audio.load= true;
               audio.autoplay = true;
-              
-              
+
+
               // Set object references
               mutebtn = document.getElementById("mutebtn");
               // Add Event Handling
               mutebtn.addEventListener("click", mute);
               // Functions
-              
+
               function mute(){
                 if(audio.muted){
                     audio.muted = false;
@@ -483,10 +462,6 @@ var audio, mutebtn, seek_bar;
               }
             }
             window.addEventListener("load", initAudioPlayer);
-
-
-
-
 
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////Add matrix/////////////////////////////////////////////////////
@@ -631,8 +606,6 @@ let vertices = []; // The JSON object as {"id": 'vertexName'}
     				svg.attr("transform", d3.event.transform)
  				}));
 
-			    
-
 		//matrix outline
 			var background = svg.append("rect")
 			    .style("stroke", "#CA5959")
@@ -741,12 +714,6 @@ let vertices = []; // The JSON object as {"id": 'vertexName'}
 
 
  </script>
-
-
-
-
-
-  
 
 
 
