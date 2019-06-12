@@ -364,11 +364,11 @@ var node = gnodes.append("circle")
         node.transition().duration(100).attr("r", 2);
         is_connected(d, 1);
     });  
-var labels = gnodes.append("text")
-    .attr("dy", 4)
-    .text(function(d){return d.id})
+//var labels = gnodes.append("text")
+//    .attr("dy", 4)
+//    .text(function(d){return d.id})
     
-      node.append("title")
+node.append("title")
         .text(d => d.id); 
 
   }
