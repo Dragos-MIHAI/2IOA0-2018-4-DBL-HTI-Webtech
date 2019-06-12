@@ -321,10 +321,10 @@ function dThree() {
   //upper
   //giving the graph the properties
   graph.attr("width", w)
-       .attr("height", h)
-       .call(d3.zoom().on("zoom", function () {
-    				graph.attr("transform", d3.event.transform)
- 				}));
+       .attr("height", h);
+       //.call(d3.zoom().on("zoom", function () {
+    	//			graph.attr("transform", d3.event.transform)
+ 				//}));
        
   
    //var nodes = [{"id":"Marco"},{"id":"Lucas"},{"id":"Dragos"}];
