@@ -275,19 +275,19 @@ function merge(left, right) {
 
 function dThree2() {
 
-var num = 2000;
+//var num = 2000;
 // returns random int between 0 and num
-function getRandomInt() {return Math.floor(Math.random() * (num));}
+//function getRandomInt() {return Math.floor(Math.random() * (num));}
 // nodes returns a [list] of {id: 1, fixed:true}
-var nodes = //[ { "id": "bas" }, { "id": 1 }, { "id": 2 }, { "id": 3 }, { "id": 4 }, { "id": 5 }, { "id": 6 }, { "id": 7 }, { "id": 8 }, { "id": 9 }, { "id": 10 }, { "id": 11 }, { "id": 12 }, { "id": 13 }, { "id": 14 }, { "id": 15 }, { "id": 16 }, { "id": 17 }, { "id": 18 }, { "id": 19 } ]
-d3.range(num).map(function(d) { return {id: d}; });
+//var nodes = //[ { "id": "bas" }, { "id": 1 }, { "id": 2 }, { "id": 3 }, { "id": 4 }, { "id": 5 }, { "id": 6 }, { "id": 7 }, { "id": 8 }, { "id": 9 }, { "id": 10 }, { "id": 11 }, { "id": 12 }, { "id": 13 }, { "id": 14 }, { "id": 15 }, { "id": 16 }, { "id": 17 }, { "id": 18 }, { "id": 19 } ]
+//d3.range(num).map(function(d) { return {id: d}; });
 // links returns a [list] of {source: 0, target: 1} (values refer to indicies of nodes)
-var links = d3.range(num).map(function(d) { return {source: getRandomInt(), target: getRandomInt()}; });
+//var links = d3.range(num).map(function(d) { return {source: getRandomInt(), target: getRandomInt()}; });
 var width = 500,
     height = 500;
 var force = d3.layout.force()
     .nodes(nodes)
-    .links(links)
+    .links(links2)
     .size([width, height]);
 // evenly spaces nodes along arc
 var circleCoord = function(node, index, num_nodes){
@@ -298,7 +298,7 @@ var circleCoord = function(node, index, num_nodes){
     return pointAtLength(circumference-position)
 }
 console.log(nodes)
-console.log(links)
+console.log(links2)
 // fades out lines that aren't connected to node d
 var is_connected = function(d, opacity) {
     lines.transition().style("stroke-opacity", function(o) {
@@ -331,7 +331,7 @@ nodes.forEach(function(n, i) {
 //   .attr("y2", function(d) { return d.target.y; });
 // ...or use this one for curved line links
 var lines = svg.selectAll("path.node-link")
-    .data(links).enter().append("path")
+    .data(links2).enter().append("path")
     .attr("class", "node-link")
     .attr("d", function(d) {
         var dx = d.target.x - d.source.x,
