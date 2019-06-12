@@ -358,7 +358,7 @@ var node = gnodes.append("circle")
     .on("mouseenter", function(d) {
         is_connected(d, 0.1)
         node.transition().duration(100).attr("r", 2)
-        d3.select(this).transition().duration(100).attr("r", 5)
+        d3.select(this).transition().duration(100).attr("r", 8)
     })
     .on("mouseleave", function(d) {
         node.transition().duration(100).attr("r", 2);
