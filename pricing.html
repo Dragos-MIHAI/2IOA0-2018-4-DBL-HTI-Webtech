@@ -39,9 +39,11 @@
            <div class="w3-dropdown-hover w3-hide-small">
            <button class="w3-button" title="Notifications">Visualization <i class="fa fa-caret-down"></i></button>     
            <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-              <a href="convert.html" class="w3-bar-item w3-button">Covert data</a> 
-            <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
-             <a href="#" class="w3-bar-item w3-button">Visualize</a>
+            <a href="convert.html" class="w3-bar-item w3-button">Visualize I</a> 
+            <a href="convertprove.html" class="w3-bar-item w3-button">Visualize II</a>
+          <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
+           <a href="vizualize.html" class="w3-bar-item w3-button">Visualize III</a>
+           
              
            </div>
          </div>
@@ -89,7 +91,8 @@
                 <span class="w3-opacity">per month</span>
               </li>
               <li class="w3-light-grey w3-padding-24">
-                <button class="w3-button w3-black w3-padding-large">Sign Up</button>
+                <button onclick="TENFunction()" class="w3-button w3-black w3-padding-large">Sign Up</button>
+                <p id="demo1"></p>
               </li>
             </ul>
           </div>
@@ -105,7 +108,8 @@
                 <span class="w3-opacity">per month</span>
               </li>
               <li class="w3-light-grey w3-padding-24">
-                <button class="w3-button w3-black w3-padding-large">Sign Up</button>
+                <button onclick="T5Function()" class="w3-button w3-black w3-padding-large">Sign Up</button>
+                <p id="demo2"></p>
               </li>
             </ul>
           </div>
@@ -121,7 +125,8 @@
                 <span class="w3-opacity">per month</span>
               </li>
               <li class="w3-light-grey w3-padding-24">
-                <button class="w3-button w3-black w3-padding-large">Sign Up</button>
+                <button onclick="FTFunction()" class="w3-button w3-black w3-padding-large">Sign Up</button>
+                <p id="demo3"></p>
               </li>
             </ul>
           </div>
@@ -153,6 +158,20 @@
       
     
     <script>
+        //Script button
+    function TENFunction() {
+      document.getElementById("demo1").innerHTML = "<span style=\"color:black\">" +"Thank you for your subscription!" + "</span>";
+      }
+      
+
+      function T5Function() {
+      document.getElementById("demo2").innerHTML = "<span style=\"color:red\">" + "Thank you for choosing the Professional Package. Welcome on board !" + "</span>";
+      }
+      
+      function FTFunction() {
+      document.getElementById("demo3").innerHTML = "<span style=\"color:green\">" + "Thank you for chosing the Premium Package. VizYou offers you 10GB supplementary for your good choice ;) " + "</span>";
+      }
+      
         // Script for side navigation
         function w3_open() {
           var x = document.getElementById("mySidebar");
