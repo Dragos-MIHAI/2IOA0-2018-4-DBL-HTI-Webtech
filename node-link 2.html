@@ -298,7 +298,7 @@ var circleCoord = function(node, index, num_nodes){
     return pointAtLength(circumference-position)
 }
 console.log(nodes)
-console.log(links)
+console.log(links2)
 // fades out lines that aren't connected to node d
 var is_connected = function(d, opacity) {
     lines.transition().style("stroke-opacity", function(o) {
@@ -331,7 +331,7 @@ nodes.forEach(function(n, i) {
 //   .attr("y2", function(d) { return d.target.y; });
 // ...or use this one for curved line links
 var lines = svg.selectAll("path.node-link")
-    .data(links).enter().append("path")
+    .data(links2).enter().append("path")
     .attr("class", "node-link")
     .attr("d", function(d) {
         var dx = d.target.x - d.source.x,
