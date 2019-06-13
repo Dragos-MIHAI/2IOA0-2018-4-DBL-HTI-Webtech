@@ -24,11 +24,11 @@ svg {
 
 line.node-link, path.node-link {
     fill: none;
-    stroke: rgb(73, 29, 4)
+    stroke: rgb(0, 0, 0)
   }
   circle.node {
     fill: white;
-    stroke: rgb(0, 0, 0)
+    stroke: rgb(30, 103, 185)
   }
   circle.node+text {
     text-anchor: middle;
@@ -277,22 +277,39 @@ function merge(left, right) {
 
 function dThree2() {
 
+
 console.log(nodes)
 console.log(links2)
+
 
 var width = 850
 var height = 850;
 
-var Cgraph = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-    
+
+var Cgraph = d3.select("body")
+               .append("svg")
+
+
+Cgrpah.attr("width", width)
+      .attr("height", height);
+
+
 //makes force layout    
 var force = d3.layout.force()
     .nodes(nodes)
     .links(links2)
     .size([width, height]);
-    
+
+
+// removes links that are not connected
+var is_connected = function(d, opacity) {
+    lines.transition().style("stroke-opacity", function(o) {
+        return o.source === d || o.target === d ? 1 : opacity;
+    });
+} 
+
+
+
 //places nodes on invisible circle
 var circleCoord = function(node, index, num_nodes){
     var circumference = circle.node().getTotalLength();
@@ -303,17 +320,11 @@ var circleCoord = function(node, index, num_nodes){
 }
 
 
-// removes links that are not connected
-var is_connected = function(d, opacity) {
-    lines.transition().style("stroke-opacity", function(o) {
-        return o.source === d || o.target === d ? 1 : opacity;
-    });
-}
 
 //makes invisible circle to place nodes on
-var dim = width-80
+var siz = width-80
 var circle = Cgraph.append("path")
-    .attr("d", "M 40, "+(dim/2+40)+" a "+dim/2+","+dim/2+" 0 1,0 "+dim+",0 a "+dim/2+","+dim/2+" 0 1,0 "+dim*-1+",0")
+    .attr("d", "M 40, "+(siz/2+40)+" a "+siz/2+","+siz/2+" 0 1,0 "+siz+",0 a "+siz/2+","+siz/2+" 0 1,0 "+siz*-1+",0")
     .style("fill", "#f5f5f5");
     
 //start the froce layout    
