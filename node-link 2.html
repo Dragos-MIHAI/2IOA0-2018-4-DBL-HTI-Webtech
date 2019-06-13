@@ -302,7 +302,7 @@ var force = d3.layout.force()
 
 
 // removes links that are not connected
-var iSconnected = function(d, opacity) {
+var isConnected = function(d, opacity) {
     lines.transition().style("stroke-opacity", function(o) {
         return o.source === d || o.target === d ? 1 : opacity;
     });
@@ -364,15 +364,19 @@ var gnodes = Cgraph.selectAll('g.gnode')
         return "translate("+d.x+","+d.y+")"
     })
     .classed('gnode', true);
+
+//size of the circle    
 var node = gnodes.append("circle")
     .attr("r", 2)
     .attr("class", "node")
+
     //expands the nodes when hover over it with mouse
     .on("mouseenter", function(d) {
         isConnected(d, 0.1)
         node.transition().duration(100).attr("r", 2)
         d3.select(this).transition().duration(100).attr("r", 8)
     })
+
     //makes nodes back to normal after mouse left
     .on("mouseleave", function(d) {
         node.transition().duration(100).attr("r", 2);
