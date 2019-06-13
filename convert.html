@@ -374,8 +374,20 @@ function dThree() {
         .append("circle")
         .attr("r", 3)
         .attr("fill", "#FF7F50")
+        //expands the nodes when hover over it with mouse
+        .on("mouseenter", function(d) {
+        isConnected(d, 0.1)
+        node.transition().duration(100).attr("r", 3).attr("fill", "	#20B2AA")
+        d3.select(this).transition().duration(100).attr("r", 10)
+    })
+
+        //makes nodes back to normal after mouse left
+        .on("mouseleave", function(d) {
+        node.transition().duration(100).attr("r", 3);
+        isConnected(d, 1);
+    });  
         //drag function
-        .call(d3.drag()
+        node.call(d3.drag()
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
