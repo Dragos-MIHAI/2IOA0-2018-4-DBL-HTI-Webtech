@@ -275,6 +275,9 @@ function merge(left, right) {
 
 
 
+
+
+//////////////////////Circulair graph//////////////////////
 function dThree2() {
 
 
@@ -302,8 +305,8 @@ var force = d3.layout.force()
 //start the froce layout    
     .start();
 
-// removes links that are not connected
-var isConnected = function(d, opacity) {
+// fades lines that are not connected to slected node
+var isConnectedCir = function(d, opacity) {
     lines.transition().style("stroke-opacity", function(o) {
         return o.source === d || o.target === d ? 1 : opacity;
     });
@@ -376,7 +379,7 @@ var node = gnodes.append("circle")
 
     //expands the nodes when hover over it with mouse
     .on("mouseenter", function(d) {
-        isConnected(d, 0.1)
+        isConnectedCir(d, 0.1)
         node.transition().duration(100).attr("r", 2).attr("fill", "	#20B2AA")
         d3.select(this).transition().duration(100).attr("r", 9)
     })
@@ -384,7 +387,7 @@ var node = gnodes.append("circle")
     //makes nodes back to normal after mouse left
     .on("mouseleave", function(d) {
         node.transition().duration(100).attr("r", 2);
-        isConnected(d, 1);
+        isConnectedCir(d, 1);
     });  
 
 //adds names when hover over node with mouse    
