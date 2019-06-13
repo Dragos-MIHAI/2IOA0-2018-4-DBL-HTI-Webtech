@@ -383,7 +383,7 @@ function dThree() {
 
         //makes nodes back to normal after mouse left
         .on("mouseleave", function(d) {
-        node.transition().duration(100).attr("r", 3);
+        node.transition().duration(100).attr("r", 3).attr("fill", "#FF7F50");
         isConnected(d, 1);
     });  
         //drag function
