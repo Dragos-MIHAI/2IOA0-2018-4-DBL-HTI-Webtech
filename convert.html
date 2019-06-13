@@ -377,7 +377,7 @@ function dThree() {
         //expands the nodes when hover over it with mouse
         .on("mouseenter", function(d) {
         isConnected(d, 0.1)
-        node.transition().duration(100).attr("r", 5).attr("fill", "	#20B2AA")
+        node.transition().duration(100).attr("r", 3).attr("fill", "	#20B2AA")
         d3.select(this).transition().duration(100).attr("r", 10)
     })
 
