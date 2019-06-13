@@ -298,8 +298,9 @@ Cgraph.attr("width", width)
 var force = d3.layout.force()
     .nodes(nodes)
     .links(links2)
-    .size([width, height]);
-
+    .size([width, height])
+//start the froce layout    
+    .start();
 
 // removes links that are not connected
 var isConnected = function(d, opacity) {
@@ -327,8 +328,7 @@ var circle = Cgraph.append("path")
     .attr("d", "M 40, "+(siz/2+40)+" a "+siz/2+","+siz/2+" 0 1,0 "+siz+",0 a "+siz/2+","+siz/2+" 0 1,0 "+siz*-1+",0")
     .style("fill", "#f5f5f5");
     
-//start the froce layout    
-force.start();
+
 
 //makes coordinates for nodes on the circle
 nodes.forEach(function(n, i) {
