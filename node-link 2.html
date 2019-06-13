@@ -24,7 +24,7 @@ svg {
 
 line.node-link, path.node-link {
     fill: none;
-    stroke: rgb(177, 125, 46)
+    stroke: rgb(73, 29, 4)
   }
   circle.node {
     fill: white;
@@ -283,7 +283,7 @@ console.log(links2)
 var width = 850
 var height = 850;
 
-var svg = d3.select("body").append("svg")
+var Cgraph = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
     
@@ -312,7 +312,7 @@ var is_connected = function(d, opacity) {
 
 //makes invisible circle to place nodes on
 var dim = width-80
-var circle = svg.append("path")
+var circle = Cgraph.append("path")
     .attr("d", "M 40, "+(dim/2+40)+" a "+dim/2+","+dim/2+" 0 1,0 "+dim+",0 a "+dim/2+","+dim/2+" 0 1,0 "+dim*-1+",0")
     .style("fill", "#f5f5f5");
     
@@ -327,7 +327,7 @@ nodes.forEach(function(n, i) {
 });
 
 //adds the (curved)lines
-var lines = svg.selectAll("path.node-link")
+var lines = Cgraph.selectAll("path.node-link")
     .data(links2).enter().append("path")
     .attr("class", "node-link")
     .attr("d", function(d) {
@@ -343,7 +343,7 @@ var lines = svg.selectAll("path.node-link")
     });
     
 //adds the nodes
-var gnodes = svg.selectAll('g.gnode')
+var gnodes = Cgraph.selectAll('g.gnode')
     .data(nodes).enter().append('g')
     .attr("transform", function(d) {
         return "translate("+d.x+","+d.y+")"
