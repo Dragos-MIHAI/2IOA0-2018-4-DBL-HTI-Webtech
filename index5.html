@@ -12,14 +12,25 @@
     <div style="display:inline-block;" id="legend"></div>
     <div style="display:block; float:left" id="block"></div>
 
-		<aside>
-	 <p>Order: <select id="order">
-	   <option class="top-level-option" value="name">by Name</option>
-	   <option class="top-level-option" value="count">by Number of links</option>
-	   <option class="top-level-option" value="group">by Group</option>
-	   <option class="top-level-option" value="distance">by Distance to...</option>
-	 </select>
-	 </aside>
+
+				<!-- <aside>
+			 <p>Order: <select id="order">
+			   <option class="top-level-option" value="name">by Name</option>
+			   <option class="top-level-option" value="count">by Number of links</option>
+			   <option class="top-level-option" value="group">by Group</option>
+			   <option class="top-level-option" value="distance">by Distance to...</option>
+			 </select>
+			 </aside> -->
+
+		 <p>Order: <select id="d3-dropdown">
+			   <option value="first">Frequency</option>
+			   <option value="second">Alphabetical</option>
+			   <option value="third">Reverse Alphabetical</option>
+			   <option value="forth">Clustering</option>
+				 <option value="fifth">Random</option>
+			 </select>
+		 <p id="selected-dropdown"></p>
+
 
 	<script src="https://d3js.org/d3-color.v1.min.js"></script>
 	<script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
@@ -34,6 +45,21 @@
 		var zoom = d3.zoom();
 	</script>
 	<script>
+
+
+	//button event
+		d3.select("#selected-dropdown");
+
+		d3.select("select")
+		  .on("change",function(d){
+		    var selected = d3.select("#d3-dropdown").node().value;
+		    console.log( selected );
+		    d3.select("#selected-dropdown").text(selected);
+		})
+
+
+
+
 //hardcoded matrix - needs to be data from csv file
     // var matrix = [
     //     [0.9, 0.3, 0, 0.8, 0, 1, 1, 0.5, 0, 0.75, 0.2, 1, 0.6, 0.4, 0.6, 0.5, 0.2, 1],
