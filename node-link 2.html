@@ -290,7 +290,7 @@ var Cgraph = d3.select("body")
                .append("svg")
 
 
-Cgrpah.attr("width", width)
+Cgraph.attr("width", width)
       .attr("height", height);
 
 
@@ -302,7 +302,7 @@ var force = d3.layout.force()
 
 
 // removes links that are not connected
-var is_connected = function(d, opacity) {
+var iSconnected = function(d, opacity) {
     lines.transition().style("stroke-opacity", function(o) {
         return o.source === d || o.target === d ? 1 : opacity;
     });
@@ -339,7 +339,9 @@ nodes.forEach(function(n, i) {
 
 //adds the (curved)lines
 var lines = Cgraph.selectAll("path.node-link")
-    .data(links2).enter().append("path")
+    .data(links2)
+    .enter()
+    .append("path")
     .attr("class", "node-link")
     .attr("d", function(d) {
         var dx = d.target.x - d.source.x,
@@ -355,7 +357,9 @@ var lines = Cgraph.selectAll("path.node-link")
     
 //adds the nodes
 var gnodes = Cgraph.selectAll('g.gnode')
-    .data(nodes).enter().append('g')
+    .data(nodes)
+    .enter()
+    .append('g')
     .attr("transform", function(d) {
         return "translate("+d.x+","+d.y+")"
     })
@@ -365,14 +369,14 @@ var node = gnodes.append("circle")
     .attr("class", "node")
     //expands the nodes when hover over it with mouse
     .on("mouseenter", function(d) {
-        is_connected(d, 0.1)
+        isConnected(d, 0.1)
         node.transition().duration(100).attr("r", 2)
         d3.select(this).transition().duration(100).attr("r", 8)
     })
     //makes nodes back to normal after mouse left
     .on("mouseleave", function(d) {
         node.transition().duration(100).attr("r", 2);
-        is_connected(d, 1);
+        isConnected(d, 1);
     });  
 
 //adds names when hover over node with mouse    
