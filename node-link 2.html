@@ -337,6 +337,8 @@ nodes.forEach(function(n, i) {
     n.y = coord.y
 });
 
+
+
 //adds the (curved)lines
 var lines = Cgraph.selectAll("path.node-link")
     .data(links2)
@@ -354,6 +356,8 @@ var lines = Cgraph.selectAll("path.node-link")
             d.target.x + "," + 
             d.target.y;
     });
+
+
     
 //adds the nodes
 var gnodes = Cgraph.selectAll('g.gnode')
@@ -373,7 +377,7 @@ var node = gnodes.append("circle")
     //expands the nodes when hover over it with mouse
     .on("mouseenter", function(d) {
         isConnected(d, 0.1)
-        node.transition().duration(100).attr("r", 2)
+        node.transition().duration(100).attr("r", 2).attr("fill", rgb(7, 41, 80))
         d3.select(this).transition().duration(100).attr("r", 8)
     })
 
