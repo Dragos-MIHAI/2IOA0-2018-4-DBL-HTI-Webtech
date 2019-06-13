@@ -342,6 +342,13 @@ function dThree() {
         //.force("x", d3.forceX())//Dragos
         //.force("y", d3.forceY());//Dragos
 
+
+  var isConnected = function(d, opacity) {
+    lines.transition().style("stroke-opacity", function(o) {
+        return o.source === d || o.target === d ? 1 : opacity;
+    });
+}       
+
   //adding links to the graph
   var link = graph.append("g")
         //adds stroke with #colour
