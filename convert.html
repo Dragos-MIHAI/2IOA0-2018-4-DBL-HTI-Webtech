@@ -58,7 +58,7 @@ svg {
 <!---Add matrix on the right-->
 
 <div style="display:inline-block;" id="legend"></div>
-    <div style="display:inline-block; float:right" id="block"></div>
+<div style="display:block; float:right" id="block"></div>
 
 
     				<!-- <aside>
@@ -399,7 +399,7 @@ function dThree() {
         .on("mouseenter", function(d) {
         isConnected(d, 0.1)
         node.transition().duration(100).attr("r", 3).attr("fill", "	#20B2AA")
-        d3.select(this).transition().duration(100).attr("r", 6)
+        d3.select(this).transition().duration(100).attr("r", 10)
     })
 
         //makes nodes back to normal after mouse left
@@ -527,7 +527,7 @@ let vertices = []; // The JSON object as {"id": 'vertexName'}
 
 		axios
 		.get(
-		  "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/smallCSV"
+		  "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/matrixdata"
 		)
 		.then(function(result) {
 		  	input = result.data;
