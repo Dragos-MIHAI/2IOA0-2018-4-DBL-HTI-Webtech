@@ -60,14 +60,24 @@ svg {
 <div style="display:inline-block;" id="legend"></div>
     <div style="display:inline-block; float:right" id="block"></div>
 
-    <aside>
-      <p>Order: <select id="order">
-        <option class="top-level-option" value="name">by Name</option>
-        <option class="top-level-option" value="count">by Number of links</option>
-        <option class="top-level-option" value="group">by Group</option>
-        <option class="top-level-option" value="distance">by Distance to...</option>
-      </select>
-      </aside>
+
+    				<!-- <aside>
+    			 <p>Order: <select id="order">
+    			   <option class="top-level-option" value="name">by Name</option>
+    			   <option class="top-level-option" value="count">by Number of links</option>
+    			   <option class="top-level-option" value="group">by Group</option>
+    			   <option class="top-level-option" value="distance">by Distance to...</option>
+    			 </select>
+    			 </aside> -->
+
+    		 <p>Order: <select id="d3-dropdown">
+    			   <option value="first">Frequency</option>
+    			   <option value="second">Alphabetical</option>
+    			   <option value="third">Reverse Alphabetical</option>
+    			   <option value="forth">Clustering</option>
+    				 <option value="fifth">Random</option>
+    			 </select>
+    		 <p id="selected-dropdown"></p>
 
 	<script src="https://d3js.org/d3-color.v1.min.js"></script>
 	<script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
@@ -111,13 +121,13 @@ svg {
              <div class="w3-dropdown-hover w3-hide-small">
              <button class="w3-button" title="Notifications">Visualization <i class="fa fa-caret-down"></i></button>
              <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-    
-            <a href="convert.html" class="w3-bar-item w3-button">Visualize I</a> 
+
+            <a href="convert.html" class="w3-bar-item w3-button">Visualize I</a>
             <a href="convertprove.html" class="w3-bar-item w3-button">Visualize II</a>
           <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
            <a href="vizualize.html" class="w3-bar-item w3-button">Visualize III</a>
            <a href="node-link 2.html" class="w3-bar-item w3-button">Visualize IV</a>
-           
+
              </div>
            </div>
            <a href="team.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Team</a>
@@ -172,7 +182,18 @@ svg {
 
 <!-- Canvas graph -->
 
+
  <script>
+
+ d3.select("#selected-dropdown");
+
+ d3.select("select")
+   .on("change",function(d){
+     var selected = d3.select("#d3-dropdown").node().value;
+     console.log( selected );
+     d3.select("#selected-dropdown").text(selected);
+ })
+
 
   let input = ''
   let items = ''
@@ -235,7 +256,7 @@ svg {
   }
 
   function getFrequency() { // This function counts the amount of adjacent vertices per vertex and creates a matrix
-    let row = []; // Is added to the matrix as a new row when finished 
+    let row = []; // Is added to the matrix as a new row when finished
     let index = verticesNames.length + 1; // Iterator over the whole vertices array
     for (let i = 1; i < vertices.length; i++) { // We count the links for every vertex, so we iterate over the verticesNames array
         dict[verticesNames[i - 1]] = 0; // Gotta start at 0
@@ -291,12 +312,12 @@ function sortVertices(names) {
     }
 }
 
-// The mergesort algorithm, called upon by sortVertices. This is specialised for frequency. 
+// The mergesort algorithm, called upon by sortVertices. This is specialised for frequency.
 function merge(left, right) {
     let result = [];
     let indexLeft = 0
     let indexRight = 0
-    while (indexLeft < left.length && indexRight < right.length) { // We iterate over both arrays and keep comparing the 2 elements untill all elements have been checked of one array. 
+    while (indexLeft < left.length && indexRight < right.length) { // We iterate over both arrays and keep comparing the 2 elements untill all elements have been checked of one array.
         if (dict[left[indexLeft]] > dict[right[indexRight]]) { // If the element in the left is bigger, we push that and take the left array's next element
             result.push(left[indexLeft])
             indexLeft++
@@ -307,7 +328,7 @@ function merge(left, right) {
     }
     return(result.concat(left.slice(indexLeft)).concat(right.slice(indexRight))); // We have to connect the leftovers
 }
-   
+
 
   var w = 1200,
       h = 800;
@@ -323,7 +344,7 @@ function dThree() {
        .call(d3.zoom().on("zoom", function () {
     				graph.attr("transform", d3.event.transform)
  				}));
-       
+
    //var nodes = [{"id":"Marco"},{"id":"Lucas"},{"id":"Dragos"}];
 
    //var links = [{"source":"Marco","target":"Marco","value":"1"},{"source":"Marco","target":"Lucas","value":"0.6947"},{"source":"Marco","target":"Dragos","value":"0.3967"},{"source":"Lucas","target":"Marco","value":"0.6947"},{"source":"Lucas","target":"Lucas","value":"1"},{"source":"Lucas","target":"Dragos","value":"0.2850"},{"source":"Dragos","target":"Marco","value":"0.3967"},{"source":"Dragos","target":"Lucas","value":"0.2850"},{"source":"Dragos","target":"Dragos","value":"1"}];
@@ -347,7 +368,7 @@ function dThree() {
     link.transition().style("stroke-opacity", function(o) {
         return o.source === d || o.target === d ? 1 : opacity;
     });
-}       
+}
 
   //adding links to the graph
   var link = graph.append("g")
@@ -378,14 +399,14 @@ function dThree() {
         .on("mouseenter", function(d) {
         isConnected(d, 0.1)
         node.transition().duration(100).attr("r", 3).attr("fill", "	#20B2AA")
-        d3.select(this).transition().duration(100).attr("r", 10)
+        d3.select(this).transition().duration(100).attr("r", 6)
     })
 
         //makes nodes back to normal after mouse left
         .on("mouseleave", function(d) {
         node.transition().duration(100).attr("r", 3).attr("fill", "#FF7F50");
         isConnected(d, 1);
-    });  
+    });
         //drag function
         node.call(d3.drag()
             .on("start", dragstarted)
