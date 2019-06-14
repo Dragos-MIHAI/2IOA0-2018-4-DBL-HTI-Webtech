@@ -106,13 +106,13 @@ svg {
              <div class="w3-dropdown-hover w3-hide-small">
              <button class="w3-button" title="Notifications">Visualization <i class="fa fa-caret-down"></i></button>
              <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-              <a href="convert.html" class="w3-bar-item w3-button">Visualize I</a> 
+              <a href="convert.html" class="w3-bar-item w3-button">Visualize I</a>
             <a href="convertprove.html" class="w3-bar-item w3-button">Visualize II</a>
           <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
            <a href="vizualize.html" class="w3-bar-item w3-button">Visualize III</a>
            <a href="node-link 2.html" class="w3-bar-item w3-button">Visualize IV</a>
-           
-             
+
+
 
              </div>
            </div>
@@ -161,7 +161,7 @@ svg {
 
 
   <iframe src="Audio/silence.m4a" allow="autoplay" id="audio" style="display:none"></iframe>
-    
+
 
 
 
@@ -173,6 +173,7 @@ svg {
 
 
 <iframe src="provenotelink.html" id= "notelink" width="700" height="700"></iframe>
+<iframe src="radial-link.html" id= "radial" width="700" height="700"></iframe>
 
 
 <iframe src="oldmatrix.html" id= "matrix" width="700" height="700"></iframe>
@@ -181,22 +182,26 @@ svg {
     Next visualization:
 </button>
 <script type="text/javascript">
-        document.getElementById('matrix').style.visibility = "hidden";
+
+        document.getElementById('radial').style.visibility = "hidden";
         var isVisible = true;
         function toggle(){
           if(isVisible){
             isVisible = false;
             document.getElementById('notelink').style.visibility = "hidden";
             document.getElementById('notelink').style.height = "0px"
-            document.getElementById('matrix').style.visibility = "visible";
-            document.getElementById('matrix').style.height = "45vw"
+
+            document.getElementById('radial').style.visibility = "visible";
+            document.getElementById('radial').style.height = "45vw"
+
 
           } else {
             isVisible = true;
             document.getElementById('notelink').style.visibility = "visible";
             document.getElementById('notelink').style.height = "45vw"
-            document.getElementById('matrix').style.visibility = "hidden";
-            document.getElementById('matrix').style.height = "0px"
+
+            document.getElementById('radial').style.visibility = "hidden";
+            document.getElementById('radial').style.height = "0px"
 
           }
         }
@@ -210,16 +215,16 @@ var audio, mutebtn, seek_bar;
               audio = new Audio();
               audio.src = "Audio/fear of the dark.m4a";
               audio.loop = true;
-              audio.load= true; 
+              audio.load= true;
               audio.autoplay = true;
-              
-              
+
+
               // Set object references
               mutebtn = document.getElementById("mutebtn");
               // Add Event Handling
               mutebtn.addEventListener("click", mute);
               // Functions
-              
+
               function mute(){
                 if(audio.muted){
                     audio.muted = false;
