@@ -183,6 +183,7 @@ svg {
 </button>
 <script type="text/javascript">
 
+        document.getElementById('radial').style.width = "0px"
         document.getElementById('radial').style.visibility = "hidden";
         var isVisible = true;
         function toggle(){
@@ -190,18 +191,20 @@ svg {
             isVisible = false;
             document.getElementById('notelink').style.visibility = "hidden";
             document.getElementById('notelink').style.height = "0px"
-
+            document.getElementById('notelink').style.width = "0px"
             document.getElementById('radial').style.visibility = "visible";
             document.getElementById('radial').style.height = "45vw"
-
+            document.getElementById('radial').style.width = "750px"
 
           } else {
             isVisible = true;
             document.getElementById('notelink').style.visibility = "visible";
             document.getElementById('notelink').style.height = "45vw"
+            document.getElementById('notelink').style.width = "750px"
 
             document.getElementById('radial').style.visibility = "hidden";
             document.getElementById('radial').style.height = "0px"
+            document.getElementById('radial').style.width = "0px"
 
           }
         }
