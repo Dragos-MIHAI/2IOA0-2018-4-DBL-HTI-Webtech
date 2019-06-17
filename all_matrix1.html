@@ -30,7 +30,13 @@ svg {
 
 }
 
-
+h1 {
+    color:rgb(255, 255, 255);
+    
+    text-align: center;
+    text-decoration: underline overline;
+    
+}
 
 </style>
 
@@ -106,19 +112,44 @@ svg {
              <div class="w3-dropdown-hover w3-hide-small">
              <button class="w3-button" title="Notifications">Visualization <i class="fa fa-caret-down"></i></button>
              <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-              <a href="convert.html" class="w3-bar-item w3-button">Visualize I</a>
-            <a href="convertprove.html" class="w3-bar-item w3-button">Visualize II</a>
-          <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
-           <a href="vizualize.html" class="w3-bar-item w3-button">Visualize III</a>
-           <a href="node-link 2.html" class="w3-bar-item w3-button">Visualize IV</a>
+                <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
+                <a href="force_directed.html" class="w3-bar-item w3-button">Force-Directed</a> 
+                <a href="node-link 2.html" class="w3-bar-item w3-button"> Radial</a>
+                <a href="hierar.html" class="w3-bar-item w3-button">Hierarchical Diagram</a>
+                <a href="adjmatrix.html" class="w3-bar-item w3-button">Adjacency Matrix</a>
 
 
 
              </div>
            </div>
+
+           <div class="w3-dropdown-hover w3-hide-small">
+            <button class="w3-button" title="Notifications">Split Screen <i class="fa fa-caret-down"></i></button> 
+            <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+           <a href="force_matrix.html" class="w3-bar-item w3-button ">Force-Directed + Matrix</a>
+           <a href="hierar_matrix.html" class="w3-bar-item w3-button ">Hierarchical + Matrix</a>
+           <a href="radial_matrix.html" class="w3-bar-item w3-button ">Radial + Matrix</a>
+           <a href="all_matrix1.html" class="w3-bar-item w3-button ">All + Matrix</a>
+  
+            </div>
+            </div>
+
+
            <a href="team.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Team</a>
            <a href="pricing.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Price</a>
            <a href="Contact.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
+
+           <div class="w3-dropdown-hover w3-hide-small">
+            <button class="w3-button" title="Notifications">Old Work <i class="fa fa-caret-down"></i></button> 
+            <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+              <a href="vizualize.html" class="w3-bar-item w3-button">Another type of Matrix</a>
+           <a href="hierar_matrix.html" class="w3-bar-item w3-button ">Hierarchical + Matrix</a>
+           <a href="radial_matrix.html" class="w3-bar-item w3-button ">Radial + Matrix</a>
+           <a href="all_matrix.html" class="w3-bar-item w3-button ">All + Matrix</a>
+  
+            </div>
+            </div>
+           
 
           <button id="mutebtn"></button>
 
@@ -163,7 +194,7 @@ svg {
   <iframe src="Audio/silence.m4a" allow="autoplay" id="audio" style="display:none"></iframe>
 
 
-
+  <h1 > All diagrams and Adjacency matrix Representations</h1>
 
 
 
@@ -173,7 +204,7 @@ svg {
 
 
 <iframe src="provenotelink.html" id= "notelink" width="700" height="700"></iframe>
-<iframe src="radial-link.html" id= "radial" width="700" height="700"></iframe>
+<iframe src="radial-link.html" id= "radial" width="850" height="850"></iframe>
 
 
 <iframe src="oldmatrix.html" id= "matrix" width="700" height="700"></iframe>
@@ -182,6 +213,32 @@ svg {
     Next visualization:
 </button>
 <script type="text/javascript">
+
+///color picker 
+var colorWell;
+var defaultColor = "#FFFFFF";
+
+window.addEventListener("load", startup, false);
+function startup() {
+  colorWell = document.querySelector("#colorWell");
+  colorWell.value = defaultColor;
+  colorWell.addEventListener("input", updateFirst, false);
+  colorWell.addEventListener("change", updateAll, false);
+  colorWell.select();
+}
+function updateFirst(event) {
+  var h1 = document.querySelector("h1");
+
+  if (h1) {
+    h1.style.color = event.target.value;
+  }
+}function updateAll(event) {
+  document.querySelectorAll("h1").forEach(function(h1) {
+    h1.style.color = event.target.value;
+  });
+}
+//////////////////////////////////////////////////////////
+
 
         document.getElementById('radial').style.visibility = "hidden";
         var isVisible = true;

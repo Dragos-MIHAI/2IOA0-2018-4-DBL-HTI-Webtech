@@ -27,7 +27,13 @@ svg {
 }
 
 
-
+h1 {
+    color:rgb(255, 255, 255);
+    
+    text-align: center;
+    text-decoration: underline overline;
+    
+}
 </style>
 
 
@@ -126,7 +132,7 @@ svg {
             <a href="force_directed.html" class="w3-bar-item w3-button">Force-Directed</a> 
             <a href="node-link 2.html" class="w3-bar-item w3-button"> Radial</a>
             <a href="hierar.html" class="w3-bar-item w3-button">Hierarchical Diagram</a>
-            <a href="adjmatrix1.html" class="w3-bar-item w3-button">Adjacency Matrix</a>
+            <a href="adjmatrix.html" class="w3-bar-item w3-button">Adjacency Matrix</a>
 
              </div>
            </div>
@@ -138,7 +144,7 @@ svg {
            <a href="force_matrix.html" class="w3-bar-item w3-button ">Force-Directed + Matrix</a>
            <a href="hierar_matrix.html" class="w3-bar-item w3-button ">Hierarchical + Matrix</a>
            <a href="radial_matrix.html" class="w3-bar-item w3-button ">Radial + Matrix</a>
-           <a href="all_matrix.html" class="w3-bar-item w3-button ">All + Matrix</a>
+           <a href="all_matrix1.html" class="w3-bar-item w3-button ">All + Matrix</a>
   
             </div>
             </div>
@@ -205,14 +211,369 @@ svg {
 <iframe src="Audio/silence.m4a" allow="autoplay" id="audio" style="display:none"></iframe>
 
 
+<h1 > Force Directed and Adjacency matrix Representations</h1>
+
+
 
 <!-- Canvas graph -->
 
 
-
-
  <script>
 
+
+     ///color picker 
+var colorWell;
+var defaultColor = "#FFFFFF";
+
+window.addEventListener("load", startup, false);
+function startup() {
+  colorWell = document.querySelector("#colorWell");
+  colorWell.value = defaultColor;
+  colorWell.addEventListener("input", updateFirst, false);
+  colorWell.addEventListener("change", updateAll, false);
+  colorWell.select();
+}
+function updateFirst(event) {
+  var h1 = document.querySelector("h1");
+
+  if (h1) {
+    h1.style.color = event.target.value;
+  }
+}function updateAll(event) {
+  document.querySelectorAll("h1").forEach(function(h1) {
+    h1.style.color = event.target.value;
+  });
+}
+//////////////////////////////////////////////////////////
+
+
+ d3.select("#selected-dropdown");
+
+ d3.select("select")
+   .on("change",function(d){
+     var selected = d3.select("#d3-dropdown").node().value;
+     console.log( selected );
+     d3.select("#selected-dropdown").text(selected);
+ })
+
+
+  let input = ''
+  let items = ''
+  let nodes = [];
+  let verticesNames = [];
+  let verticesIndex = []; // We will use this later to not have to search for each index separately. This will make the running time shorter
+  let links = [];
+  let links2 = [];
+  let edges = 0;
+  let frequencyMatrix = [];
+
+  axios
+  .get(
+    "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv"
+  )
+  .then(function(result) {
+    input = result.data;
+    input = input.slice(1,input.length);
+    items = input.split(/[\s;]+/);
+    console.log(items[0])
+    manipulate()
+    console.log(edges)
+    dThree()
+  });
+
+  function manipulate() {
+   let dictionaryWord = {"id": items[0]};
+   let dictionaryWord2 = {};
+   nodes.push(dictionaryWord); // Add the first vertex as an object {"id": items[0]} to the nodes
+   verticesNames.push(items[0]); // Push the first vertex onto the list of vertices
+   verticesIndex[items[0]] = 0;
+   let index = 1; // We can only start the loop now, since the first vertex will be equal to the first vertex meaning the following loop would otherwise never loop
+   while (items[index] != items[0]) {
+       dictionaryWord = {"id": items[index]};
+       nodes.push(dictionaryWord);
+       verticesNames.push(items[index]);
+       verticesIndex[items[index]] = index;
+       index++;
+   }
+   console.log(JSON.stringify(nodes))
+
+   let vertex = items[index];
+   index++;
+   while (index < items.length) { // Loop through the whole items array for all the links
+       for (let i = 0; i < nodes.length; i++) { // For every source vertex, we loop through all its potential adjacent vertices
+           if (items[index] != 0) { // We only create an edge if the weight is not 0
+               dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]};
+               dictionaryWord2 = {"source": verticesIndex[vertex], "target":verticesIndex[i]};
+               links.push(dictionaryWord);
+               links2.push(dictionaryWord2)
+               edges++;
+           }
+           index++;
+       }
+       vertex = items[index];
+       index++;
+
+   }
+   console.log(JSON.stringify(links2))
+  }
+
+  function getFrequency() { // This function counts the amount of adjacent vertices per vertex and creates a matrix
+    let row = []; // Is added to the matrix as a new row when finished
+    let index = verticesNames.length + 1; // Iterator over the whole vertices array
+    for (let i = 1; i < vertices.length; i++) { // We count the links for every vertex, so we iterate over the verticesNames array
+        dict[verticesNames[i - 1]] = 0; // Gotta start at 0
+        while (items[index] != items[i]) {
+            if (items[index] != 0) {
+                dict[verticesNames[i - 1]]++; // If there is a weight, frequency is increased by 1 for that vertex
+            }
+            index++;
+        }
+        index++;
+    }
+    row = []; // The code below here is added because we keep checking the vertex in advance, but there is no next vertex for the last vertex. Therefore, this is taken out of the loop, since the loop invariant wouldn't hold
+    dict[verticesNames[verticesNames.length - 1]] = 0;
+    while (index < items.length) {
+        if (items[index] != 0) {
+            dict[verticesNames[verticesNames.length - 1]]++;
+        }
+        index++;
+    }
+
+    frequencies = sortVertices(verticesNames); // Here we order the vertices by frequency by using mergesort in the form index: 'vertexName'
+    frequencyMatrixRows = matrix.slice(0, matrix.length); // We first have to order the rows. Columns remain in the old order
+
+    for (let i = 0; i < frequencies.length; i++) {
+        frequencyMatrixRows[i] = matrix[verticesIndex[frequencies[i]]];
+    }
+    frequencyMatrixColumns = transpose(frequencyMatrixRows) // Now we order the columns accordingly
+    for (let i = 0; i < frequencies.length; i++) {
+        for (let j = 0; j < frequencyMatrixRows.length; j++) {
+            frequencyMatrixColumns[j][i] = frequencyMatrixRows[j][verticesIndex[frequencies[i]]] // Add the nth frequency to the frequencyMatrix by accessing the old index of that vertex
+        }
+        verticesIndex[frequencies[i]] = i // Then update this vertex to its new vertex, i
+    }
+    frequencyMatrix = transpose(frequencyMatrixColumns);
+}
+
+function transpose(m) { // Used to transpose matrices
+  return m[0].map((_, i) => m.map(row => row[i]));
+}
+
+function sortVertices(names) {
+    if (names.length === 1) {
+        return names;
+    } else {
+        const middle = Math.floor(names.length/2);
+        const left = names.slice(0, middle);
+        const right = names.slice(middle);
+
+        return(merge(
+            sortVertices(left), // recurseLeft()
+            sortVertices(right) // recurseRight()
+        ))
+    }
+}
+
+// The mergesort algorithm, called upon by sortVertices. This is specialised for frequency.
+function merge(left, right) {
+    let result = [];
+    let indexLeft = 0
+    let indexRight = 0
+    while (indexLeft < left.length && indexRight < right.length) { // We iterate over both arrays and keep comparing the 2 elements untill all elements have been checked of one array.
+        if (dict[left[indexLeft]] > dict[right[indexRight]]) { // If the element in the left is bigger, we push that and take the left array's next element
+            result.push(left[indexLeft])
+            indexLeft++
+        } else { // Else we push the element of the right array and take its next element
+            result.push(right[indexRight])
+            indexRight++
+        }
+    }
+    return(result.concat(left.slice(indexLeft)).concat(right.slice(indexRight))); // We have to connect the leftovers
+}
+
+
+  var w = 1200,
+      h = 800;
+
+function dThree() {
+  var graph = d3.select("body").append("svg").style("width", "702px").style("height", "802px").style("margin-top", "50px").style("background", "one.jpg").attr("align","center");
+
+  //properties of the object
+  //upper
+  //giving the graph the properties
+  graph.attr("width", w)
+       .attr("height", h)
+       .call(d3.zoom().on("zoom", function () {
+    				graph.attr("transform", d3.event.transform)
+ 				}));
+
+   //var nodes = [{"id":"Marco"},{"id":"Lucas"},{"id":"Dragos"}];
+
+   //var links = [{"source":"Marco","target":"Marco","value":"1"},{"source":"Marco","target":"Lucas","value":"0.6947"},{"source":"Marco","target":"Dragos","value":"0.3967"},{"source":"Lucas","target":"Marco","value":"0.6947"},{"source":"Lucas","target":"Lucas","value":"1"},{"source":"Lucas","target":"Dragos","value":"0.2850"},{"source":"Dragos","target":"Marco","value":"0.3967"},{"source":"Dragos","target":"Lucas","value":"0.2850"},{"source":"Dragos","target":"Dragos","value":"1"}];
+  let attract = d3.forceManyBody().strength(40).distanceMax(10).distanceMin(10);//Dragos
+  let repel = d3.forceManyBody().strength(-40).distanceMax(10).distanceMin(10);//Dragos
+
+  //simulation for force directed
+  var simulation = d3.forceSimulation(nodes)
+        //adding link between 2 ID's
+        .alphaDecay(0.03)
+        .force("link", d3.forceLink(links).id(d => d.id))
+        .force("charge", d3.forceManyBody())
+        .force("attractForce", attract)
+        .force("repelForce",repel)
+        //making a center for the graph
+        .force("center", d3.forceCenter(((w / 2)-250), (h / 2)));
+        //.force("x", d3.forceX())//Dragos
+        //.force("y", d3.forceY());//Dragos
+
+
+  var isConnected = function(d, opacity) {
+    link.transition().style("stroke-opacity", function(o) {
+        return o.source === d || o.target === d ? 1 : opacity;
+    });
+}
+
+  //adding links to the graph
+  var link = graph.append("g")
+        //adds stroke with #colour
+        .attr("stroke", "#999")
+        .attr("stroke-opacity", 0.7)
+        .selectAll("line")
+        .data(links)
+        .enter()
+        .append("line")
+        //width of a line based on its value in the data
+        .attr("stroke-width", d => ((d.value)));
+
+
+
+  //adding the nodes to the graph
+  var node = graph.append("g")
+        .attr("stroke", "#fff")
+        //width of the circle surrounding the node
+        .attr("stroke-width", 1.0)
+        .selectAll("circle")
+        .data(nodes)
+        .enter()
+        .append("circle")
+        .attr("r", 3)
+        .attr("fill", "#FF7F50")
+        //expands the nodes when hover over it with mouse
+        .on("mouseenter", function(d) {
+        isConnected(d, 0.1)
+        node.transition().duration(100).attr("r", 3).attr("fill", "	#20B2AA")
+        d3.select(this).transition().duration(100).attr("r", 6)
+    })
+
+        //makes nodes back to normal after mouse left
+        .on("mouseleave", function(d) {
+        node.transition().duration(100).attr("r", 3).attr("fill", "#FF7F50");
+        isConnected(d, 1);
+    });
+        //drag function
+        node.call(d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended));
+
+   //selecting data + drawing
+  simulation
+        .nodes(nodes)
+        .on("tick", tick);
+
+
+  simulation.force("link")
+        .links(links);
+
+  //assigning name to each node
+  node.append("title")
+        .text(d => d.id);
+
+  //drawin the graph on the right place
+  function tick() {
+      link
+          .attr("x1", function(d) { return d.source.x; })
+          .attr("y1", function(d) { return d.source.y; })
+          .attr("x2", function(d) { return d.target.x; })
+          .attr("y2", function(d) { return d.target.y; });
+
+      node
+        .attr("cx", function(d) { return d.x;})
+        .attr("cy", function(d) { return d.y;})
+  }
+
+
+  //movement
+  function dragstarted(d) {
+    if (!d3.event.active) simulation.alphaTarget(0.4).restart();
+      d.fx = d.x;
+      d.fy = d.y;
+    }
+
+  function dragged(d) {
+    d.fx = d3.event.x;
+    d.fy = d3.event.y;
+  }
+
+  function dragended(d) {
+    if (!d3.event.active) simulation.alphaTarget(0);
+    d.fx = null;
+    d.fy = null;
+  }
+}
+
+// Script for side navigation
+function w3_open() {
+  var x = document.getElementById("mySidebar");
+  x.style.width = "300px";
+  x.style.paddingTop = "10%";
+  x.style.display = "block";
+}
+
+// Close side navigation
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+
+//Script for audio
+
+var audio, mutebtn, seek_bar;
+            function initAudioPlayer(){
+              audio = new Audio();
+              audio.src = "Audio/yiruma.m4a";
+              audio.loop = true;
+              audio.load= true;
+              audio.autoplay = true;
+
+
+              // Set object references
+              mutebtn = document.getElementById("mutebtn");
+              // Add Event Handling
+              mutebtn.addEventListener("click", mute);
+              // Functions
+
+              function mute(){
+                if(audio.muted){
+                    audio.muted = false;
+                    mutebtn.style.background = "url(images_sound/speaker_2.png) no-repeat";
+                  } else {
+                    audio.muted = true;
+                    mutebtn.style.background = "url(images_sound/speaker_muted_2.png) no-repeat";
+                  }
+              }
+            }
+            window.addEventListener("load", initAudioPlayer);
 
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////Add matrix/////////////////////////////////////////////////////
@@ -460,338 +821,6 @@ let vertices = []; // The JSON object as {"id": 'vertexName'}
 
 
 		}
-
-
-
-    /////////////////////////////////////
- d3.select("#selected-dropdown");
-
- d3.select("select")
-   .on("change",function(d){
-     var selected = d3.select("#d3-dropdown").node().value;
-     console.log( selected );
-     d3.select("#selected-dropdown").text(selected);
- })
-
-
-  let input = ''
-  let items = ''
-  let nodes = [];
-  let verticesNames = [];
-  let verticesIndex = []; // We will use this later to not have to search for each index separately. This will make the running time shorter
-  let links = [];
-  let links2 = [];
-  let edges = 0;
-  let dict = [];
-  let frequencyMatrix = [];
-
-  axios
-  .get(
-    "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/GephiMatrix_co-authorship.csv"
-  )
-  .then(function(result) {
-    input = result.data;
-    input = input.slice(1,input.length);
-    items = input.split(/[\s;]+/);
-    console.log(items[0])
-    manipulate()
-    console.log(edges)
-    dThree()
-  });
-
-  function manipulate() {
-   let dictionaryWord = {"id": items[0]};
-   let dictionaryWord2 = {};
-   nodes.push(dictionaryWord); // Add the first vertex as an object {"id": items[0]} to the nodes
-   verticesNames.push(items[0]); // Push the first vertex onto the list of vertices
-   verticesIndex[items[0]] = 0;
-   let index = 1; // We can only start the loop now, since the first vertex will be equal to the first vertex meaning the following loop would otherwise never loop
-   while (items[index] != items[0]) {
-       dictionaryWord = {"id": items[index]};
-       nodes.push(dictionaryWord);
-       verticesNames.push(items[index]);
-       verticesIndex[items[index]] = index;
-       index++;
-   }
-   console.log(JSON.stringify(nodes))
-
-   let vertex = items[index];
-   index++;
-   while (index < items.length) { // Loop through the whole items array for all the links
-       for (let i = 0; i < nodes.length; i++) { // For every source vertex, we loop through all its potential adjacent vertices
-           if (items[index] != 0) { // We only create an edge if the weight is not 0
-               dictionaryWord = {"source": vertex, "target": verticesNames[i], "value": items[index]};
-               dictionaryWord2 = {"source": verticesIndex[vertex], "target":verticesIndex[i]};
-               links.push(dictionaryWord);
-               links2.push(dictionaryWord2)
-               edges++;
-           }
-           index++;
-       }
-       vertex = items[index];
-       index++;
-
-   }
-   console.log(JSON.stringify(links2))
-  }
-
-  function getFrequency() { // This function counts the amount of adjacent vertices per vertex and creates a matrix
-    let row = []; // Is added to the matrix as a new row when finished
-    let index = verticesNames.length + 1; // Iterator over the whole vertices array
-    for (let i = 1; i < vertices.length; i++) { // We count the links for every vertex, so we iterate over the verticesNames array
-        dict[verticesNames[i - 1]] = 0; // Gotta start at 0
-        while (items[index] != items[i]) {
-            if (items[index] != 0) {
-                dict[verticesNames[i - 1]]++; // If there is a weight, frequency is increased by 1 for that vertex
-            }
-            index++;
-        }
-        index++;
-    }
-    row = []; // The code below here is added because we keep checking the vertex in advance, but there is no next vertex for the last vertex. Therefore, this is taken out of the loop, since the loop invariant wouldn't hold
-    dict[verticesNames[verticesNames.length - 1]] = 0;
-    while (index < items.length) {
-        if (items[index] != 0) {
-            dict[verticesNames[verticesNames.length - 1]]++;
-        }
-        index++;
-    }
-
-    frequencies = sortVertices(verticesNames); // Here we order the vertices by frequency by using mergesort in the form index: 'vertexName'
-    frequencyMatrixRows = matrix.slice(0, matrix.length); // We first have to order the rows. Columns remain in the old order
-
-    for (let i = 0; i < frequencies.length; i++) {
-        frequencyMatrixRows[i] = matrix[verticesIndex[frequencies[i]]];
-    }
-    frequencyMatrixColumns = transpose(frequencyMatrixRows) // Now we order the columns accordingly
-    for (let i = 0; i < frequencies.length; i++) {
-        frequencyMatrixColumns[i] = matrix[verticesIndex[frequencies[i]]];
-        verticesIndex[frequencies[i]] = i // Then update this vertex to its new vertex, i
-    }
-    frequencyMatrix = transpose(frequencyMatrixColumns);
-}
-
-function transpose(m) { // Used to transpose matrices
-  return m[0].map((_, i) => m.map(row => row[i]));
-}
-
-function sortVerticesFrequency(names) {
-    if (names.length === 1) {
-        return names;
-    } else {
-        const middle = Math.floor(names.length/2);
-        const left = names.slice(0, middle);
-        const right = names.slice(middle);
-
-        return(mergeFrequency(
-            sortVertices(left), // recurseLeft()
-            sortVertices(right) // recurseRight()
-        ))
-    }
-}
-
-// The mergesort algorithm, called upon by sortVertices. This is specialised for frequency.
-function mergeFrequency(left, right) {
-    let result = [];
-    let indexLeft = 0
-    let indexRight = 0
-    while (indexLeft < left.length && indexRight < right.length) { // We iterate over both arrays and keep comparing the 2 elements untill all elements have been checked of one array.
-        if (dict[left[indexLeft]] > dict[right[indexRight]]) { // If the element in the left is bigger, we push that and take the left array's next element
-            result.push(left[indexLeft])
-            indexLeft++
-        } else { // Else we push the element of the right array and take its next element
-            result.push(right[indexRight])
-            indexRight++
-        }
-    }
-    return(result.concat(left.slice(indexLeft)).concat(right.slice(indexRight))); // We have to connect the leftovers
-}
-
-
-  var w = 1200,
-      h = 800;
-
-function dThree() {
-  var graph = d3.select("body").append("svg").style("width", "702px").style("height", "802px").style("margin-top", "50px").style("background", "one.jpg").attr("align","center");
-
-  //properties of the object
-  //upper
-  //giving the graph the properties
-  graph.attr("width", w)
-       .attr("height", h)
-       .call(d3.zoom().on("zoom", function () {
-    				graph.attr("transform", d3.event.transform)
- 				}));
-
-   //var nodes = [{"id":"Marco"},{"id":"Lucas"},{"id":"Dragos"}];
-
-   //var links = [{"source":"Marco","target":"Marco","value":"1"},{"source":"Marco","target":"Lucas","value":"0.6947"},{"source":"Marco","target":"Dragos","value":"0.3967"},{"source":"Lucas","target":"Marco","value":"0.6947"},{"source":"Lucas","target":"Lucas","value":"1"},{"source":"Lucas","target":"Dragos","value":"0.2850"},{"source":"Dragos","target":"Marco","value":"0.3967"},{"source":"Dragos","target":"Lucas","value":"0.2850"},{"source":"Dragos","target":"Dragos","value":"1"}];
-  let attract = d3.forceManyBody().strength(40).distanceMax(10).distanceMin(10);//Dragos
-  let repel = d3.forceManyBody().strength(-40).distanceMax(10).distanceMin(10);//Dragos
-
-  //simulation for force directed
-  var simulation = d3.forceSimulation(nodes)
-        //adding link between 2 ID's
-        .alphaDecay(0.03)
-        .force("link", d3.forceLink(links).id(d => d.id))
-        .force("charge", d3.forceManyBody())
-        .force("attractForce", attract)
-        .force("repelForce",repel)
-        //making a center for the graph
-        .force("center", d3.forceCenter(((w / 2)-250), (h / 2)));
-        //.force("x", d3.forceX())//Dragos
-        //.force("y", d3.forceY());//Dragos
-
-
-  var isConnected = function(d, opacity) {
-    link.transition().style("stroke-opacity", function(o) {
-        return o.source === d || o.target === d ? 1 : opacity;
-    });
-}
-
-  //adding links to the graph
-  var link = graph.append("g")
-        //adds stroke with #colour
-        .attr("stroke", "#999")
-        .attr("stroke-opacity", 0.7)
-        .selectAll("line")
-        .data(links)
-        .enter()
-        .append("line")
-        //width of a line based on its value in the data
-        .attr("stroke-width", d => ((d.value)));
-
-
-
-  //adding the nodes to the graph
-  var node = graph.append("g")
-        .attr("stroke", "#fff")
-        //width of the circle surrounding the node
-        .attr("stroke-width", 1.0)
-        .selectAll("circle")
-        .data(nodes)
-        .enter()
-        .append("circle")
-        .attr("r", 3)
-        .attr("fill", "#FF7F50")
-        //expands the nodes when hover over it with mouse
-        .on("mouseenter", function(d) {
-        isConnected(d, 0.1)
-        node.transition().duration(100).attr("r", 3).attr("fill", "	#20B2AA")
-        d3.select(this).transition().duration(100).attr("r", 6)
-    })
-
-        //makes nodes back to normal after mouse left
-        .on("mouseleave", function(d) {
-        node.transition().duration(100).attr("r", 3).attr("fill", "#FF7F50");
-        isConnected(d, 1);
-    });
-        //drag function
-        node.call(d3.drag()
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended));
-
-   //selecting data + drawing
-  simulation
-        .nodes(nodes)
-        .on("tick", tick);
-
-
-  simulation.force("link")
-        .links(links);
-
-  //assigning name to each node
-  node.append("title")
-        .text(d => d.id);
-
-  //drawin the graph on the right place
-  function tick() {
-      link
-          .attr("x1", function(d) { return d.source.x; })
-          .attr("y1", function(d) { return d.source.y; })
-          .attr("x2", function(d) { return d.target.x; })
-          .attr("y2", function(d) { return d.target.y; });
-
-      node
-        .attr("cx", function(d) { return d.x;})
-        .attr("cy", function(d) { return d.y;})
-  }
-
-
-  //movement
-  function dragstarted(d) {
-    if (!d3.event.active) simulation.alphaTarget(0.4).restart();
-      d.fx = d.x;
-      d.fy = d.y;
-    }
-
-  function dragged(d) {
-    d.fx = d3.event.x;
-    d.fy = d3.event.y;
-  }
-
-  function dragended(d) {
-    if (!d3.event.active) simulation.alphaTarget(0);
-    d.fx = null;
-    d.fy = null;
-  }
-}
-
-// Script for side navigation
-function w3_open() {
-  var x = document.getElementById("mySidebar");
-  x.style.width = "300px";
-  x.style.paddingTop = "10%";
-  x.style.display = "block";
-}
-
-// Close side navigation
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-}
-
-// Used to toggle the menu on smaller screens when clicking on the menu button
-function openNav() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else {
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
-
-
-//Script for audio
-
-var audio, mutebtn, seek_bar;
-            function initAudioPlayer(){
-              audio = new Audio();
-              audio.src = "Audio/yiruma.m4a";
-              audio.loop = true;
-              audio.load= true;
-              audio.autoplay = true;
-
-
-              // Set object references
-              mutebtn = document.getElementById("mutebtn");
-              // Add Event Handling
-              mutebtn.addEventListener("click", mute);
-              // Functions
-
-              function mute(){
-                if(audio.muted){
-                    audio.muted = false;
-                    mutebtn.style.background = "url(images_sound/speaker_2.png) no-repeat";
-                  } else {
-                    audio.muted = true;
-                    mutebtn.style.background = "url(images_sound/speaker_muted_2.png) no-repeat";
-                  }
-              }
-            }
-            window.addEventListener("load", initAudioPlayer);
-
-
 
 
 
