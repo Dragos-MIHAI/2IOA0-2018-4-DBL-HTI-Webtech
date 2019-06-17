@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="LOGO/favicon.png" />
+<title>Visualize: Force Directed Graph</title>
+
+
+
+
+
+<style>
+
+/*Button audio*/
+button{ border:none; cursor:pointer; outline:none; }
+
+button#mutebtn{
+	background:url(images_sound/speaker_2.png) no-repeat;
+  background-position: top;
+	width:34px;
+	height:34px;
+}
+
+body {
+        background-image: url("In website images/black.jpg ");
+}
+
+svg {
+
+  border:1px solid rgb(255, 251, 251);
+
+}
+
+h1 {
+    color:rgb(255, 255, 255);
+
+    text-align: center;
+    text-decoration: underline overline;
+
+}
+
+</style>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body id="myPage">
+
+<!---Add matrix on the right-->
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <script src="https://d3js.org/d3.v5.min.js"></script>
+ <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
+
+<!---Add matrix on the right-->
+
+<div style="display:inline-block;" id="legend"></div>
+    <div style="display:inline-block; float:right" id="block"></div>
+
+	<script src="https://d3js.org/d3-color.v1.min.js"></script>
+	<script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
+	<script src="https://d3js.org/d3-ease.v1.min.js"></script>
+	<script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+	<script src="https://d3js.org/d3-selection.v1.min.js"></script>
+	<script src="https://d3js.org/d3-timer.v1.min.js"></script>
+	<script src="https://d3js.org/d3-transition.v1.min.js"></script>
+	<script src="https://d3js.org/d3-drag.v1.min.js"></script>
+	<script src="https://d3js.org/d3-zoom.v1.min.js"></script>
+	<script>
+
+		var zoom = d3.zoom();
+
+	</script>
+
+
+
+
+<!-- Sidebar on click -->
+<nav class="w3-sidebar w3-bar-block w3-white w3-card w3-animate-left w3-xxlarge" style="display:none;z-index:2" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-display-topright w3-text-teal">Close
+      <i class="fa fa-remove"></i>
+    </a>
+    <a href="https://www.tue.nl/en/" class="w3-bar-item w3-button">TU/e</a>
+    <a href="DBL2019_NetworkVis_ProjectGuide.pdf" class="w3-bar-item w3-button">Guide</a>
+    <a href="VisProjectDescription.pdf" class="w3-bar-item w3-button">Description</a>
+    <a href="a.html" class="w3-bar-item w3-button">Final Report</a>
+    <a href="https://canvas.tue.nl/courses/6672" class="w3-bar-item w3-button">Canvas</a>
+    <a href="https://tuenl-my.sharepoint.com/:f:/g/personal/m_ungureanu1_student_tue_nl/EqKcrdCbdM5ItrNu4o3knGsBcui3yEj5oy-HUycQkuIIxA?e=JMqxPd" class="w3-bar-item w3-button">Our files</a>
+  </nav>
+
+  <!-- Navigation bar -->
+  <div class="w3-top">
+          <div class="w3-bar w3-theme-d2 w3-left-align">
+           <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+           <a href="index.html" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>VizYou</a>
+           <a href="home.html" class="w3-bar-item w3-button w3-hide-small w3-hover-blue">Home</a>
+
+
+             <div class="w3-dropdown-hover w3-hide-small">
+             <button class="w3-button" title="Notifications">Visualization <i class="fa fa-caret-down"></i></button>
+             <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+                <a href="insert.html" class="w3-bar-item w3-button">Insert Data</a>
+                <a href="force_directed.html" class="w3-bar-item w3-button">Force-Directed</a>
+                <a href="node-link 2.html" class="w3-bar-item w3-button"> Radial</a>
+                <a href="hierar.html" class="w3-bar-item w3-button">Hierarchical Diagram</a>
+                <a href="adjmatrix.html" class="w3-bar-item w3-button">Adjacency Matrix</a>
+
+
+
+             </div>
+           </div>
+
+           <div class="w3-dropdown-hover w3-hide-small">
+            <button class="w3-button" title="Notifications">Split Screen <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+           <a href="force_matrix.html" class="w3-bar-item w3-button ">Force-Directed + Matrix</a>
+           <a href="hierar_matrix.html" class="w3-bar-item w3-button ">Hierarchical + Matrix</a>
+           <a href="radial_matrix.html" class="w3-bar-item w3-button ">Radial + Matrix</a>
+           <a href="all_matrix1.html" class="w3-bar-item w3-button ">All + Matrix</a>
+
+            </div>
+            </div>
+
+
+           <a href="team.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Team</a>
+           <a href="pricing.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Price</a>
+           <a href="Contact.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
+
+           <div class="w3-dropdown-hover w3-hide-small">
+            <button class="w3-button" title="Notifications">Old Work <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+              <a href="vizualize.html" class="w3-bar-item w3-button">Another type of Matrix</a>
+           <a href="hierar_matrix.html" class="w3-bar-item w3-button ">Hierarchical + Matrix</a>
+           <a href="radial_matrix.html" class="w3-bar-item w3-button ">Radial + Matrix</a>
+           <a href="all_matrix.html" class="w3-bar-item w3-button ">All + Matrix</a>
+
+            </div>
+            </div>
+
+
+          <button id="mutebtn"></button>
+
+          <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search"><i class="fa fa-search"></i></a>
+          </div>
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
+      <a href="#team" class="w3-bar-item w3-button">Team</a>
+      <a href="#work" class="w3-bar-item w3-button">Work</a>
+      <a href="#pricing" class="w3-bar-item w3-button">Price</a>
+      <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+      <a href="#" class="w3-bar-item w3-button">Search</a>
+    </div>
+  </div>
+
+
+
+
+  <!-- Modal -->
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-top">
+      <header class="w3-container w3-teal w3-display-container">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-teal w3-display-topright"><i class="fa fa-remove"></i></span>
+        <h4>Oh snap! We just showed you a modal..</h4>
+        <h5>Because we can <i class="fa fa-smile-o"></i></h5>
+      </header>
+      <div class="w3-container">
+        <p>Cool huh? Ok, enough teasing around..</p>
+        <p>Go to our <a class="w3-text-teal" href="/w3css/default.asp">W3.CSS Tutorial</a> to learn more!</p>
+      </div>
+      <footer class="w3-container w3-teal">
+        <p>Modal footer</p>
+      </footer>
+    </div>
+  </div>
+
+
+
+
+
+  <iframe src="Audio/silence.m4a" allow="autoplay" id="audio" style="display:none"></iframe>
+
+
+  <h1 > All diagrams and Adjacency matrix Representations</h1>
+
+
+
+<!-- Canvas graph -->
+
+<link rel="stylesheet" href="style.css">
+
+
+<iframe src="provenotelink.html" id= "notelink" width="700" height="700"></iframe>
+<iframe src="radial-link.html" id= "radial" width="850" height="850"></iframe>
+
+
+<iframe src="oldmatrix.html" id= "matrix" width="700" height="700"></iframe>
+
+<button  onclick="toggle()">
+    Next visualization:
+</button>
+<script type="text/javascript">
+
+=======
+///color picker
+var colorWell;
+var defaultColor = "#FFFFFF";
+
+window.addEventListener("load", startup, false);
+function startup() {
+  colorWell = document.querySelector("#colorWell");
+  colorWell.value = defaultColor;
+  colorWell.addEventListener("input", updateFirst, false);
+  colorWell.addEventListener("change", updateAll, false);
+  colorWell.select();
+}
+function updateFirst(event) {
+  var h1 = document.querySelector("h1");
+
+  if (h1) {
+    h1.style.color = event.target.value;
+  }
+}function updateAll(event) {
+  document.querySelectorAll("h1").forEach(function(h1) {
+    h1.style.color = event.target.value;
+  });
+}
+//////////////////////////////////////////////////////////
+
+
+>>>>>>> ca69813aab15b98f28089be0df08232168364be0:all_matrix1.html
+        document.getElementById('radial').style.visibility = "hidden";
+        var isVisible = true;
+        function toggle(){
+          if(isVisible){
+            isVisible = false;
+            document.getElementById('notelink').style.visibility = "hidden";
+            document.getElementById('notelink').style.height = "0px"
+            document.getElementById('notelink').style.width = "0px"
+            document.getElementById('radial').style.visibility = "visible";
+            document.getElementById('radial').style.height = "45vw"
+            document.getElementById('radial').style.width = "750px"
+
+          } else {
+            isVisible = true;
+            document.getElementById('notelink').style.visibility = "visible";
+            document.getElementById('notelink').style.height = "45vw"
+            document.getElementById('notelink').style.width = "750px"
+
+            document.getElementById('radial').style.visibility = "hidden";
+            document.getElementById('radial').style.height = "0px"
+            document.getElementById('radial').style.width = "0px"
+
+          }
+        }
+
+
+
+        //Script for audio
+
+var audio, mutebtn, seek_bar;
+            function initAudioPlayer(){
+              audio = new Audio();
+              audio.src = "Audio/fear of the dark.m4a";
+              audio.loop = true;
+              audio.load= true;
+              audio.autoplay = true;
+
+
+              // Set object references
+              mutebtn = document.getElementById("mutebtn");
+              // Add Event Handling
+              mutebtn.addEventListener("click", mute);
+              // Functions
+
+              function mute(){
+                if(audio.muted){
+                    audio.muted = false;
+                    mutebtn.style.background = "url(images_sound/speaker_2.png) no-repeat";
+                  } else {
+                    audio.muted = true;
+                    mutebtn.style.background = "url(images_sound/speaker_muted_2.png) no-repeat";
+                  }
+              }
+            }
+            window.addEventListener("load", initAudioPlayer);
+
+      </script>
+
+
+</body>
+</html>
