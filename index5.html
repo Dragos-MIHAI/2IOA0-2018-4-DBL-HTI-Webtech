@@ -21,6 +21,15 @@ body {
         background-image: url("In website images/black.jpg ");
 }
 
+h1 {
+    color:rgb(255, 255, 255);
+    
+    text-align: center;
+    text-decoration: underline overline;
+    
+}
+
+
 </style>
 
 
@@ -93,10 +102,11 @@ body {
       </div>
     
     
-        
-	  
-	  
+	  <label for="colorWell">Color:</label>
+  <input type="color" value="#ff0000" id="colorWell" style="margin-top: 50px;">
 
+	  
+	  <h1 > Adjacency matrix Representation</h1>
 
 	<div style="display:inline-block;" id="legend"></div>
 	
@@ -139,6 +149,32 @@ body {
 	<script>
 
 
+	///color picker 
+var colorWell;
+var defaultColor = "#FFFFFF";
+
+window.addEventListener("load", startup, false);
+function startup() {
+  colorWell = document.querySelector("#colorWell");
+  colorWell.value = defaultColor;
+  colorWell.addEventListener("input", updateFirst, false);
+  colorWell.addEventListener("change", updateAll, false);
+  colorWell.select();
+}
+function updateFirst(event) {
+  var h1 = document.querySelector("h1");
+
+  if (h1) {
+    h1.style.color = event.target.value;
+  }
+}function updateAll(event) {
+  document.querySelectorAll("h1").forEach(function(h1) {
+    h1.style.color = event.target.value;
+  });
+}
+//////////////////////////////////////////////////////////
+
+
 
 	// Script for side navigation
     function w3_open() {
@@ -162,6 +198,7 @@ body {
         x.className = x.className.replace(" w3-show", "");
       }
     }
+
 
 	//button event
 		d3.select("#selected-dropdown");

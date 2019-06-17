@@ -138,14 +138,41 @@ line.node-link, path.node-link {
   </div>
   
 
+  <label for="colorWell">Color:</label>
+  <input type="color" value="#ff0000" id="colorWell" style="margin-top: 50px;">
 
 
-
-<h1 style="margin-top: 50px;"> Radial Node-Link Diagram Representation</h1>
+<h1 > Radial Node-Link Diagram Representation</h1>
 
 
 
  <script>
+
+///color picker 
+var colorWell;
+var defaultColor = "#FFFFFF";
+
+window.addEventListener("load", startup, false);
+function startup() {
+  colorWell = document.querySelector("#colorWell");
+  colorWell.value = defaultColor;
+  colorWell.addEventListener("input", updateFirst, false);
+  colorWell.addEventListener("change", updateAll, false);
+  colorWell.select();
+}
+function updateFirst(event) {
+  var h1 = document.querySelector("h1");
+
+  if (h1) {
+    h1.style.color = event.target.value;
+  }
+}function updateAll(event) {
+  document.querySelectorAll("h1").forEach(function(h1) {
+    h1.style.color = event.target.value;
+  });
+}
+//////////////////////////////////////////////////////////
+
 
 
 
