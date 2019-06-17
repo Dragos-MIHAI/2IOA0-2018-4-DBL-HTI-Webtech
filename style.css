@@ -33,5 +33,10 @@
 
 .matrix{
  visibility: visible;
+ float: right;
+}
+
+.radial{
+ visibility: visible;
  float: left;
 }
