@@ -30,7 +30,13 @@ svg {
 
 }
 
-
+h1 {
+    color:rgb(255, 255, 255);
+    
+    text-align: center;
+    text-decoration: underline overline;
+    
+}
 
 </style>
 
@@ -188,7 +194,7 @@ svg {
   <iframe src="Audio/silence.m4a" allow="autoplay" id="audio" style="display:none"></iframe>
 
 
-
+  <h1 > All diagrams and Adjacency matrix Representations</h1>
 
 
 
@@ -207,6 +213,32 @@ svg {
     Next visualization:
 </button>
 <script type="text/javascript">
+
+///color picker 
+var colorWell;
+var defaultColor = "#FFFFFF";
+
+window.addEventListener("load", startup, false);
+function startup() {
+  colorWell = document.querySelector("#colorWell");
+  colorWell.value = defaultColor;
+  colorWell.addEventListener("input", updateFirst, false);
+  colorWell.addEventListener("change", updateAll, false);
+  colorWell.select();
+}
+function updateFirst(event) {
+  var h1 = document.querySelector("h1");
+
+  if (h1) {
+    h1.style.color = event.target.value;
+  }
+}function updateAll(event) {
+  document.querySelectorAll("h1").forEach(function(h1) {
+    h1.style.color = event.target.value;
+  });
+}
+//////////////////////////////////////////////////////////
+
 
         document.getElementById('radial').style.visibility = "hidden";
         var isVisible = true;
