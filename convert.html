@@ -203,6 +203,7 @@ svg {
   let links = [];
   let links2 = [];
   let edges = 0;
+  let dict = [];
   let frequencyMatrix = [];
 
   axios
@@ -285,9 +286,7 @@ svg {
     }
     frequencyMatrixColumns = transpose(frequencyMatrixRows) // Now we order the columns accordingly
     for (let i = 0; i < frequencies.length; i++) {
-        for (let j = 0; j < frequencyMatrixRows.length; j++) {
-            frequencyMatrixColumns[j][i] = frequencyMatrixRows[j][verticesIndex[frequencies[i]]] // Add the nth frequency to the frequencyMatrix by accessing the old index of that vertex
-        }
+        frequencyMatrixColumns[i] = matrix[verticesIndex[frequencies[i]]];
         verticesIndex[frequencies[i]] = i // Then update this vertex to its new vertex, i
     }
     frequencyMatrix = transpose(frequencyMatrixColumns);
@@ -297,7 +296,7 @@ function transpose(m) { // Used to transpose matrices
   return m[0].map((_, i) => m.map(row => row[i]));
 }
 
-function sortVertices(names) {
+function sortVerticesFrequency(names) {
     if (names.length === 1) {
         return names;
     } else {
@@ -305,7 +304,7 @@ function sortVertices(names) {
         const left = names.slice(0, middle);
         const right = names.slice(middle);
 
-        return(merge(
+        return(mergeFrequency(
             sortVertices(left), // recurseLeft()
             sortVertices(right) // recurseRight()
         ))
@@ -313,7 +312,7 @@ function sortVertices(names) {
 }
 
 // The mergesort algorithm, called upon by sortVertices. This is specialised for frequency.
-function merge(left, right) {
+function mergeFrequency(left, right) {
     let result = [];
     let indexLeft = 0
     let indexRight = 0
