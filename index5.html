@@ -51,12 +51,12 @@
 	//button event
 		d3.select("#selected-dropdown");
 
-//	d3.select("select")
-//		  .on("change",function(d){
-//		    var selected = d3.select("#d3-dropdown").node().value;
-//		    console.log( selected );
-//		    d3.select("#selected-dropdown").text(selected);
-//		}) - var currentElement = document.getElementById("d3-dropdown");
+	d3.select("select")
+		  .on("change",function(d){
+		    var selected = d3.select("#d3-dropdown").node().value;
+		    console.log( selected );
+		    d3.select("#selected-dropdown").text(selected);
+		}) - var currentElement = document.getElementById("d3-dropdown");
 
 
 
@@ -270,7 +270,7 @@
 			    .text(function(d, i) { return d; });
 		}
 
-		function alphabetic(alphaMatrix) {
+/*		function alphabetic(alphaMatrix) {
 		   var firstRow = matrix[0];
 		   var matrixEX = matrix;
 		   matrixEX.shift();
@@ -295,7 +295,7 @@
 		   reverseMatrix.unshift(firstRow);
 			 transpose(reverseMatrix);
 		   return reverseMatrix;
-		}
+		}*/
 
 
 </script>
