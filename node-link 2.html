@@ -427,7 +427,7 @@ var node = gnodes.append("circle")
 
     //makes nodes back to normal after mouse left
     .on("mouseleave", function(d) {
-        node.transition().duration(100).attr("r", 2);
+        node.transition().duration(100).attr("r", 1.5);
         isConnectedCir(d, 1);
     });  
 
