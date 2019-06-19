@@ -58,15 +58,7 @@
 //		    d3.select("#selected-dropdown").text(selected);
 //		}) - var currentElement = document.getElementById("d3-dropdown");
 
-function alphabetic(alphaMatrix) {
-   var firstRow = matrix[0];
-   var matrixEX = matrix;
-   matrixEX.shift();
-   var alphaMatrix = matrixEX.sort();
-   alphaMatrix.unshift(firstRow);
-	 transpose(alphaMatrix)
-   return alphaMatrix;
-}
+
 
 
 		let vertices = []; // The JSON object as {"id": 'vertexName'}
@@ -277,5 +269,34 @@ function alphabetic(alphaMatrix) {
 			    .attr("text-anchor", "end")
 			    .text(function(d, i) { return d; });
 		}
+
+		function alphabetic(alphaMatrix) {
+		   var firstRow = matrix[0];
+		   var matrixEX = matrix;
+		   matrixEX.shift();
+		   var alphaMatrix = matrixEX.sort();
+		   alphaMatrix.unshift(firstRow);
+			 transpose(alphaMatrix)
+		   return alphaMatrix;
+		}
+		console.log(alphabetic())
+
+		function reversed(reverseMatrix) {
+		   var currentElement = document.getElementById("d3-dropdown");
+		   if (currentElement = first) {
+		      var matrixEX = frequencyMatrix;
+		      var firstRow = matrixEX[0];
+		   } else if (currentElement = second) {
+		      var matrixEX = alphaMatrix
+		      var firstRow = matrixEX[0];
+		   }
+		   matrixEX.shift();
+		   var reverseMatrix = matrixEX.reverse();
+		   reverseMatrix.unshift(firstRow);
+			 transpose(reverseMatrix);
+		   return reverseMatrix;
+		}
+
+
 </script>
 </body>
