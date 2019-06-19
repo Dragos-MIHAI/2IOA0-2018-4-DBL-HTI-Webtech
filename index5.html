@@ -22,14 +22,6 @@
 			 </select>
 			 </aside> -->
 
-function alphabetic(alphaMatrix) {
-   var firstRow = matrix[0];
-   var matrixEX = matrix;
-   matrixEX.shift();
-   var alphaMatrix = matrixEX.sort();
-   alphaMatrix.unshift(firstRow);
-   return alphaMatrix;
-}
 
 		 <p>Order: <select id="d3-dropdown">
 			   <option value="first">Frequency</option>
@@ -66,6 +58,15 @@ function alphabetic(alphaMatrix) {
 //		    d3.select("#selected-dropdown").text(selected);
 //		}) - var currentElement = document.getElementById("d3-dropdown");
 
+function alphabetic(alphaMatrix) {
+   var firstRow = matrix[0];
+   var matrixEX = matrix;
+   matrixEX.shift();
+   var alphaMatrix = matrixEX.sort();
+   alphaMatrix.unshift(firstRow);
+	 transpose(alphaMatrix)
+   return alphaMatrix;
+}
 
 
 		let vertices = []; // The JSON object as {"id": 'vertexName'}
