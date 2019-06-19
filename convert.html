@@ -321,6 +321,7 @@ function alphabetic(alphaMatrix) {
    matrixEX.shift();
    var alphaMatrix = matrixEX.sort();
    alphaMatrix.unshift(firstRow);
+   alphaMatrix = transpose(alphaMatrix);
    return alphaMatrix;
 }
 
@@ -331,7 +332,7 @@ function reversed(reverseMatrix) {
    matrixEX.shift();
    var reverseMatrix = matrixEX.reverse();
    reverseMatrix.unshift(firstRow);
-   matrix = matrixEX;
+   reverseMatrix = transpose(reverseMatrix);
    return reverseMatrix;
 }
 
