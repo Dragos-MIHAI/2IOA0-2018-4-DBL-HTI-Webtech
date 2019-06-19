@@ -22,6 +22,15 @@
 			 </select>
 			 </aside> -->
 
+function alphabetic(alphaMatrix) {
+   var firstRow = matrix[0];
+   var matrixEX = matrix;
+   matrixEX.shift();
+   var alphaMatrix = matrixEX.sort();
+   alphaMatrix.unshift(firstRow);
+   return alphaMatrix;
+}
+
 		 <p>Order: <select id="d3-dropdown">
 			   <option value="first">Frequency</option>
 			   <option value="second">Alphabetical</option>
