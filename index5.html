@@ -58,7 +58,10 @@
 		    d3.select("#selected-dropdown").text(selected);
 		}) //- var currentElement = document.getElementById("d3-dropdown");
 
-
+		d3.select("#myselect").on("change", change)
+	function change() {
+	    this.options[this.selectedIndex].value
+	}
 
 
 		let vertices = []; // The JSON object as {"id": 'vertexName'}
