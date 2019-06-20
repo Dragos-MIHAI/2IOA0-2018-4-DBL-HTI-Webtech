@@ -70,6 +70,7 @@
 		let frequencies = [] // The order of vertices by frequency
 		let frequencyMatrixColumns = [] // The matrix with columns AND rows ordered by frequency
 		let matrix = [];
+		let orgMatrix = [];
 		axios
 		.get(
 		  "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/matrixdata"
@@ -127,7 +128,7 @@
 		        }
 		        vertex = items[index]; // After vertices.length steps, we checked all possible adjacent vertices and thus we can take the next vertex, which is now at items[index]
 				if (connected) {
-					matrix.push(row);
+					orgMatrix.push(row);
 				} else {
 					delete nodes[vertexIndex];
 				}
@@ -136,16 +137,20 @@
 			}
 			console.log(nodes);
 			let matrixColumns = [];
-			matrixColumns = transpose(matrix);
+			matrixColumns = transpose(orgMatrix);
 			for (let i = nodes.length - 1; i > -1; i--) {
 				if (nodes[i] === undefined) {
 					matrixColumns.splice(i, 1);
 				}
 			}
-			matrix = transpose(matrixColumns);
+			matrixColumns = matrixColumns.slice(0, 100);
+			orgMatrix = transpose(matrixColumns);
+			orgMatrix = orgMatrix.slice(0, 100);
+			matrix = orgMatrix.slice(0, orgMatrix.length)
 			let names = nodes.filter(function (el) {
   				return el != null;
 			});
+			names = names.slice(0, 100);
 			console.log(names);
 			for (let i = 0; i < names.length; i++) {
 				verticesIndex[names[i]] = i;
