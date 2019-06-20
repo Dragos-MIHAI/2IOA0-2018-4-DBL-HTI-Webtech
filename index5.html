@@ -61,102 +61,174 @@
 
 
 
-		let vertices = []; // The JSON object as {"id": 'vertexName'}
-		let names = []; // We want to be able to get the vertexName by means of its index
-		let verticesIndex = {}; // We will use this later to not have to search for each index separately. This will make the running time shorter
-		let vertex = "";
-		let links = [];
-		let dict = {} // An object as {'vertexName' : frequency}
-		let frequencies = [] // The order of vertices by frequency
-		let frequencyMatrixColumns = [] // The matrix with columns AND rows ordered by frequency
-		let matrix = [];
-		let orgMatrix = [];
-		axios
-		.get(
-		  "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/matrixdata"
-		)
+	let vertices = []; // The JSON object as {"id": 'vertexName'}
+	let names = []; // We want to be able to get the vertexName by means of its index
+	let verticesIndex = {}; // We will use this later to not have to search for each index separately. This will make the running time shorter
+	let vertex = "";
+	let links = [];
+	let dict = {} // An object as {'vertexName' : frequency}
+	let frequencies = [] // The order of vertices by frequency
+	let frequencyMatrixColumns = [] // The matrix with columns AND rows ordered by frequency
+	let matrix = [];
+	let orgMatrix = [];
+	axios
+	.get(
+	  "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/matrixdata"
+	)
 		.then(function(result) {
-		  	input = result.data;
-		  	input = input.slice(1,input.length);
-		  	items = input.split(/[\s;]+/);
-		  	createData();
-			Information({
-		        block : '#block',
-        		data     : matrix,
-		        names    : names,
-    		    colour_1 : '#FFFFFF', //colour_1 to colour_2 is the colour range
-        		colour_2 : '#A60000',
-				highlight_cell_on_hover: true,
-        		highlight_cell_color: '#2ecc71'
-   			});
-			Information(options);
+	  	input = result.data;
+	  	input = input.slice(1,input.length);
+	  	items = input.split(/[\s;]+/);
+	  	createData();
+		Information({
+	        block : '#block',
+       		data     : matrix,
+	        names    : names,
+   		    colour_1 : '#FFFFFF', //colour_1 to colour_2 is the colour range
+       		colour_2 : '#A60000',
+			highlight_cell_on_hover: true,
+       		highlight_cell_color: '#2ecc71'
+  			});
+		Information(options);
+	});
+	function transpose(m) {
+ 			return m[0].map((_, i) => m.map(row => row[i]));
+	}
+	function createData() { // In this function, we get the vertices, their names and their indexes. We then create a JSON file in which the links are per vertex ordered by name
+		let nodes = [];
+		let dictionaryWord = {}; // This object keeps getting added to vertices as {"id": 'vertexName'}, as a JSON file
+	    dictionaryWord = {"id": items[0]} // This will be the object we keep adding first to vertices, then with a slight change to links
+	    vertices.push(dictionaryWord);
+	    nodes.push(items[0]);
+	    verticesIndex[items[0]] = 0;
+	    let index = 1; // This was necessary because our loop invariant wouldn't hold, since the first item, items[0], obviously equals items[0]
+	    while (items[index] != items[0]) {
+	        dictionaryWord = {"id": items[index]};
+	        vertices.push(dictionaryWord);
+	        nodes.push(items[index]);
+	        index++;
+	    }
+	    //console.log(JSON.stringify(vertices)); // Uncomment for debugging
+	    vertex = items[index]; // Will contain the name of the source vertex of the links untill we went past all its adjacent vertices
+	    index++;
+		let row = []
+		let connected = false;
+		let vertexIndex = 0;
+	    while (index < items.length) {
+			row = []
+			connected = false;
+	        for (let i = 0; i < vertices.length; i++) {
+	            if (items[index] != 0) { // Checks if the weight is not 0 so that there is actually an edge
+	                dictionaryWord = {"source": vertex, "target": nodes[i], "value": items[index]}; // JSON file for links, containing source, target (from, to) and value (weight)
+					links.push(dictionaryWord);
+					connected = true
+	            }
+	            row.push(items[index]);
+	            index++;
+	        }
+	        vertex = items[index]; // After vertices.length steps, we checked all possible adjacent vertices and thus we can take the next vertex, which is now at items[index]
+			if (connected) {
+				orgMatrix.push(row);
+			} else {
+				delete nodes[vertexIndex];
+			}
+			vertexIndex++;
+	        index++;
+		}
+		console.log(nodes);
+		let matrixColumns = [];
+		matrixColumns = transpose(orgMatrix);
+		for (let i = nodes.length - 1; i > -1; i--) {
+			if (nodes[i] === undefined) {
+				matrixColumns.splice(i, 1);
+			}
+		}
+		matrixColumns = matrixColumns.slice(0, 100);
+		orgMatrix = transpose(matrixColumns);
+		orgMatrix = orgMatrix.slice(0, 100);
+		matrix = orgMatrix.slice(0, orgMatrix.length)
+		let names = nodes.filter(function (el) {
+ 				return el != null;
 		});
-		function transpose(m) {
-  			return m[0].map((_, i) => m.map(row => row[i]));
+		names = names.slice(0, 100);
+		console.log(names);
+		for (let i = 0; i < names.length; i++) {
+			verticesIndex[names[i]] = i;
 		}
-		function createData() { // In this function, we get the vertices, their names and their indexes. We then create a JSON file in which the links are per vertex ordered by name
-			let nodes = [];
-			let dictionaryWord = {}; // This object keeps getting added to vertices as {"id": 'vertexName'}, as a JSON file
-		    dictionaryWord = {"id": items[0]} // This will be the object we keep adding first to vertices, then with a slight change to links
-		    vertices.push(dictionaryWord);
-		    nodes.push(items[0]);
-		    verticesIndex[items[0]] = 0;
-		    let index = 1; // This was necessary because our loop invariant wouldn't hold, since the first item, items[0], obviously equals items[0]
-		    while (items[index] != items[0]) {
-		        dictionaryWord = {"id": items[index]};
-		        vertices.push(dictionaryWord);
-		        nodes.push(items[index]);
-		        index++;
-		    }
-		    //console.log(JSON.stringify(vertices)); // Uncomment for debugging
-		    vertex = items[index]; // Will contain the name of the source vertex of the links untill we went past all its adjacent vertices
-		    index++;
-			let row = []
-			let connected = false;
-			let vertexIndex = 0;
-		    while (index < items.length) {
-				row = []
-				connected = false;
-		        for (let i = 0; i < vertices.length; i++) {
-		            if (items[index] != 0) { // Checks if the weight is not 0 so that there is actually an edge
-		                dictionaryWord = {"source": vertex, "target": nodes[i], "value": items[index]}; // JSON file for links, containing source, target (from, to) and value (weight)
-						links.push(dictionaryWord);
-						connected = true
-		            }
-		            row.push(items[index]);
-		            index++;
-		        }
-		        vertex = items[index]; // After vertices.length steps, we checked all possible adjacent vertices and thus we can take the next vertex, which is now at items[index]
-				if (connected) {
-					orgMatrix.push(row);
-				} else {
-					delete nodes[vertexIndex];
-				}
-				vertexIndex++;
-		        index++;
-			}
-			console.log(nodes);
-			let matrixColumns = [];
-			matrixColumns = transpose(orgMatrix);
-			for (let i = nodes.length - 1; i > -1; i--) {
-				if (nodes[i] === undefined) {
-					matrixColumns.splice(i, 1);
-				}
-			}
-			matrixColumns = matrixColumns.slice(0, 100);
-			orgMatrix = transpose(matrixColumns);
-			orgMatrix = orgMatrix.slice(0, 100);
-			matrix = orgMatrix.slice(0, orgMatrix.length)
-			let names = nodes.filter(function (el) {
-  				return el != null;
-			});
-			names = names.slice(0, 100);
-			console.log(names);
-			for (let i = 0; i < names.length; i++) {
-				verticesIndex[names[i]] = i;
-			}
-		    console.log(JSON.stringify(matrix)); // Uncomment for debugging
-		}
+	    console.log(JSON.stringify(matrix)); // Uncomment for debugging
+	}
+
+	function getFrequency() { // This function counts the amount of adjacent vertices per vertex and creates a matrix
+	    let row = []; // Is added to the matrix as a new row when finished
+    	let index = verticesNames.length + 1; // Iterator over the whole vertices array
+	    for (let i = 1; i < vertices.length; i++) { // We count the links for every vertex, so we iterate over the verticesNames array
+    	    dict[verticesNames[i - 1]] = 0; // Gotta start at 0
+	        while (items[index] != items[i]) {
+    	        if (items[index] != 0) {
+        	        dict[verticesNames[i - 1]]++; // If there is a weight, frequency is increased by 1 for that vertex
+            	}
+            	index++;
+	        }
+    	    index++;
+	    }
+	    row = []; // The code below here is added because we keep checking the vertex in advance, but there is no next vertex for the last vertex. Therefore, this is taken out of the loop, since the loop invariant wouldn't hold
+	    dict[verticesNames[verticesNames.length - 1]] = 0;
+	    while (index < items.length) {
+	        if (items[index] != 0) {
+	            dict[verticesNames[verticesNames.length - 1]]++;
+	        }
+	        index++;
+	    }
+
+    	frequencies = sortVertices(verticesNames); // Here we order the vertices by frequency by using mergesort in the form index: 'vertexName'
+	    frequencyMatrixRows = matrix.slice(0, matrix.length); // We first have to order the rows. Columns remain in the old order
+
+    	for (let i = 0; i < frequencies.length; i++) {
+	        frequencyMatrixRows[i] = matrix[verticesIndex[frequencies[i]]];
+	    }
+	    frequencyMatrixColumns = transpose(frequencyMatrixRows) // Now we order the columns accordingly
+	    for (let i = 0; i < frequencies.length; i++) {
+	        frequencyMatrixColumns[i] = matrix[verticesIndex[frequencies[i]]];
+	        verticesIndex[frequencies[i]] = i // Then update this vertex to its new vertex, i
+	    }
+	    frequencyMatrix = transpose(frequencyMatrixColumns);
+	}
+
+	function transpose(m) { // Used to transpose matrices
+  		return m[0].map((_, i) => m.map(row => row[i]));
+	}
+
+	function sortVerticesFrequency(names) {
+	    if (names.length === 1) {
+	        return names;
+	    } else {
+	        const middle = Math.floor(names.length/2);
+	        const left = names.slice(0, middle);
+	        const right = names.slice(middle);
+
+	        return(mergeFrequency(
+	            sortVertices(left), // recurseLeft()
+	            sortVertices(right) // recurseRight()
+	        ))
+	    }
+	}
+
+	// The mergesort algorithm, called upon by sortVertices. This is specialised for frequency.
+	function mergeFrequency(left, right) {
+	    let result = [];
+	    let indexLeft = 0
+	    let indexRight = 0
+	    while (indexLeft < left.length && indexRight < right.length) { // We iterate over both arrays and keep comparing the 2 elements untill all elements have been checked of one array.
+	        if (dict[left[indexLeft]] > dict[right[indexRight]]) { // If the element in the left is bigger, we push that and take the left array's next element
+	            result.push(left[indexLeft])
+	            indexLeft++
+	        } else { // Else we push the element of the right array and take its next element
+	            result.push(right[indexRight])
+	            indexRight++
+	        }
+	    }
+	    return(result.concat(left.slice(indexLeft)).concat(right.slice(indexRight))); // We have to connect the leftovers
+	}
 	/*
     Information({
         block : '#block',
