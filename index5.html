@@ -356,7 +356,8 @@
 		}
 
 		function alphabetic() {
-			alphabetic = names.sort();
+			alphabetic = names.slice(0, names.length);
+			alphabetic.sort()
 			let alphaMatrixRows = matrix.slice(0, matrix.length);
 			for (let i = 0; i < matrix.length; i++) {
 				alphaMatrixRows[i] = matrix[verticesIndex[alphabetic[i]]];
