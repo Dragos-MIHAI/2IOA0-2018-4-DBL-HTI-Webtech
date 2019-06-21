@@ -205,7 +205,7 @@ h1 {
 
 <iframe src="provenotelink.html" id= "notelink" width="750" height="750"></iframe>
 <iframe src="radial-link.html" id= "radial" width="850" height="850"></iframe>
-<iframe src="hierprove.html" id= "hier" width="750" height="750"></iframe>
+
 
 <iframe src="index5.html" id= "matrix" width="750" height="750"></iframe>
 
@@ -241,50 +241,27 @@ function updateFirst(event) {
 
 
     document.getElementById('radial').style.width = "0px"
-    document.getElementById('radial').style.height = "0px"
     document.getElementById('radial').style.visibility = "hidden";
-    document.getElementById('hier').style.width = "0px"
-    document.getElementById('hier').style.height = "0px"
-    document.getElementById('hier').style.visibility = "hidden";
-
-    var isVisible = 0;
+    var isVisible = true;
     function toggle(){
-      if(isVisible===0){
-        isVisible = 1;
+      if(isVisible){
+        isVisible = false;
         document.getElementById('notelink').style.visibility = "hidden";
         document.getElementById('notelink').style.height = "0px"
         document.getElementById('notelink').style.width = "0px"
         document.getElementById('radial').style.visibility = "visible";
         document.getElementById('radial').style.height = "45vw"
         document.getElementById('radial').style.width = "750px"
-        document.getElementById('hier').style.visibility = "hidden";
-        document.getElementById('hier').style.height = "0px"
-        document.getElementById('hier').style.width = "0px"
 
-    }else if (isVisible===1) {
-      isVisible = 2;
-      document.getElementById('notelink').style.visibility = "hidden";
-      document.getElementById('notelink').style.height = "0px"
-      document.getElementById('notelink').style.width = "0px"
-      document.getElementById('radial').style.visibility = "visible";
-      document.getElementById('radial').style.height = "45vw"
-      document.getElementById('radial').style.width = "750px"
-      document.getElementById('hier').style.visibility = "hidden";
-      document.getElementById('hier').style.height = "0px"
-      document.getElementById('hier').style.width = "0px"
-
-    }else{
-      isVisible = 0;
-      document.getElementById('notelink').style.visibility = "hidden";
-      document.getElementById('notelink').style.height = "0px"
-      document.getElementById('notelink').style.width = "0px"
+    }else {
+      isVisible = true;
+      document.getElementById('notelink').style.visibility = "visible";
+      document.getElementById('notelink').style.height = "45vw"
+      document.getElementById('notelink').style.width = "750px"
 
       document.getElementById('radial').style.visibility = "hidden";
       document.getElementById('radial').style.height = "0px"
       document.getElementById('radial').style.width = "0px"
-      document.getElementById('hier').style.visibility = "visible";
-      document.getElementById('hier').style.height = "45vw"
-      document.getElementById('hier').style.width = "750px"
 
 
     }
