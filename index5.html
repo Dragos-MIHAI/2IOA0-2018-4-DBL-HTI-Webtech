@@ -63,6 +63,18 @@
 				matrix = frequencyMatrix.slice(0, frequencyMatrix.length);
 				names = frequencies.slice(0, frequencies.length);
 			}
+			const context = canvas.getContext('2d');
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			Information({
+		        block : '#block',
+	       		data     : matrix,
+		        names    : names,
+	   		    colour_1 : '#FFFFFF', //colour_1 to colour_2 is the colour range
+	       		colour_2 : '#A60000',
+				highlight_cell_on_hover: true,
+	       		highlight_cell_color: '#2ecc71'
+			});
+			Information(options);
 		}) //- var currentElement = document.getElementById("d3-dropdown");
 
 		d3.select("#d3-dropdown").on("change", change)
