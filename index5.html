@@ -83,38 +83,23 @@
 	axios
 	.get(
 	  "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/matrixdata"
-	)
-
-		let vertices = []; // The JSON object as {"id": 'vertexName'}
-		let names = []; // We want to be able to get the vertexName by means of its index
-		let verticesIndex = {}; // We will use this later to not have to search for each index separately. This will make the running time shorter
-		let vertex = "";
-		let links = [];
-		let dict = {} // An object as {'vertexName' : frequency}
-		let frequencies = [] // The order of vertices by frequency
-		let frequencyMatrixColumns = [] // The matrix with columns AND rows ordered by frequency
-		let matrix = [];
-		axios
-		.get(
-		  "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/matrixdata"
-		)
-
-		.then(function(result) {
-		  	input = result.data;
-		  	input = input.slice(1,input.length);
-		  	items = input.split(/[\s;]+/);
-		  	createData();
-			Information({
-		        block : '#block',
-        		data     : matrix,
-		        names    : names,
-    		    colour_1 : '#FFFFFF', //colour_1 to colour_2 is the colour range
-        		colour_2 : '#A60000',
-				highlight_cell_on_hover: true,
-        		highlight_cell_color: '#2ecc71'
-   			});
-			Information(options);
+	).then(function(result) {
+	  	input = result.data;
+	  	input = input.slice(1,input.length);
+	  	items = input.split(/[\s;]+/);
+	  	createData();
+		Information({
+	        block : '#block',
+       		data     : matrix,
+	        names    : names,
+   		    colour_1 : '#FFFFFF', //colour_1 to colour_2 is the colour range
+       		colour_2 : '#A60000',
+			highlight_cell_on_hover: true,
+       		highlight_cell_color: '#2ecc71'
 		});
+		Information(options);
+	});
+	
 	function transpose(m) {
 		return m[0].map((_, i) => m.map(row => row[i]));
 	}
