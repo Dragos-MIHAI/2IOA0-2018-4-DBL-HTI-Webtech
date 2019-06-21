@@ -99,7 +99,7 @@
 		});
 		Information(options);
 	});
-	
+
 	function transpose(m) {
 		return m[0].map((_, i) => m.map(row => row[i]));
 	}
@@ -145,10 +145,11 @@
 			vertexIndex++;
 	        index++;
 		}
-		matrixColumns = matrixColumns.slice(0, 100);
-		orgMatrix = transpose(matrixColumns);
-		orgMatrix = orgMatrix.slice(0, 100);
-		matrix = orgMatrix.slice(0, orgMatrix.length)
+		matrixColumns = matrix.slice(0, 100);
+		let matrixRows = transpose(matrixColumns);
+		matrixRows = matrixRows.slice(0, 100);
+		orgMatrix = transpose(matrixRows);
+		matrix = orgMatrix.slice(0, orgMatrix.length);
 		let names = nodes.filter(function (el) {
 			return el != null;
 		});
@@ -361,7 +362,6 @@
 			 transpose(alphaMatrix)
 		   return alphaMatrix;
 		}
-		console.log(alphabetic())
 
 		function reversed(reverseMatrix) {
 		   var currentElement = document.getElementById("d3-dropdown");
