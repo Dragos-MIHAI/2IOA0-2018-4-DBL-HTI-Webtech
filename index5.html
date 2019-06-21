@@ -362,22 +362,16 @@
 			alpha.sort()
 			let alphaMatrixRows = matrix.slice(0, matrix.length);
 			for (let i = 0; i < matrix.length; i++) {
-				alphaMatrixRows[i] = matrix[verticesIndex[alphabetic[i]]];
+				alphaMatrixRows[i] = matrix[verticesIndex[alpha[i]]];
 			}
 			let alphaMatrixColumns = transpose(alphaMatrixRows);
 			for (let i = 0; i < matrix.length; i++) {
-				alphaMatrixColumns[i] = matrix[verticesIndex[alphabetic[i]]];
+				alphaMatrixColumns[i] = matrix[verticesIndex[alpha[i]]];
 			}
 			alphaMatrix = transpose(alphaMatrixColumns);
-			/*
-		   var firstRow = matrix[0];
-		   var matrixEX = matrix;
-		   matrixEX.shift();
-		   var alphaMatrix = matrixEX.sort();
-		   alphaMatrix.unshift(firstRow);
-			 transpose(alphaMatrix)
-		   return alphaMatrix;
-		   */
+			for (let i = 0; i < alpha.length; i++) {
+				verticesIndex[alpha[i]] = i
+			}
 		}
 
 		function reversed(reverseMatrix) {
