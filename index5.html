@@ -56,6 +56,13 @@
 		    var selected = d3.select("#d3-dropdown").node().value;
 		    console.log( selected );
 		    d3.select("#selected-dropdown").text(selected);
+			if (selected === 'first') {
+				if (frequencyMatrix === []) {
+					getFrequency();
+				}
+				matrix = frequencyMatrix.slice(0, frequencyMatrix.length);
+				names = frequencies.slice(0, frequencies.length);
+			}
 		}) //- var currentElement = document.getElementById("d3-dropdown");
 
 		d3.select("#myselect").on("change", change)
