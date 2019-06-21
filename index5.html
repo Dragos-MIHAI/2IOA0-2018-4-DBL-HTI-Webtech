@@ -74,7 +74,7 @@
 				highlight_cell_on_hover: true,
 	       		highlight_cell_color: '#2ecc71'
 			});
-			Information();
+			Information(options);
 		}) //- var currentElement = document.getElementById("d3-dropdown");
 
 		d3.select("#d3-dropdown").on("change", change)
@@ -111,7 +111,7 @@
 			highlight_cell_on_hover: true,
        		highlight_cell_color: '#2ecc71'
 		});
-		Information(options);
+		Information();
 	});
 
 	function transpose(m) {
