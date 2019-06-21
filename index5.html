@@ -78,8 +78,10 @@
 	let dict = {} // An object as {'vertexName' : frequency}
 	let frequencies = [] // The order of vertices by frequency
 	let frequencyMatrix = [] // The matrix with columns AND rows ordered by frequency
-	let matrix = [];
-	let orgMatrix = [];
+	let matrix = []; // The actual input for the adjacency matrix visualization
+	let orgMatrix = [];  // The matrix in the order of the .csv file
+	let alphabetic = []; // Alphabetical order of the vertices
+	let alphaMatrix = []; // The matrix with alphabetical order
 	axios
 	.get(
 	  "https://raw.githubusercontent.com/Dragos-MIHAI/2IOA0-2018-4-DBL-HTI-Webtech/master/matrixdata"
@@ -353,7 +355,18 @@
 			    .text(function(d, i) { return d; });
 		}
 
-		function alphabetic(alphaMatrix) {
+		function alphabetic() {
+			alphabetic = names.sort();
+			let alphaMatrixRows = matrix.slice(0, matrix.length);
+			for (let i = 0; i < matrix.length; i++) {
+				alphaMatrixRows[i] = matrix[verticesIndex[alphabetic[i]]];
+			}
+			let alphaMatrixColumns = transpose(alphaMatrixRows);
+			for (let i = 0; i < matrix.length; i++) {
+				alphaMatrixColumns[i] = matrix[verticesIndex[alphabetic[i]]];
+			}
+			alphaMatrix = transpose(alphaMatrixColumns);
+			/*
 		   var firstRow = matrix[0];
 		   var matrixEX = matrix;
 		   matrixEX.shift();
@@ -361,6 +374,7 @@
 		   alphaMatrix.unshift(firstRow);
 			 transpose(alphaMatrix)
 		   return alphaMatrix;
+		   */
 		}
 
 		function reversed(reverseMatrix) {
