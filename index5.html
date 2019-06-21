@@ -71,7 +71,7 @@
 	let links = [];
 	let dict = {} // An object as {'vertexName' : frequency}
 	let frequencies = [] // The order of vertices by frequency
-	let frequencyMatrixColumns = [] // The matrix with columns AND rows ordered by frequency
+	let frequencyMatrix = [] // The matrix with columns AND rows ordered by frequency
 	let matrix = [];
 	let orgMatrix = [];
 	axios
@@ -184,12 +184,12 @@
 	    }
 
     	frequencies = sortVertices(verticesNames); // Here we order the vertices by frequency by using mergesort in the form index: 'vertexName'
-	    frequencyMatrixRows = matrix.slice(0, matrix.length); // We first have to order the rows. Columns remain in the old order
+	    let frequencyMatrixRows = matrix.slice(0, matrix.length); // We first have to order the rows. Columns remain in the old order
 
     	for (let i = 0; i < frequencies.length; i++) {
 	        frequencyMatrixRows[i] = matrix[verticesIndex[frequencies[i]]];
 	    }
-	    frequencyMatrixColumns = transpose(frequencyMatrixRows) // Now we order the columns accordingly
+	    let frequencyMatrixColumns = transpose(frequencyMatrixRows) // Now we order the columns accordingly
 	    for (let i = 0; i < frequencies.length; i++) {
 	        frequencyMatrixColumns[i] = matrix[verticesIndex[frequencies[i]]];
 	        verticesIndex[frequencies[i]] = i // Then update this vertex to its new vertex, i
